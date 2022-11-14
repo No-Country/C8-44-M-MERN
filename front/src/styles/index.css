@@ -7,3 +7,26 @@
     font-family: "Quicksand", system-ui, sans-serif;
   }
 }
+
+/*
+  Este es un ejemplo de cómo funcionan los custom styles.
+  Al colocar @apply podemos colocar estilos con la sintaxis de Tailwind
+*/
+.title {
+  @apply text-pink-dark font-bold text-2xl;
+}
+
+/*
+  El siguiente aplica los mismos estilos que el ejemplo de arriba.
+*/
+.title2 {
+  color: rgb(226 104 104);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/*
+  igualmente, recomendaría utilizar los estilos de la forma que lo establece Tailwind,
+  ya que es una manera más rápida y eficiente para aplicar estilos.
+*/

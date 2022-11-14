@@ -1,8 +1,13 @@
-import { FormLogin } from './components'
+import { LoginForm } from './components'
 
-function Login() {
+type Props = {}
+
+const Login = (props: Props) => {
   return (
-    <div>Login</div>
+    <div>
+      Login
+      <LoginForm />
+    </div>
   )
 }
 

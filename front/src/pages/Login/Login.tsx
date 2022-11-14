@@ -1,4 +1,4 @@
-import React from 'react'
+import { FormLogin } from './components'
 
 function Login() {
   return (

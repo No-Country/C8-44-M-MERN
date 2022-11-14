@@ -11,3 +11,5 @@
 - - Giuliano Gropponi --> Full-Stack
 - - Andres Felipe Padilla Mantilla --> Back-End
 - - Alfredo Profumieri --> Back-End
+
+--commit giuli 14/11 1:31

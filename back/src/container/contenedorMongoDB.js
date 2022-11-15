@@ -47,6 +47,17 @@ class ContenedorMongoDB {
     }
   }
 
+  async findOneById(id) {
+    try {
+      let response= await this.model.findOne({_id:id});
+      console.log(response);
+      return response
+    } catch (error) {
+      console.log("error al buscar documento");
+      console.log(error);
+    }
+  }
+
   async findOneByName(value) {
     try {
       let response= await this.model.findOne({ username: value });

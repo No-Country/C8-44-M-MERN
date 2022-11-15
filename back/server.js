@@ -1,5 +1,6 @@
 const express = require("express");
 const UsuariosDaoMongoDB = require("./src/DAOs/usuariosDaoMongoDb.js");
+require('dotenv').config()
 
 const usersRouter = require('./src/routes/users')
 const habitsRouters=require('./src/routes/habits')
@@ -18,8 +19,9 @@ app.use(express.json());
 /* ____________RUTAS */
 app.use(usersRouter)
 app.use(habitsRouters)
+
 /* __________________ SERVIDOR */
-const PORT = 8080;
+const PORT = process.env.PORT;
 const server = app.listen(PORT, () => {
   console.log(`listening on ${PORT}`);
 });

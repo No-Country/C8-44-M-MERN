@@ -4,6 +4,7 @@ const router= express.Router()
 
 const UsuariosDaoMongoDB = require("../DAOs/usuariosDaoMongoDb");
 const usuariosApi = new UsuariosDaoMongoDB();
+const { hashPassword } = require('../utils/crypt')
 
 const path="/api/register"
 
@@ -25,7 +26,7 @@ router.post(`${path}`, async (req, res) => {
         username,
         fullname,
         email,
-        password,
+        password: hashPassword(password),
         birthday,
         avatar,
         rol,
@@ -34,6 +35,7 @@ router.post(`${path}`, async (req, res) => {
     };
     console.log(newUser);
     usuariosApi.save(newUser);
+    res.send('User created!')
 });
 
 module.exports=router

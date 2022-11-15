@@ -1,5 +1,5 @@
 const ContenedorMongoDB = require("../container/contenedorMongoDB");
-const usuarioModel = require("../models/usuarios.model");
+const usuarioModel = require("../models/users.model");
 
 class UsuariosDaoMongoDB extends ContenedorMongoDB {
   constructor() {

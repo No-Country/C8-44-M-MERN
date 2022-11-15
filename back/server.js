@@ -2,6 +2,7 @@ const express = require("express");
 
 const UsuariosDaoMongoDB = require("./src/DAOs/usuariosDaoMongoDb.js");
 const usuariosApi = new UsuariosDaoMongoDB();
+const usersRouter = require('./src/routes/users')
 usuariosApi.connect();
 
 /* __________________ INSTANCIA DE SERVER */
@@ -12,30 +13,7 @@ app.use(express.urlencoded({ encoded: true, extended: true }));
 app.use(express.json());
 
 /* ____________RUTAS */
-app.get("/register", (req, res) => {
-  // ruta de registro
-});
-app.post("/register", async (req, res) => {
-  const { nombre, password, direccion } = req.body;
-
-  const newUsuario = await usuariosApi.findOneByName(nombre);
-  // const newUsuario = usuariosApi.getAll().find((usuario) => usuario.nombre == nombre);
-  if (newUsuario) {
-    // error de registro
-    console.log("usuario repetido");
-
-    // res.render("register-error");
-  } else {
-    const newUser = {
-      nombre,
-      password,
-      direccion,
-    };
-    console.log(newUser);
-    usuariosApi.save(newUser);
-    res.send("página de documento insertado");
-  }
-});
+app.use(usersRouter)
 
 /* __________________ SERVIDOR */
 const PORT = 8080;

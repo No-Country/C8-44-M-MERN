@@ -8,11 +8,11 @@ class HabitsDaoMongoDB extends ContenedorMongoDB {
   
   async populateUser(id) {
     try {
-      Habit.findOne({ _id: id })
+      Habit.model.findOne({ _id: id })
         .populate("idUser")
         .exec(function (err, habit) {
           // do stuff with habit
-        });
+      });
     } catch (error) {
       console.log("error poblando usuario");
       console.log(error);

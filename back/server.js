@@ -1,8 +1,11 @@
 const express = require("express");
-
 const UsuariosDaoMongoDB = require("./src/DAOs/usuariosDaoMongoDb.js");
-const usuariosApi = new UsuariosDaoMongoDB();
+
 const usersRouter = require('./src/routes/users')
+const habitsRouters=require('./src/routes/habits')
+
+const usuariosApi = new UsuariosDaoMongoDB();
+
 usuariosApi.connect();
 
 /* __________________ INSTANCIA DE SERVER */
@@ -14,7 +17,7 @@ app.use(express.json());
 
 /* ____________RUTAS */
 app.use(usersRouter)
-
+app.use(habitsRouters)
 /* __________________ SERVIDOR */
 const PORT = 8080;
 const server = app.listen(PORT, () => {

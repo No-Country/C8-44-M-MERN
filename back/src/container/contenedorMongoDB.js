@@ -40,7 +40,6 @@ class ContenedorMongoDB {
   async getAll() {
     try {
       let response = await this.model.find();
-      console.log("documentos encontrados", response);
       return response;
     } catch (error) {
       console.log("error al buscar documentos");
@@ -50,7 +49,9 @@ class ContenedorMongoDB {
 
   async findOneByName(value) {
     try {
-      this.model.findOne({ nombre: value }).exec();
+      let response= await this.model.findOne({ username: value });
+      console.log(value)
+      console.log("documentos encontrados", response);
     } catch (error) {
       console.log("error al buscar documento");
       console.log(error);
@@ -62,6 +63,16 @@ class ContenedorMongoDB {
     } catch (error) {
       console.log("error al borrar todo");
       console.log(error);
+    }
+  }
+  //DELETE ONE
+  async deleteOne(name){
+    try{
+      await this.model.updateOne({name:name},{isActive:false})
+    }
+    catch(error){
+      console.log("error al modificar")
+      console.log(error)
     }
   }
 }

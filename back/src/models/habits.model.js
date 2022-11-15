@@ -3,7 +3,7 @@ const userModel = require("./users.model");
 
 const habitSchema = new Schema({
     idUser:{ /* revisar nombre de esta key */
-        type: mongoose.Schema.Types.ObjectId,
+        type:Schema.Types.ObjectId,
         ref: userModel,
         required:true,
     },

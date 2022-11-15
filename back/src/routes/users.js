@@ -38,4 +38,10 @@ router.post(`${path}`, async (req, res) => {
     res.send('User created!')
 });
 
+router.put(`${path}`,async (req,res)=>{
+    const {name} = req.body;
+    habitsApi.deleteOne(name)
+    res.json("se modifico el archivo")
+})
+
 module.exports=router

@@ -13,6 +13,7 @@
   Este es un ejemplo de cómo funcionan los custom styles.
   Al colocar @apply podemos colocar estilos con la sintaxis de Tailwind
 */
+
 .titulo {
   @apply text-pink-dark font-bold text-2xl;
 }
@@ -31,7 +32,6 @@
   igualmente, recomendaría utilizar los estilos de la forma que lo establece Tailwind,
   ya que es una manera más rápida y eficiente para aplicar estilos.
 */
-
 /**********************************************************************************/
 
 .title {
@@ -45,3 +45,4 @@
 .form-error {
   @apply text-pink-dark text-sm before:content-['⚠'] inline;
 }
+

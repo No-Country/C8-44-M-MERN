@@ -69,7 +69,6 @@ const Form = (props: Props) => {
         {errors?.passwordConfirm?.type === "validate" && (
           <p className="form-error"> Password fields don't match</p>
         )}
-        {console.log(errors)}
       </div>
       <button type="submit" className="border border-solid mt-4">
         Sign In

@@ -20,7 +20,7 @@ const Form = (props: Props) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
       <div className="form-group">
-        <label htmlFor="email-input">Email</label>
+        <label htmlFor="email-input" className="red-label">Email</label>
         <input
           type="email"
           id="email-input"
@@ -29,7 +29,7 @@ const Form = (props: Props) => {
             required: true,
             pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
           })}
-          className="border border-solid"
+          className="form-input"
         />
         {errors?.email?.type === "required" && (
           <p className="form-error"> This field is required</p>
@@ -45,7 +45,7 @@ const Form = (props: Props) => {
           id="password-input"
           placeholder="Your password"
           {...register("password", { required: true })}
-          className="border border-solid"
+          className="form-input"
         />
         {errors?.password?.type === "required" && (
           <p className="form-error"> This field is required</p>
@@ -59,9 +59,10 @@ const Form = (props: Props) => {
           placeholder="Confirm Password"
           {...register("passwordConfirm", {
             required: true,
-            validate: (value) => (value === getValues("password"))? true: false
+            validate: (value) =>
+              value === getValues("password") ? true : false,
           })}
-          className="border border-solid"
+          className="form-input"
         />
         {errors?.passwordConfirm?.type === "required" && (
           <p className="form-error"> This field is required</p>
@@ -70,9 +71,16 @@ const Form = (props: Props) => {
           <p className="form-error"> Password fields don't match</p>
         )}
       </div>
-      <button type="submit" className="border border-solid mt-4">
-        Sign In
-      </button>
+      <div className="form-group">
+        <button type="submit" className="btn btn-primary">
+          Sign Up
+        </button>
+      </div>
+      <div className="form-group">
+        <button className="btn btn-secondary">
+          Sign Up with Google
+        </button>
+      </div>
     </form>
   );
 };

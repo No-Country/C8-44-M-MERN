@@ -6,6 +6,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    extend: {
+      fontFamily: {
+        quicksand: ['Quicksand', 'sans-serif']
+      },
+    },
     colors: {
       'pink-dark': '#e26868',
       'pink-light': '#ff8787',

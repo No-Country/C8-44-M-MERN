@@ -4,6 +4,44 @@
 
 @layer base {
   html {
-    font-family: "Quicksand", system-ui, sans-serif;
+    font-family: "Asap", system-ui, sans-serif;
   }
+}
+
+/****************************** EJEMPLO DE CUSTOM STYLES *************************/
+/*
+  Este es un ejemplo de cómo funcionan los custom styles.
+  Al colocar @apply podemos colocar estilos con la sintaxis de Tailwind
+*/
+.titulo {
+  @apply text-pink-dark font-bold text-2xl;
+}
+
+/*
+  En el siguiente ejemplo, se aplican los mismos estilos que en el ejemplo de arriba.
+*/
+.titulo2 {
+  color: rgb(226 104 104);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/*
+  igualmente, recomendaría utilizar los estilos de la forma que lo establece Tailwind,
+  ya que es una manera más rápida y eficiente para aplicar estilos.
+*/
+
+/**********************************************************************************/
+
+.title {
+  @apply font-bold text-2xl font-quicksand;
+}
+
+.auth-form {
+  @apply flex flex-col mx-auto items-center text-left;
+}
+
+.form-error {
+  @apply text-pink-dark text-sm before:content-['⚠'] inline;
 }

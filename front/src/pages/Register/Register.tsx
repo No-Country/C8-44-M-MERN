@@ -5,7 +5,7 @@ type Props = {}
 const Register = (props: Props) => {
   return (
     <div>
-      Register
+      <h1 className='title'>Sign Up</h1>
       <RegisterForm />
     </div>
   )

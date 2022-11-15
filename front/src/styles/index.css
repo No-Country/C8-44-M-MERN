@@ -42,6 +42,10 @@
   @apply flex flex-col mx-auto items-center text-left;
 }
 
+.form-group {
+  @apply flex flex-col;
+}
+
 .form-error {
   @apply text-pink-dark text-sm before:content-['⚠'] inline;
 }

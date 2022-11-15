@@ -1,5 +1,4 @@
 import { useForm, SubmitHandler } from "react-hook-form";
-import { CiWarning } from 'react-icons/ci';
 
 type Props = {};
 
@@ -19,19 +18,29 @@ const Form = (props: Props) => {
         type="email"
         id="email-input"
         placeholder="Your email address"
-        {...register("email", {required: true})}
+        {...register("email", {
+          required: true,
+          pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        })}
         className="border border-solid"
       />
-      {errors?.email?.type === "required" && <p className="form-error">This field is required</p>}
+      {errors?.email?.type === "required" && (
+        <p className="form-error"> This field is required</p>
+      )}
+      {errors?.email?.type === "pattern" && (
+        <p className="form-error"> Please insert a valid email</p>
+      )}
       <label htmlFor="password-input">Password</label>
       <input
         type="password"
         id="password-input"
         placeholder="Your password"
-        {...register("password", {required: true})}
+        {...register("password", { required: true })}
         className="border border-solid"
-        />
-      {errors?.password?.type === "required" && <p className="form-error">This field is required</p>}
+      />
+      {errors?.password?.type === "required" && (
+        <p className="form-error"> This field is required</p>
+      )}
       <button type="submit" className="border border-solid mt-4">
         Sign In
       </button>

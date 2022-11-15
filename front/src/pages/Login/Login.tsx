@@ -4,7 +4,7 @@ type Props = {}
 
 const Login = (props: Props) => {
   return (
-    <div>
+    <div className='main-container'>
       <h1 className='title'>Sign In</h1>
       <LoginForm />
     </div>

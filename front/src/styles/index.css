@@ -15,7 +15,7 @@
 */
 
 .titulo {
-  @apply text-pink-dark font-bold text-2xl;
+  @apply text-primary-dark font-bold text-2xl;
 }
 
 /*
@@ -42,11 +42,35 @@
   @apply flex flex-col mx-auto items-center text-left;
 }
 
+.btn {
+  @apply w-full h-11 rounded-md font-semibold;
+}
+
+.btn-primary {
+  @apply bg-primary-dark text-white;
+}
+
+.btn-secondary {
+ @apply border border-primary-dark text-primary-dark;
+}
+
 .form-group {
-  @apply flex flex-col;
+  @apply flex flex-col w-full;
+}
+
+.form-input {
+  @apply w-full border-b-2 pb-1 border-secondary-light placeholder:text-secondary-regular;
 }
 
 .form-error {
-  @apply text-pink-dark text-sm before:content-['⚠'] inline;
+  @apply text-primary-dark text-sm before:content-['⚠'] inline;
+}
+
+.main-container {
+  @apply px-16 pb-10 pt-16 min-h-screen min-w-full;
+}
+
+.red-label {
+  @apply text-primary-dark text-sm font-bold;
 }
 

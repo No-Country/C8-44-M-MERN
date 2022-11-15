@@ -39,7 +39,7 @@
 }
 
 .auth-form {
-  @apply flex flex-col mx-auto items-center text-left;
+  @apply flex flex-col mx-auto items-center text-left w-full;
 }
 
 .btn {
@@ -51,7 +51,7 @@
 }
 
 .btn-secondary {
- @apply border border-primary-dark text-primary-dark;
+  @apply border border-primary-dark text-primary-dark;
 }
 
 .form-group {
@@ -63,14 +63,13 @@
 }
 
 .form-error {
-  @apply text-primary-dark text-sm before:content-['⚠'] inline;
+  @apply text-primary-dark text-xs inline;
 }
 
 .main-container {
-  @apply px-16 pb-10 pt-16 min-h-screen min-w-full;
+  @apply px-16 pb-12 pt-16 min-h-screen min-w-full;
 }
 
 .red-label {
   @apply text-primary-dark text-sm font-bold;
 }
-

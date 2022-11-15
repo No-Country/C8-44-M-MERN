@@ -1,8 +1,10 @@
 const {model, Schema} = require("mongoose");
+const userModel = require("./users.model");
 
-const habitosSchema = new Schema({
-    idUser:{
-        type:String,/*A REVISAR que tipo de dato maneja mongo*/
+const habitSchema = new Schema({
+    idUser:{ /* revisar nombre de esta key */
+        type: mongoose.Schema.Types.ObjectId,
+        ref: userModel,
         required:true,
     },
     name:{
@@ -39,6 +41,6 @@ const habitosSchema = new Schema({
         required:true,
     },    
 });
-const habitosModel = model('habitos', habitosSchema);
+const habitModel = model('habits', habitSchema);
 
-module.exports =  habitosModel;
+module.exports =  habitModel;

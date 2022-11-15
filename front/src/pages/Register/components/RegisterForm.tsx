@@ -12,6 +12,7 @@ const Form = (props: Props) => {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
@@ -56,12 +57,19 @@ const Form = (props: Props) => {
           type="password"
           id="password-confirm-input"
           placeholder="Confirm Password"
-          {...register("passwordConfirm", { required: true })}
+          {...register("passwordConfirm", {
+            required: true,
+            validate: (value) => (value === getValues("password"))? true: false
+          })}
           className="border border-solid"
         />
         {errors?.passwordConfirm?.type === "required" && (
           <p className="form-error"> This field is required</p>
         )}
+        {errors?.passwordConfirm?.type === "validate" && (
+          <p className="form-error"> Password fields don't match</p>
+        )}
+        {console.log(errors)}
       </div>
       <button type="submit" className="border border-solid mt-4">
         Sign In

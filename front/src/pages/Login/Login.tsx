@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
 import { LoginForm } from "./components";
 
-type Props = {};
-
-const Login = (props: Props) => {
+const Login = () => {
   return (
-    <div className="main-container flex flex-col justify-between sm:px-32 md:px-36 lg:px-64 xl:px-[550px] xl:pt-24 xl:pb-20">
-      <div className="flex flex-col gap-2">
-        <h1 className="title text-secondary-dark">Sign In</h1>
-        <p className="text-secondary-regular text-sm">
-          Hi there! Nice to see you again.
+    <div className="main-container flex flex-col items-center">
+      <div className="flex flex-col gap-9 w-80 sm:w-96 mx-auto mb-auto mt-0">
+        <div>
+          <h1 className="title">Sign In</h1>
+          <p className="text-secondary-regular text-sm pt-2">
+            Hi there! Nice to see you again.
+          </p>
+        </div>
+        <LoginForm />
+        <p className="flex gap-2 text-secondary-regular justify-center items-center">
+          Don't have an Account?
+          <span className="text-primary-dark text-sm">
+            <Link to="/register"> Sign Up</Link>
+          </span>
         </p>
-      </div>
-      <LoginForm />
-      <div className="flex flex-row gap-2 justify-center align-middle">
-        <p className="text-secondary-regular text-sm">Don't have an Account?</p>
-        <Link className="text-primary-dark text-sm" to="/register">
-          Sign Up
-        </Link>
       </div>
     </div>
   );

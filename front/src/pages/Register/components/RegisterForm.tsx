@@ -19,12 +19,13 @@ interface MessageForm {
   type: string
   text: string
 }
+
 const Message = ({ errors, property, type, text }: MessageForm) => {
   const isEqual = () => {
     return errors?
       errors[`${property}`]?.type === type
     : null
-  }
+}
 
   return (
     <div className='flex items-center gap-2 form-error h-5'>
@@ -69,6 +70,7 @@ const Form = () => {
           })}
           className="form-input outline-none text-secondary-dark"
         />
+        {/************* Error section **************/}
         <Message
           errors={errors}
           property='email'
@@ -82,6 +84,7 @@ const Form = () => {
           : "Please insert a valid email"
           }
         /> 
+        {/*****************************************/}
       </div>
       <div className="form-group">
         <label htmlFor="password-input" className="red-label">Password</label>
@@ -92,13 +95,14 @@ const Form = () => {
           {...register("password", { required: true })}
           className="form-input outline-none text-secondary-dark"
         />
-        
+        {/************* Error section **************/}
         <Message
           errors={errors}
           property='password'
           type='required'
           text="This field is required"
         />        
+        {/*****************************************/}
       </div>
       <div className="form-group">
         <label htmlFor="password-confirm-input" className="red-label">Confirm Password</label>
@@ -113,7 +117,7 @@ const Form = () => {
           })}
           className="form-input outline-none text-secondary-dark"
         />
-
+          {/************* Error section **************/}
           <Message
             errors={errors}
             property='passwordConfirm'
@@ -126,7 +130,8 @@ const Form = () => {
               "This field is required"
             : "Password fields don't match"
             }
-          />
+            />
+            {/*****************************************/}
       </div>
       <div className="flex flex-col w-full gap-2 mt-4">
         <div className="form-group">

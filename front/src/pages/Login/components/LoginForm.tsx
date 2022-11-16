@@ -3,14 +3,50 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
 import { CiWarning } from "react-icons/ci";
 
-type Props = {};
-
 type FormValues = {
   email: string;
   password: string;
 };
 
-const Form = (props: Props) => {
+type Error = {
+  [key: string]: any
+}
+
+interface MessageForm {
+  errors: Error
+  property: string
+  type: string
+  text: string
+}
+
+const Message = ({ errors, property, type, text }: MessageForm) => {
+  const isEqual = () => {
+    return errors?
+      errors[`${property}`]?.type === type
+    : null
+}
+
+return (
+  <div className='flex items-center gap-2 form-error h-5'>
+    <AnimatePresence>
+      { isEqual() && (
+            <motion.div
+              className="flex gap-1"
+              initial={{ y: -5, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -5, opacity: 0 }}
+              transition={{ duration: 0.2, delay: 0.1 }}
+            >
+              <CiWarning />
+              <p>{ text }</p>
+            </motion.div>
+          )}
+   </AnimatePresence>
+</div>
+) 
+}
+
+const Form = () => {
   const {
     register,
     handleSubmit,
@@ -35,37 +71,21 @@ const Form = (props: Props) => {
           })}
           className="form-input text-secondary-dark"
         />
-        
-        <div className="h-5 mt-2 flex flex-col gap-1">
-          <AnimatePresence>
-            {errors?.email?.type === "required" && (
-              <motion.div
-                className="flex gap-1"
-                initial={{ y: -5, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              >
-                <CiWarning className="text-primary-dark text-sm" />
-                <p className="form-error">This field is required</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <AnimatePresence>
-            {errors?.email?.type === "pattern" && (
-              <motion.div
-                className="flex gap-1"
-                initial={{ y: -5, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -5, opacity: 0 }}
-                transition={{ duration: 0.2, delay: 0.1 }}
-              >
-                <CiWarning className="text-primary-dark text-sm" />
-                <p className="form-error">Please insert a valid email</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-        
+        {/************* Error section **************/}
+        <Message
+          errors={errors}
+          property='email'
+          type={
+            errors?.email?.type == 'required'? 
+            'required' : 'pattern'
+          }
+          text={
+            errors?.email?.type == 'required'?
+            "This field is required"
+          : "Please insert a valid email"
+          }
+        /> 
+        {/*****************************************/}
       </div>
       <div className="form-group">
         <label htmlFor="password-input" className="red-label">
@@ -79,22 +99,12 @@ const Form = (props: Props) => {
           className="form-input text-secondary-dark"
         />
         {/************* Error section **************/}
-        <div className="h-5 mt-2">
-          <AnimatePresence>
-            {errors?.password?.type === "required" && (
-              <motion.div
-                className="flex gap-1"
-                initial={{ y: -5, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -5, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <CiWarning className="text-primary-dark text-sm" />
-                <p className="form-error">This field is required</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+        <Message
+          errors={errors}
+          property='password'
+          type='required'
+          text="This field is required"
+        />   
         {/*****************************************/}
       </div>
       <div className="flex flex-col w-full gap-2 mt-4">

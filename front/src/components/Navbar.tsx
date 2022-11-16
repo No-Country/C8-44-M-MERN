@@ -8,7 +8,7 @@ const Navbar = () => {
   let { pathname } = useLocation();
 
   return (
-    <div className="fixed w-full h-18 bottom-0 flex justify-evenly items-center  border-secondary-light shadow-[0_0_40px_-15px_rgba(0,0,0,0.2)]">
+    <div className="fixed z-10 w-full h-18 bottom-0 flex justify-evenly items-center  border-secondary-light shadow-[0_0_40px_-15px_rgba(0,0,0,0.2)]">
       <Link to="/profile" className="p-5">
         <BsFillPersonFill
           className={

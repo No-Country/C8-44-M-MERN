@@ -21,9 +21,9 @@ const Form = (props: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="auth-form gap-3">
+    <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
       <div className="form-group">
-        <label htmlFor="email-input" className="red-label pb-2">
+        <label htmlFor="email-input" className="red-label">
           Email
         </label>
         <input
@@ -33,8 +33,9 @@ const Form = (props: Props) => {
             required: true,
             pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
           })}
-          className="form-input text-sm text-secondary-dark"
+          className="form-input text-secondary-dark"
         />
+        
         <div className="h-5 mt-2 flex flex-col gap-1">
           <AnimatePresence>
             {errors?.email?.type === "required" && (
@@ -64,9 +65,10 @@ const Form = (props: Props) => {
             )}
           </AnimatePresence>
         </div>
+        
       </div>
       <div className="form-group">
-        <label htmlFor="password-input" className="red-label pb-2">
+        <label htmlFor="password-input" className="red-label">
           Password
         </label>
         <input
@@ -74,9 +76,9 @@ const Form = (props: Props) => {
           id="password-input"
           placeholder="Your password"
           {...register("password", { required: true })}
-          className="form-input text-sm text-secondary-dark"
+          className="form-input text-secondary-dark"
         />
-
+        {/************* Error section **************/}
         <div className="h-5 mt-2">
           <AnimatePresence>
             {errors?.password?.type === "required" && (
@@ -93,15 +95,16 @@ const Form = (props: Props) => {
             )}
           </AnimatePresence>
         </div>
+        {/*****************************************/}
       </div>
-      <div className="form-group gap-3">
+      <div className="flex flex-col w-full gap-2 mt-4">
         <button type="submit" className="btn btn-primary">
           Sign In
         </button>
-        <div className="flex justify-center">
-          <hr className="w-full mt-3 text-secondary-light" />
-          <p className="px-2 text-secondary-regular text-sm">or</p>
-          <hr className="w-full mt-3 text-secondary-light" />
+        <div className="flex justify-center items-center">
+          <hr className="w-full text-secondary-light" />
+          <p className="text-secondary-regular text-sm m-2">or</p>
+          <hr className="w-full text-secondary-light" />
         </div>
         <button className="btn btn-secondary flex justify-center gap-3 items-center">
           <FaGoogle className="inline-block" />

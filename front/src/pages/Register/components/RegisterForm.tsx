@@ -56,8 +56,8 @@ const Form = () => {
   const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="auth-form gap-6 w-full">
-      <div className="form-group gap-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
+      <div className="form-group">
         <label htmlFor="email-input" className="red-label">Email</label>
         <input
           type="email"
@@ -83,7 +83,7 @@ const Form = () => {
           }
         /> 
       </div>
-      <div className="form-group gap-3">
+      <div className="form-group">
         <label htmlFor="password-input" className="red-label">Password</label>
         <input
           type="password"
@@ -97,10 +97,10 @@ const Form = () => {
           errors={errors}
           property='password'
           type='required'
-          text="Password fields don't match"
+          text="This field is required"
         />        
       </div>
-      <div className="form-group gap-2">
+      <div className="form-group">
         <label htmlFor="password-confirm-input" className="red-label">Confirm Password</label>
         <input
           type="password"
@@ -135,9 +135,9 @@ const Form = () => {
           </button>
         </div>
         <div className='flex items-center justify-between'>
-          <hr className='border w-full text-secondary-light'/>
-          <p className='text-secondary-regular m-2'>or</p>
-          <hr className='border w-full text-secondary-light'/>
+          <hr className='w-full text-secondary-light'/>
+          <p className='text-secondary-regular text-sm m-2'>or</p>
+          <hr className='w-full text-secondary-light'/>
         </div>
         <div className="form-group">
           <button className="flex justify-center btn btn-secondary items-center gap-2">

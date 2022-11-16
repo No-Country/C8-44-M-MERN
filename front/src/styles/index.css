@@ -35,11 +35,11 @@
 /**********************************************************************************/
 
 .title {
-  @apply font-bold text-2xl font-quicksand;
+  @apply font-bold text-2xl font-quicksand text-secondary-dark;
 }
 
 .auth-form {
-  @apply flex flex-col mx-auto items-center text-left w-full;
+  @apply flex flex-col gap-3 mx-auto items-center text-left w-full;
 }
 
 .btn {
@@ -55,7 +55,7 @@
 }
 
 .form-group {
-  @apply flex flex-col w-full;
+  @apply flex flex-col w-full gap-0.5;
 }
 
 .form-input {
@@ -67,11 +67,11 @@
 }
 
 .main-container {
-  @apply px-16 pb-12 pt-16 min-h-screen min-w-full;
+  @apply px-8 pb-12 pt-16 min-h-screen min-w-full;
 }
 
 .red-label {
-  @apply text-primary-dark text-sm font-bold;
+  @apply text-primary-dark font-bold;
 }
 
 #progress {

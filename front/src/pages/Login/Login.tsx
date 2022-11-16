@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { LoginForm } from "./components";
 
 type Props = {};
@@ -14,9 +15,9 @@ const Login = (props: Props) => {
       <LoginForm />
       <div className="flex flex-row gap-2 justify-center align-middle">
         <p className="text-secondary-regular text-sm">Don't have an Account?</p>
-        <a href="" className="text-primary-dark text-sm">
+        <Link className="text-primary-dark text-sm" to="/register">
           Sign Up
-        </a>
+        </Link>
       </div>
     </div>
   );

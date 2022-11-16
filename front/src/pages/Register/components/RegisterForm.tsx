@@ -12,6 +12,7 @@ interface FormValues {
 type Error = {
   [key: string]: any
 }
+
 interface MessageForm {
   errors: Error
   property: string

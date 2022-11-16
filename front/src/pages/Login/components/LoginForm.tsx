@@ -1,8 +1,7 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { SubmitHandler, useForm } from "react-hook-form";
-
-import { CiWarning } from "react-icons/ci";
+import { motion, AnimatePresence } from "framer-motion"
+import { useForm, SubmitHandler } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
+import { CiWarning } from "react-icons/ci";
 
 type Props = {};
 
@@ -22,7 +21,7 @@ const Form = (props: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="auth-form gap-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="auth-form gap-3">
       <div className="form-group">
         <label htmlFor="email-input" className="red-label pb-2">
           Email
@@ -95,14 +94,14 @@ const Form = (props: Props) => {
           </AnimatePresence>
         </div>
       </div>
-      <div className="form-group gap-5">
+      <div className="form-group gap-3">
         <button type="submit" className="btn btn-primary">
           Sign In
         </button>
         <div className="flex justify-center">
-          <hr className="w-full mt-3 text-secondary-light border-t-2" />
+          <hr className="w-full mt-3 text-secondary-light" />
           <p className="px-2 text-secondary-regular text-sm">or</p>
-          <hr className="w-full mt-3 text-secondary-light border-t-2" />
+          <hr className="w-full mt-3 text-secondary-light" />
         </div>
         <button className="btn btn-secondary flex justify-center gap-3 items-center">
           <FaGoogle className="inline-block" />

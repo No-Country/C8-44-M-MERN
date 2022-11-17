@@ -1,6 +1,5 @@
-import { HomeExperience, HomeFriends } from "./components";
+import { HomeExperience, HomeFriends, HomeHabits } from "./components";
 import { Loader, Navbar } from "../../components";
-
 import profilePicture from "../../assets/profile.jpg";
 import { useState } from "react";
 
@@ -26,6 +25,7 @@ const Home = () => {
           </div>
         </div>
         <HomeExperience />
+        <HomeHabits />
         <HomeFriends />
       </div>
       <Navbar />

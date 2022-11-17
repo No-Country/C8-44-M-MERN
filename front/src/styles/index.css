@@ -8,32 +8,6 @@
   }
 }
 
-/****************************** EJEMPLO DE CUSTOM STYLES *************************/
-/*
-  Este es un ejemplo de cómo funcionan los custom styles.
-  Al colocar @apply podemos colocar estilos con la sintaxis de Tailwind
-*/
-
-.titulo {
-  @apply text-primary-dark font-bold text-2xl;
-}
-
-/*
-  En el siguiente ejemplo, se aplican los mismos estilos que en el ejemplo de arriba.
-*/
-.titulo2 {
-  color: rgb(226 104 104);
-  font-weight: 700;
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-/*
-  igualmente, recomendaría utilizar los estilos de la forma que lo establece Tailwind,
-  ya que es una manera más rápida y eficiente para aplicar estilos.
-*/
-/**********************************************************************************/
-
 .title {
   @apply font-bold text-2xl font-quicksand text-secondary-dark;
 }
@@ -52,6 +26,9 @@
 
 .btn-secondary {
   @apply border border-primary-dark text-primary-dark;
+}
+.auth-btn {
+  @apply 2xl:h-12 2xl:text-lg
 }
 
 .form-group {
@@ -82,6 +59,7 @@
   stroke: #dbdbdb;
   opacity: 0.3;
 }
+
 circle {
   stroke-linecap: round;
   stroke-dashoffset: 0;

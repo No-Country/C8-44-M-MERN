@@ -7,14 +7,14 @@ module.exports = {
       fontFamily: {
         quicksand: ["Quicksand", "sans-serif"],
       },
-    },
-    colors: {
-      "primary-dark": "#f85f6a",
-      "primary-light": "#ff8787",
-      "secondary-dark": "#35424a",
-      "secondary-regular": "#8492a6",
-      "secondary-light": "#dbdbdb",
-      white: "#ffffff",
+      colors: {
+        "primary-dark": "#f85f6a",
+        "primary-light": "#ff8787",
+        "secondary-dark": "#35424a",
+        "secondary-regular": "#8492a6",
+        "secondary-light": "#dbdbdb",
+        white: "#ffffff",
+      },
     },
   },
   plugins: [],

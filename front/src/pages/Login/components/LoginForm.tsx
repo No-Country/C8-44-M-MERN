@@ -106,7 +106,7 @@ const Form = () => {
         {/*****************************************/}
       </div>
       <div className="flex flex-col w-full gap-2 mt-4">
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary auth-btn">
           Sign In
         </button>
         <div className="flex justify-center items-center">
@@ -114,7 +114,7 @@ const Form = () => {
           <p className="text-secondary-regular text-sm m-2">or</p>
           <hr className="w-full text-secondary-light" />
         </div>
-        <button className="btn btn-secondary flex justify-center gap-3 items-center">
+        <button className="btn btn-secondary auth-btn flex justify-center gap-3 items-center">
           <FaGoogle className="inline-block" />
           Sign In with Google
         </button>

@@ -7,7 +7,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   setTimeout(() => {
     setIsLoading(false);
-  }, 2000);
+  }, 1000);
 
   return isLoading ? (
     <Loader />

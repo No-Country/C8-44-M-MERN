@@ -25,6 +25,8 @@ const Home = () => {
           </div>
         </div>
         <HomeExperience />
+        <HomeHabits />
+        <HomeFriends />
       </div>
       <Navbar />
     </>

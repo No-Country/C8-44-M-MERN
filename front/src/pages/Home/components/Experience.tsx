@@ -12,18 +12,26 @@ const Experience = () => {
           <h3 className="text-sm text-secondary-regular">Education</h3>
           <ExperienceRing
             size={140}
-            progress={0.4}
+            experience={40}
             level={2}
-            showLevel={true}
+            color={"#f85f6a"}
+            textColor={"primary-dark"}
+            fontSize={"text-sm"}
+            showLevel={false}
+            showExperience={true}
           />
         </div>
         <div className="flex flex-col items-center">
           <h3 className="text-sm text-secondary-regular">Health</h3>
           <ExperienceRing
             size={140}
-            progress={0.9}
+            experience={90}
             level={1}
+            color={"#5f83f8"}
+            textColor={"blue"}
+            fontSize={"text-sm"}
             showLevel={false}
+            showExperience={true}
           />
         </div>
       </div>

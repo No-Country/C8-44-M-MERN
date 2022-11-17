@@ -1,5 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { ExperienceRing } from '../../components';
+import { tempColorAssing } from '../../utils/changeColor';
+
+
 import {
   Details,
   Header
@@ -92,12 +95,14 @@ function HabitDetail() {
       <Header />
       <p className="text-center font-bold text-3xl">{ data?.habitName }</p>
       <div className="flex flex-col items-center">
-        <h3 className="text-2xl text-violet-400 font-bold">Lvl { data.experience.level }</h3>      
+        <h3 className={`text-2xl text-${tempColorAssing(data.experience.level)} font-bold`}>Lvl { data.experience.level }</h3>      
           <ExperienceRing
             size={170}
-            progress={data.experience.progress}
+            color={tempColorAssing(data.experience.level)}
+            experience={data.experience.progress}
             level={data.experience.level}
             showLevel={false}
+            showExperience={true}
           />
         </div>
       <Details data={ data } />

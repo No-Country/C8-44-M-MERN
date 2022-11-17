@@ -28,7 +28,7 @@
   @apply border border-primary-dark text-primary-dark;
 }
 .auth-btn {
-  @apply 2xl:h-12 2xl:text-lg
+  @apply 2xl:h-12 2xl:text-lg;
 }
 
 .form-group {
@@ -65,9 +65,6 @@ circle {
   stroke-dashoffset: 0;
   stroke-width: 5%;
   fill: none;
-}
-#progress .indicator {
-  stroke: #f85f6a;
 }
 
 /* -----------LOADER------------ */

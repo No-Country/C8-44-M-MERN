@@ -4,6 +4,7 @@ const router = express.Router();
 
 const UsersDaoMongoDB = require("../DAOs/usersDaoMongoDb");
 const usersApi = new UsersDaoMongoDB();
+const jwt = require('jsonwebtoken')
 const { hashPassword } = require("../utils/crypt");
 
 var GoogleStrategy = require("passport-google-oauth2").Strategy;
@@ -49,7 +50,7 @@ router.get(`/auth/failure`, async (req, res) => {
 // USER    --> /user -> PUT->updateUser (addFollower*)| GET->getUser(getFollowers) | DELETE->deleteUser
 // ADMIN   --> /admin -> GET->getAllUsers | PUT->`:id`updateUser | GET->`:id`getUser | DELETE->`:id` deleteUser
 
-const path = "/api/register";
+const path = "/api/user";
 
 //ruta para pedir todos los user
 router.get(`${path}`, async (req, res) => {
@@ -73,7 +74,7 @@ router.get(`${path}/:id`, async (req, res) => {
 });
 
 //ruta para postear un user
-router.post(`${path}`, async (req, res) => {
+router.post(`${path}/register`, async (req, res) => {
   const {
     username,
     fullname,
@@ -107,4 +108,29 @@ router.put(`${path}`, async (req, res) => {
   res.json("se modifico el archivo");
 });
 
+router.post(`${path}/login`, async(req, res) => {
+  const { email, password} = req.body;
+  if(!email || !password){
+    return res.status(400).json({message: 'Missing data'})
+  }
+  usersApi.login(email, password)
+    .then( response => {
+      if(response){
+        const token = jwt.sign(
+          {
+            id: response.id,
+            email: response.email,
+            rol: response.rol
+          },
+          'No_Country-C8_44'
+        );
+        return res.status(200).json({message: 'User autenticated', token: token})
+      } else {
+        return res.status(401).json({message: 'Invalid Credentials'})
+      }
+    })
+    .catch( err => {
+      return res.status(401).json({message: 'Invalid Credentials'})
+    })
+});
 module.exports = router;

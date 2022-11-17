@@ -7,46 +7,6 @@ const usersApi = new UsersDaoMongoDB();
 const jwt = require('jsonwebtoken')
 const { hashPassword } = require("../utils/crypt");
 
-var GoogleStrategy = require("passport-google-oauth2").Strategy;
-const { googleAuth } = require("../utils/config");
-const passport = require("passport");
-
-/* ________________ GOOGLE AUTH */
-function isLoggedIn(req, res, next) {
-  req.user ? next() : res.sendStatus(401);
-}
-passport.use(
-  new GoogleStrategy(googleAuth, function (
-    request,
-    accessToken,
-    refreshToken,
-    profile,
-    done
-  ) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return done(err, user);
-    });
-  })
-);
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-router.get(`/auth/google`, async (req, res) => {
-  passport.authenticate("google", { scope: ["email", "profile"] });
-});
-router.get(`/google/callback`, async (req, res) => {
-  passport.authenticate("google", {
-    successRedirect: "/protected",
-    failureRedirect: "/auth/failure",
-  });
-});
-router.get(`/protected`, async (req, res) => {
-  res.send("no autorizado");
-});
-router.get(`/auth/failure`, async (req, res) => {
-  res.send("ha habido un error al loguearte");
-});
-
 // USER    --> /user -> PUT->updateUser (addFollower*)| GET->getUser(getFollowers) | DELETE->deleteUser
 // ADMIN   --> /admin -> GET->getAllUsers | PUT->`:id`updateUser | GET->`:id`getUser | DELETE->`:id` deleteUser
 
@@ -101,6 +61,7 @@ router.post(`${path}/register`, async (req, res) => {
   usersApi.save(newUser);
   res.send("User created!");
 });
+
 //ruta para borrar un user
 router.put(`${path}`, async (req, res) => {
   const { name } = req.body;

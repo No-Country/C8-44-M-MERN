@@ -7,9 +7,9 @@ const passport = require("passport");
 const usersRouter = require("./src/routes/users.routes");
 const habitsRouters = require("./src/routes/habits.routes");
 
-const usuariosApi = new UsersDaoMongoDB();
+const usersApi = new UsersDaoMongoDB();
 
-usuariosApi.connect();
+usersApi.connect();
 
 /* __________________ INSTANCIA DE SERVER */
 const app = express();

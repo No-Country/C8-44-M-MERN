@@ -40,7 +40,7 @@ const habitsList: Habit[] = [
     priority: 5,
     experience: {
       progress: 30,
-      level: 5,
+      level: 2,
     }
   },
   {
@@ -52,7 +52,7 @@ const habitsList: Habit[] = [
     priority: 3,
     experience: {
       progress: 40,
-      level: 2,
+      level: 3,
     }
   },
   {
@@ -64,7 +64,7 @@ const habitsList: Habit[] = [
     priority: 3,
     experience: {
       progress: 60,
-      level: 4,
+      level: 2,
     }
   },
   {
@@ -76,10 +76,11 @@ const habitsList: Habit[] = [
     priority: 3,
     experience: {
       progress: 90,
-      level: 2,
+      level: 5,
     }
   },
 ]
+
 
 function HabitDetail() {
   const { id } = useParams()

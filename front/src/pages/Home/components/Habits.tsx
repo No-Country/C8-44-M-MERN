@@ -15,6 +15,7 @@ const habitsList = [
     }
   },
   {
+    id: 2,
     habitName: "cycle for 1h",
     frequency: "once a day",
     category: "Health",
@@ -22,10 +23,11 @@ const habitsList = [
     priority: 5,
     experience: {
       progress: 30,
-      level: 5,
+      level: 2,
     }
   },
   {
+    id: 3,
     habitName: "Medical check",
     frequency: "once a month",
     category: "Health",
@@ -33,21 +35,11 @@ const habitsList = [
     priority: 3,
     experience: {
       progress: 40,
-      level: 2,
+      level: 3,
     }
   },
   {
-    habitName: "Read a book",
-    frequency: "once a day",
-    category: "Education",
-    description: "Read a book",
-    priority: 3,
-    experience: {
-      progress: 60,
-      level: 4,
-    }
-  },
-  {
+    id: 5,
     habitName: "Go to the bed early",
     frequency: "once a day",
     category: "Health",
@@ -55,6 +47,18 @@ const habitsList = [
     priority: 3,
     experience: {
       progress: 90,
+      level: 5,
+    }
+  },
+  {
+    id: 4,
+    habitName: "Read a book",
+    frequency: "once a day",
+    category: "Education",
+    description: "Read a book",
+    priority: 3,
+    experience: {
+      progress: 60,
       level: 2,
     }
   },

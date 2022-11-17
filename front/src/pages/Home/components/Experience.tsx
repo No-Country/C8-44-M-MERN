@@ -28,7 +28,7 @@ const Experience = () => {
             experience={90}
             level={1}
             color={"#5f83f8"}
-            textColor={"[#5f83f8]"}
+            textColor={"blue"}
             fontSize={"text-sm"}
             showLevel={false}
             showExperience={true}

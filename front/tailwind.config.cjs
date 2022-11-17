@@ -14,6 +14,7 @@ module.exports = {
         "secondary-regular": "#8492a6",
         "secondary-light": "#dbdbdb",
         white: "#ffffff",
+        "blue": "#5f83f8",
       },
     },
   },

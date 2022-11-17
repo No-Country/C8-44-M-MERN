@@ -6,7 +6,7 @@ interface Ring {
   level?: number;
   color: string;
   textColor?: string;
-  fontSize: string;
+  fontSize?: string;
   showLevel: boolean;
   showExperience: boolean;
 }

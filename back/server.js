@@ -17,9 +17,6 @@ const app = express();
 /* __________________ MIDDLEWARES */
 app.use(express.urlencoded({ encoded: true, extended: true }));
 app.use(express.json());
-app.use(session({secret : process.env.SESSION_SECRET}));
-app.use(passport.initialize());
-app.use(passport.session());
 
 /* ____________RUTAS */
 app.use(usersRouter);

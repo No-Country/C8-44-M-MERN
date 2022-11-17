@@ -27,6 +27,9 @@
 .btn-secondary {
   @apply border border-primary-dark text-primary-dark;
 }
+.auth-btn {
+  @apply 2xl:h-12 2xl:text-lg
+}
 
 .form-group {
   @apply flex flex-col w-full gap-0.5;

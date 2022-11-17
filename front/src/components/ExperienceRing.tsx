@@ -15,22 +15,20 @@ const ExperienceRing = ({
   experience,
   level,
   color,
-  textColor,
+  textColor = 'secondary-regular',
   fontSize
 }: Ring) => {
   return (
     <div className="relative flex flex-col items-center justify-center">
       {!level ?
         <p
-          className={`absolute ${fontSize} text-${textColor ? textColor : "secondary-regular"}`}
+          className={`absolute ${fontSize} text-${textColor}`}
         >
           {experience + "/100 exp"}
         </p>
       :
         <p
-          className={`absolute ${fontSize} text-${
-            textColor ? textColor : "secondary-regular"
-          }`}
+          className={`absolute ${fontSize} text-${textColor}`}
         >
           {"Lvl " + level}
         </p>

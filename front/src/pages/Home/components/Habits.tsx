@@ -75,6 +75,7 @@ const Habits = () => {
         {habitsList.map((habit) => (
           <li key={habit.id}>
             <Habit 
+            id={habit.id}
             habitName={habit.habitName}
             frequency={habit.frequency}
             category={habit.category}

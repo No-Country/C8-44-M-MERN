@@ -1,16 +1,18 @@
-export const tempColorAssing = (level: number) => {
+type TypeColor = 'hex' | 'class'
+
+export const tempColorAssing = (level: number, type: TypeColor) => {
   switch (level) {
     case 1:
-      return "red-700"
+      return type == 'hex'? "#B91C1C" : "red-700"
     case 2:
-      return "orange-400"
+      return type == 'hex'? "#FB923C" : "orange-400"  
     case 3:
-      return "yellow-500"
+      return type == 'hex'? "#EAB308" : "yellow-500"
     case 4:
-      return "orange-800"
+      return type == 'hex'? "#9A3412" : "orange-800"
     case 5:
-      return "blue-600"
+      return type == 'hex'? "#255DEB" : "blue"
     default:
-      return "[#FFFFFF]"
+      return type == 'hex'? "#FFFFFF" : "white"
   }
 }

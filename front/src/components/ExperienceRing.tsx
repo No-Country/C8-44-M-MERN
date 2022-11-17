@@ -1,14 +1,13 @@
 import { motion } from "framer-motion";
+import { tempColorAssing } from '../utils/changeColor';
 
 interface Ring {
   size: number;
   experience: number;
   level?: number;
-  color: string;
+  color?: string;
   textColor?: string;
   fontSize?: string;
-  showLevel: boolean;
-  showExperience: boolean;
 }
 
 const ExperienceRing = ({
@@ -17,30 +16,25 @@ const ExperienceRing = ({
   level,
   color,
   textColor,
-  fontSize,
-  showLevel,
-  showExperience,
+  fontSize
 }: Ring) => {
   return (
     <div className="relative flex flex-col items-center justify-center">
-      {showExperience && (
+      {!level ?
         <p
-          className={`absolute ${fontSize} text-${
-            textColor ? textColor : "secondary-regular"
-          }`}
+          className={`absolute ${fontSize} text-${textColor ? textColor : "secondary-regular"}`}
         >
           {experience + "/100 exp"}
         </p>
-      )}
-      {showLevel && (
+      :
         <p
           className={`absolute ${fontSize} text-${
             textColor ? textColor : "secondary-regular"
           }`}
         >
-          {"lvl " + level}
+          {"Lvl " + level}
         </p>
-      )}
+      }
       <svg id="progress" width={size} height={size} viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="40" pathLength="1" className="bg" />
         <motion.circle
@@ -52,7 +46,7 @@ const ExperienceRing = ({
           initial={{ strokeDasharray: "0 1" }}
           animate={{ strokeDasharray: `${experience / 100} 1` }}
           transition={{ duration: 0.5 }}
-          stroke={color}
+          stroke={level? tempColorAssing(level, 'hex'): color}
         />
       </svg>
     </div>

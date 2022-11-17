@@ -1,7 +1,9 @@
-import { motion, AnimatePresence } from "framer-motion"
-import { useForm, SubmitHandler } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa";
+import { AnimatePresence, motion } from "framer-motion";
+import { Navigate, useNavigate } from "react-router-dom";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import { CiWarning } from "react-icons/ci";
+import { FaGoogle } from "react-icons/fa";
 
 type FormValues = {
   email: string;
@@ -9,51 +11,50 @@ type FormValues = {
 };
 
 type Error = {
-  [key: string]: any
-}
+  [key: string]: any;
+};
 
 interface MessageForm {
-  errors: Error
-  property: string
-  type: string
-  text: string
+  errors: Error;
+  property: string;
+  type: string;
+  text: string;
 }
 
 const Message = ({ errors, property, type, text }: MessageForm) => {
   const isEqual = () => {
-    return errors?
-      errors[`${property}`]?.type === type
-    : null
-}
+    return errors ? errors[`${property}`]?.type === type : null;
+  };
 
-return (
-  <div className='flex items-center gap-2 form-error h-5'>
-    <AnimatePresence>
-      { isEqual() && (
-            <motion.div
-              className="flex gap-1"
-              initial={{ y: -5, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -5, opacity: 0 }}
-              transition={{ duration: 0.2, delay: 0.1 }}
-            >
-              <CiWarning />
-              <p>{ text }</p>
-            </motion.div>
-          )}
-   </AnimatePresence>
-</div>
-) 
-}
+  return (
+    <div className="flex items-center gap-2 form-error h-5">
+      <AnimatePresence>
+        {isEqual() && (
+          <motion.div
+            className="flex gap-1"
+            initial={{ y: -5, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -5, opacity: 0 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
+          >
+            <CiWarning />
+            <p>{text}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Form = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    navigate("/home");
   };
 
   return (
@@ -74,17 +75,14 @@ const Form = () => {
         {/************* Error section **************/}
         <Message
           errors={errors}
-          property='email'
-          type={
-            errors?.email?.type == 'required'? 
-            'required' : 'pattern'
-          }
+          property="email"
+          type={errors?.email?.type == "required" ? "required" : "pattern"}
           text={
-            errors?.email?.type == 'required'?
-            "This field is required"
-          : "Please insert a valid email"
+            errors?.email?.type == "required"
+              ? "This field is required"
+              : "Please insert a valid email"
           }
-        /> 
+        />
         {/*****************************************/}
       </div>
       <div className="form-group">
@@ -101,10 +99,10 @@ const Form = () => {
         {/************* Error section **************/}
         <Message
           errors={errors}
-          property='password'
-          type='required'
+          property="password"
+          type="required"
           text="This field is required"
-        />   
+        />
         {/*****************************************/}
       </div>
       <div className="flex flex-col w-full gap-2 mt-4">

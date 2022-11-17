@@ -1,24 +1,7 @@
-import { useParams } from 'react-router-dom';
-import { ExperienceRing } from '../../components';
-import {
-  Details,
-  Header
-} from './components'
+import React from 'react'
+import { Habit } from '../../../components'
 
-
-type Habit = {
-  id: number
-  habitName: string
-  frequency: string;
-  category: string;
-  description: string;
-  priority: number
-  experience: {
-    progress: number,
-    level: number,
-  }
-}
-const habitsList: Habit[] = [
+const habitsList = [
   {
     id: 1,
     habitName: "Brush your teeth",
@@ -32,7 +15,6 @@ const habitsList: Habit[] = [
     }
   },
   {
-    id: 2,
     habitName: "cycle for 1h",
     frequency: "once a day",
     category: "Health",
@@ -44,7 +26,6 @@ const habitsList: Habit[] = [
     }
   },
   {
-    id: 3,
     habitName: "Medical check",
     frequency: "once a month",
     category: "Health",
@@ -56,7 +37,6 @@ const habitsList: Habit[] = [
     }
   },
   {
-    id: 4,
     habitName: "Read a book",
     frequency: "once a day",
     category: "Education",
@@ -68,7 +48,6 @@ const habitsList: Habit[] = [
     }
   },
   {
-    id: 5,
     habitName: "Go to the bed early",
     frequency: "once a day",
     category: "Health",
@@ -81,27 +60,29 @@ const habitsList: Habit[] = [
   },
 ]
 
-function HabitDetail() {
-  const { id } = useParams()
-
-  const data = habitsList.find(habit => String(habit.id) === id)!
-
+const Habits = () => {
   return (
-    <div className="main-container flex flex-col gap-9">
-      <Header />
-      <p className="text-center font-bold text-3xl">{ data?.habitName }</p>
-      <div className="flex flex-col items-center">
-        <h3 className="text-2xl text-violet-400 font-bold">Lvl { data.experience.level }</h3>      
-          <ExperienceRing
-            size={170}
-            progress={data.experience.progress}
-            level={data.experience.level}
-            showLevel={false}
+    <div>
+      <h2 className="mb-1 text-primary-light">Habits</h2>
+      <div className="relative h-1 w-full bg-secondary-light rounded-full">
+        <div className="absolute h-1 w-16 bg-primary-dark rounded-full"></div>
+      </div>
+      <ul className='pt-4'>
+        {habitsList.map((habit) => (
+          <li key={habit.id}>
+            <Habit 
+            habitName={habit.habitName}
+            frequency={habit.frequency}
+            category={habit.category}
+            description={habit.description}
+            priority={habit.priority}
+            experience={habit.experience}
           />
-        </div>
-      <Details data={ data } />
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
 
-export default HabitDetail
+export default Habits

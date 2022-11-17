@@ -135,7 +135,7 @@ const Form = () => {
       </div>
       <div className="flex flex-col w-full gap-2 mt-4">
         <div className="form-group">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary auth-btn">
             Sign Up
           </button>
         </div>
@@ -145,7 +145,7 @@ const Form = () => {
           <hr className='w-full text-secondary-light'/>
         </div>
         <div className="form-group">
-          <button className="flex justify-center btn btn-secondary items-center gap-2">
+          <button className="btn btn-secondary auth-btn flex justify-center items-center gap-2">
             <FaGoogle />
             Sign Up with Google
           </button>

@@ -23,7 +23,7 @@ const Experience = () => {
             size={140}
             progress={0.9}
             level={1}
-            showLevel={false}
+            showLevel={true}
           />
         </div>
       </div>

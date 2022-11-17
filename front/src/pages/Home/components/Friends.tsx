@@ -32,11 +32,12 @@ const Friends = () => {
       {friendsList.map((friend) => {
         return (
           <Friend
+            key={friend.email}
             name={friend.name}
             email={friend.email}
             pictureUrl={friend.photo}
-            showEmail={true}
-            showButton={true}
+            showEmail={false}
+            showButton={false}
           />
         );
       })}

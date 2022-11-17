@@ -15,7 +15,7 @@ const habitSchema = new Schema({
         type:String,
         required:true,
     },
-    category:{
+    category:{ /* relacionar con categorias */
         type:String,
         required:true,
     },

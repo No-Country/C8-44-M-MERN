@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { mongoDb } = require("../utils/config.js");
 
-class ContenedorMongoDB {
+class ContainerMongoDB {
   constructor(model) {
     this.model = model;
   }
@@ -49,9 +49,9 @@ class ContenedorMongoDB {
 
   async findOneById(id) {
     try {
-      let response= await this.model.findOne({_id:id});
+      let response = await this.model.findOne({ _id: id });
       console.log(response);
-      return response
+      return response;
     } catch (error) {
       console.log("error al buscar documento");
       console.log(error);
@@ -60,8 +60,8 @@ class ContenedorMongoDB {
 
   async findOneByName(value) {
     try {
-      let response= await this.model.findOne({ username: value });
-      console.log(value)
+      let response = await this.model.findOne({ username: value });
+      console.log(value);
       console.log("documentos encontrados", response);
     } catch (error) {
       console.log("error al buscar documento");
@@ -77,15 +77,14 @@ class ContenedorMongoDB {
     }
   }
   //DELETE ONE
-  async deleteOne(name){
-    try{
-      await this.model.updateOne({name:name},{isActive:false})
-    }
-    catch(error){
-      console.log("error al modificar")
-      console.log(error)
+  async deleteOne(name) {
+    try {
+      await this.model.updateOne({ name: name }, { isActive: false });
+    } catch (error) {
+      console.log("error al modificar");
+      console.log(error);
     }
   }
 }
 
-module.exports =  ContenedorMongoDB;
+module.exports = ContainerMongoDB;

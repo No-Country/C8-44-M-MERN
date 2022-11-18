@@ -50,7 +50,6 @@ class ContainerMongoDB {
   async findOneById(id) {
     try {
       let response = await this.model.findOne({ _id: id });
-      console.log(response);
       return response;
     } catch (error) {
       console.log("error al buscar documento");
@@ -80,6 +79,14 @@ class ContainerMongoDB {
   async deleteOne(name) {
     try {
       await this.model.updateOne({ name: name }, { isActive: false });
+    } catch (error) {
+      console.log("error al borrar");
+      console.log(error);
+    }
+  }
+  async updateOne(username, obj) {
+    try {
+      await this.model.findOneAndUpdate({ username: username }, obj);
     } catch (error) {
       console.log("error al modificar");
       console.log(error);

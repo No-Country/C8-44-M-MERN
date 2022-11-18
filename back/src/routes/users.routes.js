@@ -3,7 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 const UsersDaoMongoDB = require("../DAOs/usersDaoMongoDb");
+const HabitsDaoMongoDB = require("../DAOs/habitsDaoMongoDb");
 const usersApi = new UsersDaoMongoDB();
+const habitsApi = new HabitsDaoMongoDB();
 const { hashPassword } = require("../utils/crypt");
 
 var GoogleStrategy = require("passport-google-oauth2").Strategy;
@@ -101,11 +103,44 @@ router.post(`${path}`, async (req, res) => {
   usersApi.save(newUser);
   res.send("User created!");
 });
+// update user
+router.put(`${path}`, async (req, res) => {
+  
+  let username = req.body.username;
+  let modifiedUser = {
+    _id: req.body._id,
+    username: req.body.username,
+    fullname: req.body.fullname,
+    email: req.body.email,
+    password: req.body.password,
+    birthday: req.body.birthday,
+    avatar: req.body.avatar,
+    rol: req.body.rol,
+    isActive: req.body.isActive,
+    isPublic: req.body.isPublic,
+    habits: []
+}
+  usersApi.updateOne(username, modifiedUser);
+  res.json({ msg:"User modificado!", data: modifiedUser});
+});
 //ruta para borrar un user
 router.put(`${path}`, async (req, res) => {
   const { name } = req.body;
   habitsApi.deleteOne(name);
   res.json("se modifico el archivo");
+});
+
+// POST hábito a un user
+// incorpora hábitos al user por ID de hábito
+router.post(`${path}/:id/productos`, (req, res) => {
+  (async () => {
+    let user = await usersApi.findOneById(req.params.id);
+    let habit = await habitsApi.findOneById(req.body.id);
+    user.habits.push(habit);
+    console.log(user);
+    await usersApi.updateOne(user.username, user);
+    res.status(200).json({ msg: "hábito agregado", data: habit });
+  })();
 });
 
 module.exports = router;

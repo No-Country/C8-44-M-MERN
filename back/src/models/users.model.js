@@ -61,7 +61,7 @@ const userSchema = new Schema({
       },
       experience: {
         type: Number /*a revisar*/,
-        default: "un valor",
+        default: 1,
         required: true,
       },
       avatar: {

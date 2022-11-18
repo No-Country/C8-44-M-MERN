@@ -1,14 +1,21 @@
 import { CiCirclePlus } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 interface Friend {
-  email: string;
+  id: string;
+  email?: string;
   name: string;
   pictureUrl: string;
-  showEmail: boolean;
-  showButton: boolean;
+  showButton?: boolean;
 }
 
-const Friend = ({ email, name, pictureUrl, showEmail, showButton }: Friend) => {
+const Friend = ({
+  email,
+  name,
+  pictureUrl,
+  showButton = false,
+  id,
+}: Friend) => {
   return (
     <div className="flex justify-between items-center pt-4">
       <div className="flex items-center gap-4">
@@ -17,15 +24,19 @@ const Friend = ({ email, name, pictureUrl, showEmail, showButton }: Friend) => {
           alt="Friend picture"
           className="rounded-full h-10 w-10 object-cover"
         />
-        <div>
-          <p className="text-secondary-dark">{name}</p>
-          {showEmail && (
-            <p className="text-secondary-regular text-sm">{email}</p>
-          )}
-        </div>
+        <Link to={`/friend/${id}`}>
+          <div>
+            <p className="text-secondary-dark">{name}</p>
+            {email && <p className="text-secondary-regular text-sm">{email}</p>}
+          </div>
+        </Link>
       </div>
-
-      {showButton && <CiCirclePlus className="text-3xl" />}
+      {showButton && (
+        <CiCirclePlus
+          onClick={() => console.log("Solicitud enviada")}
+          className="text-3xl text-primary-dark"
+        />
+      )}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { Friend } from "../../../components";
 import { HiPlus } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const friendsList = [
   {
@@ -24,7 +25,9 @@ const Friends = () => {
     <div className="mb-10">
       <div className="flex justify-between items-center">
         <h2 className="mb-1 text-primary-light">Friends</h2>
-        <HiPlus className="text-primary-light text-lg" />
+        <Link to="/friends">
+          <HiPlus className="text-primary-light text-lg" />
+        </Link>
       </div>
       <div className="relative h-1 w-full bg-secondary-light rounded-full">
         <div className="absolute h-1 w-14 bg-primary-dark rounded-full"></div>
@@ -33,11 +36,9 @@ const Friends = () => {
         return (
           <Friend
             key={friend.email}
+            id={friend.email}
             name={friend.name}
-            email={friend.email}
             pictureUrl={friend.photo}
-            showEmail={false}
-            showButton={false}
           />
         );
       })}

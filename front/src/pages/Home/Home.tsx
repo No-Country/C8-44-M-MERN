@@ -1,10 +1,12 @@
 import { HomeExperience, HomeFriends, HomeHabits } from "./components";
 import { Loader, Navbar } from "../../components";
+
 import profilePicture from "../../assets/profile.jpg";
 import { useState } from "react";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
+
   setTimeout(() => {
     setIsLoading(false);
   }, 1000);

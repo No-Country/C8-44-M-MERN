@@ -114,10 +114,12 @@ const Form = () => {
           <p className="text-secondary-regular text-sm m-2">or</p>
           <hr className="w-full text-secondary-light" />
         </div>
-        <button className="btn btn-secondary auth-btn flex justify-center gap-3 items-center">
-          <FaGoogle className="inline-block" />
-          Sign In with Google
-        </button>
+        {/*
+          <button className="btn btn-secondary auth-btn flex justify-center gap-3 items-center">
+            <FaGoogle className="inline-block" />
+              Sign In with Google
+          </button>
+        */}
       </div>
     </form>
   );

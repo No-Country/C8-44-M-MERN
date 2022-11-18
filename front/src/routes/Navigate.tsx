@@ -1,39 +1,59 @@
-import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-
-import { 
-  Login,
-  Register,
+import {
+  AddFriends,
+  FriendDetails,
+  HabitDetail,
+  HabitsList,
   Home,
+  Login,
   NotFound,
-  HabitDetail
+  Profile,
+  Register,
 } from "../pages";
+
+import App from "../App";
+import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
-  { 
+  {
     path: "login",
-    element: <Login />
+    element: <Login />,
   },
-  { 
+  {
     path: "register",
-    element: <Register />
+    element: <Register />,
   },
   {
     path: "home",
-    element: <Home />
+    element: <Home />,
+  },
+  {
+    path: "friends",
+    element: <AddFriends />,
+  },
+  {
+    path: "friend/:id",
+    element: <FriendDetails />,
+  },
+  {
+    path: "profile",
+    element: <Profile />,
+  },
+  {
+    path: "habits",
+    element: <HabitsList />,
   },
   {
     path: "habit-detail/:id",
-    element: <HabitDetail />
+    element: <HabitDetail />,
   },
   {
     path: "*",
-    element: <NotFound />
-  }
+    element: <NotFound />,
+  },
 ]);
 
-export default router
+export default router;

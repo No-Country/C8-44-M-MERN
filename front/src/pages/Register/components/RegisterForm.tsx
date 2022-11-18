@@ -104,14 +104,6 @@ const Form = () => {
             {...register("password", { required: true })}
             className="form-input outline-none text-secondary-dark"
           />
-          {/************* Error section **************/}
-          <Message
-            errors={errors}
-            property="password"
-            type="required"
-            text="This field is required"
-          />
-          {/*****************************************/}
           <span onClick={() => setIsPassword2Visible(!isPassword2Visible)}>
             {isPassword2Visible ? (
               <BsEye className="password-toggle-icon" />
@@ -120,6 +112,14 @@ const Form = () => {
             )}
           </span>
         </div>
+        {/************* Error section **************/}
+        <Message
+          errors={errors}
+          property="password"
+          type="required"
+          text="This field is required"
+        />
+        {/*****************************************/}
       </div>
       <div className="form-group">
         <label htmlFor="password-confirm-input" className="red-label">

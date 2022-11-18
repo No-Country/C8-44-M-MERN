@@ -27,8 +27,13 @@
 .btn-secondary {
   @apply border border-primary-dark text-primary-dark;
 }
+
 .auth-btn {
   @apply 2xl:h-12 2xl:text-lg;
+}
+
+.password-toggle-icon {
+  @apply -ml-6 inline-block cursor-pointer text-secondary-dark;
 }
 
 .form-group {

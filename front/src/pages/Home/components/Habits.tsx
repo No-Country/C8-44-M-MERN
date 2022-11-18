@@ -69,7 +69,7 @@ const Habits = () => {
     <div>
       <h2 className="home-title">Habits</h2>
       <div className="relative h-1 w-full bg-secondary-light rounded-full">
-        <div className="absolute h-1 w-1/3 bg-primary-dark rounded-full"></div>
+        <div className="absolute w-1/3 bg-primary-dark rounded-full"></div>
       </div>
       <ul className='pt-4'>
         {habitsList.map((habit) => (

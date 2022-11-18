@@ -1,51 +1,53 @@
-import { motion, AnimatePresence } from "framer-motion"
+import { useState } from "react";
+
+import { motion, AnimatePresence } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa"
-import { CiWarning } from "react-icons/ci"
+
+import { FaGoogle } from "react-icons/fa";
+import { CiWarning } from "react-icons/ci";
+import { BsEyeSlash, BsEye } from "react-icons/bs";
 
 interface FormValues {
   email: string;
   password: string;
   passwordConfirm: string;
-};
-
-type Error = {
-  [key: string]: any
 }
 
+type Error = {
+  [key: string]: any;
+};
+
 interface MessageForm {
-  errors: Error
-  property: string
-  type: string
-  text: string
+  errors: Error;
+  property: string;
+  type: string;
+  text: string;
 }
 
 const Message = ({ errors, property, type, text }: MessageForm) => {
   const isEqual = () => {
-    return errors?
-      errors[`${property}`]?.type === type
-    : null
-}
+    return errors ? errors[`${property}`]?.type === type : null;
+  };
 
   return (
-    <div className='flex items-center gap-2 form-error h-5'>
+    <div className="flex items-center gap-2 form-error h-5">
       <AnimatePresence>
-        { isEqual() && (
-              <motion.div
-                className="flex gap-1"
-                initial={{ y: -5, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -5, opacity: 0 }}
-                transition={{ duration: 0.2, delay: 0.1 }}
-              >
-                <CiWarning />
-                <p>{ text }</p>
-              </motion.div>
-            )}
-     </AnimatePresence>
-  </div>
-  ) 
-}
+        {isEqual() && (
+          <motion.div
+            className="flex gap-1"
+            initial={{ y: -5, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -5, opacity: 0 }}
+            transition={{ duration: 0.2, delay: 0.1 }}
+          >
+            <CiWarning />
+            <p>{text}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const Form = () => {
   const {
@@ -54,12 +56,18 @@ const Form = () => {
     getValues,
     formState: { errors },
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data);
+  };
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
       <div className="form-group">
-        <label htmlFor="email-input" className="red-label">Email</label>
+        <label htmlFor="email-input" className="red-label">
+          Email
+        </label>
         <input
           type="email"
           id="email-input"
@@ -73,21 +81,20 @@ const Form = () => {
         {/************* Error section **************/}
         <Message
           errors={errors}
-          property='email'
-          type={
-            errors?.email?.type == 'required'? 
-            'required' : 'pattern'
-          }
+          property="email"
+          type={errors?.email?.type == "required" ? "required" : "pattern"}
           text={
-            errors?.email?.type == 'required'?
-            "This field is required"
-          : "Please insert a valid email"
+            errors?.email?.type == "required"
+              ? "This field is required"
+              : "Please insert a valid email"
           }
-        /> 
+        />
         {/*****************************************/}
       </div>
       <div className="form-group">
-        <label htmlFor="password-input" className="red-label">Password</label>
+        <label htmlFor="password-input" className="red-label">
+          Password
+        </label>
         <input
           type="password"
           id="password-input"
@@ -98,40 +105,52 @@ const Form = () => {
         {/************* Error section **************/}
         <Message
           errors={errors}
-          property='password'
-          type='required'
+          property="password"
+          type="required"
           text="This field is required"
-        />        
+        />
         {/*****************************************/}
       </div>
       <div className="form-group">
-        <label htmlFor="password-confirm-input" className="red-label">Confirm Password</label>
-        <input
-          type="password"
-          id="password-confirm-input"
-          placeholder="Confirm Password"
-          {...register("passwordConfirm", {
-            required: true,
-            validate: (value) =>
-              value === getValues("password") ? true : false,
-          })}
-          className="form-input outline-none text-secondary-dark"
+        <label htmlFor="password-confirm-input" className="red-label">
+          Confirm Password
+        </label>
+        <div>
+          <input
+            type={isPasswordVisible ? "password" : "text"}
+            id="password-confirm-input"
+            placeholder="Confirm Password"
+            {...register("passwordConfirm", {
+              required: true,
+              validate: (value) =>
+                value === getValues("password") ? true : false,
+            })}
+            className="form-input outline-none text-secondary-dark"
+          />
+          <span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
+            {isPasswordVisible ? (
+              <BsEyeSlash className="password-toggle-icon" />
+            ) : (
+              <BsEye className="password-toggle-icon" />
+            )}
+          </span>
+        </div>
+        {/************* Error section **************/}
+        <Message
+          errors={errors}
+          property="passwordConfirm"
+          type={
+            errors?.passwordConfirm?.type == "required"
+              ? "required"
+              : "validate"
+          }
+          text={
+            errors?.passwordConfirm?.type == "required"
+              ? "This field is required"
+              : "Password fields don't match"
+          }
         />
-          {/************* Error section **************/}
-          <Message
-            errors={errors}
-            property='passwordConfirm'
-            type={
-              errors?.passwordConfirm?.type == 'required'? 
-              'required' : 'validate'
-            }
-            text={
-              errors?.passwordConfirm?.type == 'required'?
-              "This field is required"
-            : "Password fields don't match"
-            }
-            />
-            {/*****************************************/}
+        {/*****************************************/}
       </div>
       <div className="flex flex-col w-full gap-2 mt-4">
         <div className="form-group">
@@ -139,10 +158,10 @@ const Form = () => {
             Sign Up
           </button>
         </div>
-        <div className='flex items-center justify-between'>
-          <hr className='w-full text-secondary-light'/>
-          <p className='text-secondary-regular text-sm m-2'>or</p>
-          <hr className='w-full text-secondary-light'/>
+        <div className="flex items-center justify-between">
+          <hr className="w-full text-secondary-light" />
+          <p className="text-secondary-regular text-sm m-2">or</p>
+          <hr className="w-full text-secondary-light" />
         </div>
         <div className="form-group">
           {/*

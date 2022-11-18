@@ -89,20 +89,20 @@ function HabitDetail() {
   const { id } = useParams()
 
   const data = habitsList.find(habit => String(habit.id) === id)!
-
+  console.log(tempColorAssing(data.experience.level, 'class'))
   return (
     <div className="main-container flex flex-col gap-9">
       <Header />
       <p className="text-center font-bold text-3xl">{ data?.habitName }</p>
       <div className="flex flex-col items-center">
-        <h3 className={`text-2xl text-${tempColorAssing(data.experience.level)} font-bold`}>Lvl { data.experience.level }</h3>      
+        <h3
+          className={`text-2xl font-bold text-${tempColorAssing(data.experience.level, 'class')}`}
+        >Lvl { data.experience.level }</h3>      
           <ExperienceRing
             size={170}
-            color={tempColorAssing(data.experience.level)}
+            textColor={`${tempColorAssing(data.experience.level, 'class')}`}
             experience={data.experience.progress}
             level={data.experience.level}
-            showLevel={false}
-            showExperience={true}
           />
         </div>
       <Details data={ data } />

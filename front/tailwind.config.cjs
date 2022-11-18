@@ -13,9 +13,14 @@ module.exports = {
         "secondary-dark": "#35424a",
         "secondary-regular": "#8492a6",
         "secondary-light": "#dbdbdb",
-        white: "#ffffff",
+        "blue": "#255DEB",
+        white: "#ffffff"     
       },
     },
   },
   plugins: [],
+  safelist: [{
+    pattern: /(bg|text|border)-blue/
+  }
+  ]
 };

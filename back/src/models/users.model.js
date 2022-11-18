@@ -41,6 +41,43 @@ const userSchema = new Schema({
     /*a revisar*/ type: Boolean,
     required: true,
   },
+  habits: [
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+      description: {
+        type: String,
+        required: true,
+      },
+      category: {
+        type: String,
+        required: true,
+      },
+      priority: {
+        type: Number,
+        required: true,
+      },
+      experience: {
+        type: Number /*a revisar*/,
+        default: 1,
+        required: true,
+      },
+      avatar: {
+        type: String,
+        default: "http://image.com",
+      },
+      frecuency: {
+        type: String,
+        required: true,
+      },
+      isActive: {
+        /*a revisar NO ES PRIORIDAD*/ type: Boolean,
+        required: true,
+      },
+    },
+  ],
 });
 const userModel = model("users", userSchema);
 

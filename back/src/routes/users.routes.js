@@ -3,8 +3,12 @@ const express = require("express");
 const router = express.Router();
 
 const UsersDaoMongoDB = require("../DAOs/usersDaoMongoDb");
+const HabitsDaoMongoDB = require("../DAOs/habitsDaoMongoDb");
 const usersApi = new UsersDaoMongoDB();
+const habitsApi = new HabitsDaoMongoDB();
+
 const jwt = require('jsonwebtoken')
+
 const { hashPassword } = require("../utils/crypt");
 
 // USER    --> /user -> PUT->updateUser (addFollower*)| GET->getUser(getFollowers) | DELETE->deleteUser
@@ -56,10 +60,31 @@ router.post(`${path}/register`, async (req, res) => {
     rol,
     isActive,
     isPublic,
+    habits: [],
   };
   console.log(newUser);
   usersApi.save(newUser);
   res.send("User created!");
+});
+
+router.put(`${path}`/update, async (req, res) => {
+  
+  let username = req.body.username;
+  let modifiedUser = {
+    _id: req.body._id,
+    username: req.body.username,
+    fullname: req.body.fullname,
+    email: req.body.email,
+    password: req.body.password,
+    birthday: req.body.birthday,
+    avatar: req.body.avatar,
+    rol: req.body.rol,
+    isActive: req.body.isActive,
+    isPublic: req.body.isPublic,
+    habits: []
+}
+  usersApi.updateOne(username, modifiedUser);
+  res.json({ msg:"User modificado!", data: modifiedUser});
 });
 
 //ruta para borrar un user
@@ -68,6 +93,21 @@ router.put(`${path}`, async (req, res) => {
   habitsApi.deleteOne(name);
   res.json("se modifico el archivo");
 });
+
+
+// POST hábito a un user
+// incorpora hábitos al user por ID de hábito
+router.post(`${path}/:id/productos`, (req, res) => {
+  (async () => {
+    let user = await usersApi.findOneById(req.params.id);
+    let habit = await habitsApi.findOneById(req.body.id);
+    user.habits.push(habit);
+    console.log(user);
+    await usersApi.updateOne(user.username, user);
+    res.status(200).json({ msg: "hábito agregado", data: habit });
+  })();
+});
+
 
 router.post(`${path}/login`, async(req, res) => {
   const { email, password} = req.body;
@@ -94,4 +134,5 @@ router.post(`${path}/login`, async(req, res) => {
       return res.status(401).json({message: 'Invalid Credentials'})
     })
 });
+
 module.exports = router;

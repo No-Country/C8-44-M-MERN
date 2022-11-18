@@ -29,8 +29,8 @@ const Friends = () => {
           <HiPlus className="text-primary-light text-lg" />
         </Link>
       </div>
-      <div className="relative h-1 w-full bg-secondary-light rounded-full">
-        <div className="absolute h-1 w-1/3 bg-primary-dark rounded-full"></div>
+      <div className="relative h-1 w-1/ bg-secondary-light rounded-full">
+        <div className="absolute w-1/3 bg-primary-dark rounded-full"></div>
       </div>
       {friendsList.map((friend) => {
         return (

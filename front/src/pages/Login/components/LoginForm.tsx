@@ -1,9 +1,12 @@
+import { useState } from "react";
+
 import { AnimatePresence, motion } from "framer-motion";
 import { Navigate, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { CiWarning } from "react-icons/ci";
 import { FaGoogle } from "react-icons/fa";
+import { CiWarning } from "react-icons/ci";
+import { BsEyeSlash, BsEye } from "react-icons/bs";
 
 type FormValues = {
   email: string;
@@ -57,6 +60,8 @@ const Form = () => {
     navigate("/home");
   };
 
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
       <div className="form-group">
@@ -89,21 +94,30 @@ const Form = () => {
         <label htmlFor="password-input" className="red-label">
           Password
         </label>
-        <input
-          type="password"
-          id="password-input"
-          placeholder="Your password"
-          {...register("password", { required: true })}
-          className="form-input text-secondary-dark"
-        />
-        {/************* Error section **************/}
-        <Message
-          errors={errors}
-          property="password"
-          type="required"
-          text="This field is required"
-        />
-        {/*****************************************/}
+        <div>
+          <input
+            type={isPasswordVisible ? "password" : "text"}
+            id="password-input"
+            placeholder="Your password"
+            {...register("password", { required: true })}
+            className="form-input text-secondary-dark"
+          />
+          {/************* Error section **************/}
+          <Message
+            errors={errors}
+            property="password"
+            type="required"
+            text="This field is required"
+          />
+          {/*****************************************/}
+          <span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
+            {isPasswordVisible ? (
+              <BsEyeSlash className="password-toggle-icon" />
+            ) : (
+              <BsEye className="password-toggle-icon" />
+            )}
+          </span>
+        </div>
       </div>
       <div className="flex flex-col w-full gap-2 mt-4">
         <button type="submit" className="btn btn-primary auth-btn">

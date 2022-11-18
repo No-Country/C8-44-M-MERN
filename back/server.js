@@ -7,9 +7,9 @@ const passport = require("passport");
 const usersRouter = require("./src/routes/users.routes");
 const habitsRouters = require("./src/routes/habits.routes");
 
-const usuariosApi = new UsersDaoMongoDB();
+const usersApi = new UsersDaoMongoDB();
 
-usuariosApi.connect();
+usersApi.connect();
 
 /* __________________ INSTANCIA DE SERVER */
 const app = express();
@@ -17,9 +17,6 @@ const app = express();
 /* __________________ MIDDLEWARES */
 app.use(express.urlencoded({ encoded: true, extended: true }));
 app.use(express.json());
-app.use(session({secret : process.env.SESSION_SECRET}));
-app.use(passport.initialize());
-app.use(passport.session());
 
 /* ____________RUTAS */
 app.use(usersRouter);

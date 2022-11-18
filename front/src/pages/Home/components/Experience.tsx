@@ -3,9 +3,9 @@ import { ExperienceRing } from "../../../components";
 const Experience = () => {
   return (
     <div>
-      <h2 className="mb-1 text-primary-light">Experience</h2>
+      <h2 className="home-title">Experience</h2>
       <div className="relative h-1 w-full bg-secondary-light rounded-full">
-        <div className="absolute h-1 w-20 bg-primary-dark rounded-full"></div>
+        <div className="absolute h-1 w-1/3 bg-primary-dark rounded-full"></div>
       </div>
       <div className="flex mt-8 justify-between">
         <div className="flex flex-col items-center">

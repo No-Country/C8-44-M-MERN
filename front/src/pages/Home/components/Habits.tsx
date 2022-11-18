@@ -67,9 +67,9 @@ const habitsList = [
 const Habits = () => {
   return (
     <div>
-      <h2 className="mb-1 text-primary-light">Habits</h2>
+      <h2 className="home-title">Habits</h2>
       <div className="relative h-1 w-full bg-secondary-light rounded-full">
-        <div className="absolute h-1 w-16 bg-primary-dark rounded-full"></div>
+        <div className="absolute h-1 w-1/3 bg-primary-dark rounded-full"></div>
       </div>
       <ul className='pt-4'>
         {habitsList.map((habit) => (

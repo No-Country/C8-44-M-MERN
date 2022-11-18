@@ -24,13 +24,13 @@ const Friends = () => {
   return (
     <div className="mb-10">
       <div className="flex justify-between items-center">
-        <h2 className="mb-1 text-primary-light">Friends</h2>
+        <h2 className="home-title">Friends</h2>
         <Link to="/friends">
           <HiPlus className="text-primary-light text-lg" />
         </Link>
       </div>
       <div className="relative h-1 w-full bg-secondary-light rounded-full">
-        <div className="absolute h-1 w-14 bg-primary-dark rounded-full"></div>
+        <div className="absolute h-1 w-1/3 bg-primary-dark rounded-full"></div>
       </div>
       {friendsList.map((friend) => {
         return (

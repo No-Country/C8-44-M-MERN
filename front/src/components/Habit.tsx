@@ -33,7 +33,7 @@ const Habit = ({habitName, frequency, category, description, priority, experienc
   return (
     <Link to={`/habit-detail/${id}`}>
       <div className='flex items-center justify-between rounded-full bg-secondary-light/30 w-full my-3'>
-        <h3 className=' text-sm pl-5 p-3'>{habitName}</h3>
+        <h3 className=' text-sm pl-5 p-3 text-secondary-dark'>{habitName}</h3>
         <div className="pr-5 flex items-center gap-6">
             <span className={`flex text-xs font-bold ${tempColorAssing(experience.level)}`}>
               lvl {experience.level}

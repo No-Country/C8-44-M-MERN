@@ -145,10 +145,12 @@ const Form = () => {
           <hr className='w-full text-secondary-light'/>
         </div>
         <div className="form-group">
-          <button className="btn btn-secondary auth-btn flex justify-center items-center gap-2">
-            <FaGoogle />
-            Sign Up with Google
-          </button>
+          {/*
+            <button className="btn btn-secondary auth-btn flex justify-center items-center gap-2">
+              <FaGoogle />
+                Sign Up with Google
+            </button>
+          */}
         </div>
       </div>
     </form>

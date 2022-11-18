@@ -51,6 +51,10 @@
   @apply text-primary-dark font-bold;
 }
 
+.home-title {
+  @apply mb-1 text-primary-light font-bold;
+}
+
 /* -----------RING------------ */
 #progress {
   transform: rotate(-90deg);

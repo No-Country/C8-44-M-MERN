@@ -61,6 +61,7 @@ const Form = () => {
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+  const [isPassword2Visible, setIsPassword2Visible] = useState<boolean>(false);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
@@ -95,21 +96,30 @@ const Form = () => {
         <label htmlFor="password-input" className="red-label">
           Password
         </label>
-        <input
-          type="password"
-          id="password-input"
-          placeholder="Your password"
-          {...register("password", { required: true })}
-          className="form-input outline-none text-secondary-dark"
-        />
-        {/************* Error section **************/}
-        <Message
-          errors={errors}
-          property="password"
-          type="required"
-          text="This field is required"
-        />
-        {/*****************************************/}
+        <div>
+          <input
+            type={isPassword2Visible ? "text" : "password"}
+            id="password-input"
+            placeholder="Your password"
+            {...register("password", { required: true })}
+            className="form-input outline-none text-secondary-dark"
+          />
+          {/************* Error section **************/}
+          <Message
+            errors={errors}
+            property="password"
+            type="required"
+            text="This field is required"
+          />
+          {/*****************************************/}
+          <span onClick={() => setIsPassword2Visible(!isPassword2Visible)}>
+            {isPassword2Visible ? (
+              <BsEye className="password-toggle-icon" />
+            ) : (
+              <BsEyeSlash className="password-toggle-icon" />
+            )}
+          </span>
+        </div>
       </div>
       <div className="form-group">
         <label htmlFor="password-confirm-input" className="red-label">
@@ -130,7 +140,7 @@ const Form = () => {
           <span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
             {isPasswordVisible ? (
               <BsEye className="password-toggle-icon" />
-              ) : (
+            ) : (
               <BsEyeSlash className="password-toggle-icon" />
             )}
           </span>

@@ -5,6 +5,32 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { CiWarning } from "react-icons/ci";
 import { FaGoogle } from "react-icons/fa";
 
+import { useEffect } from "react";
+import GoogleLogin from "react-google-login";
+import { gapi } from "gapi-script";
+
+//______________________GOOGLE LOGIN
+const clientId="69744926663-svfn240ol3t1t1nkrg2i83kjr23pc6kt.apps.googleusercontent.com";
+
+
+const onSuccess=(res)=>{
+  console.log("LOGIN SUCESS! Current user:",res.profileObj)
+}
+const onFailure=(res)=>{
+  console.log("LOGIN FAILED! res:",res)
+}
+
+useEffect(()=>{
+  function start(){
+    gapi.client.init({
+      clientId:clientId,
+      scope:""
+    })
+  }
+  gapi.load('client:auth2',start)
+})
+//______________________GOOGLE LOGIN
+
 type FormValues = {
   email: string;
   password: string;
@@ -114,12 +140,18 @@ const Form = () => {
           <p className="text-secondary-regular text-sm m-2">or</p>
           <hr className="w-full text-secondary-light" />
         </div>
-        {/*
-          <button className="btn btn-secondary auth-btn flex justify-center gap-3 items-center">
-            <FaGoogle className="inline-block" />
-              Sign In with Google
-          </button>
-        */}
+        {/* //______________________GOOGLE LOGIN */}
+        <div id="dignInButton">
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Sing In with google"
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            coockiePolicy={'single_host_origin'}
+            isSignedIn={true}
+          />
+        </div>
+        {/* //______________________GOOGLE LOGIN */}
       </div>
     </form>
   );

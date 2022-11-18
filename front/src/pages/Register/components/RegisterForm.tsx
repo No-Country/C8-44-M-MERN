@@ -129,9 +129,9 @@ const Form = () => {
           />
           <span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
             {isPasswordVisible ? (
-              <BsEyeSlash className="password-toggle-icon" />
-            ) : (
               <BsEye className="password-toggle-icon" />
+              ) : (
+              <BsEyeSlash className="password-toggle-icon" />
             )}
           </span>
         </div>

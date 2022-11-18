@@ -96,7 +96,7 @@ const Form = () => {
         </label>
         <div>
           <input
-            type={isPasswordVisible ? "password" : "text"}
+            type={isPasswordVisible ? "text" : "password"}
             id="password-input"
             placeholder="Your password"
             {...register("password", { required: true })}

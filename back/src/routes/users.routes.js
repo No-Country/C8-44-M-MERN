@@ -95,6 +95,7 @@ router.post(`${path}`, async (req, res) => {
     rol,
     isActive,
     isPublic,
+    habits: [],
   };
   console.log(newUser);
   usersApi.save(newUser);

@@ -49,6 +49,7 @@ class ContainerMongoDB {
 
   async findOneById(id) {
     try {
+      console.log(id)
       let response = await this.model.findOne({ _id: id });
       return response;
     } catch (error) {
@@ -76,9 +77,10 @@ class ContainerMongoDB {
     }
   }
   //DELETE ONE
-  async deleteOne(name) {
+  async deleteOne(id) {
     try {
-      await this.model.updateOne({ name: name }, { isActive: false });
+      const data = await this.model.updateOne({ _id: id }, { isActive: false });
+      return data
     } catch (error) {
       console.log("error al borrar");
       console.log(error);

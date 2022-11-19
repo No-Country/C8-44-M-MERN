@@ -1,11 +1,11 @@
 const express = require("express");
 const UsersDaoMongoDB = require("./src/DAOs/usersDaoMongoDb.js");
 require("dotenv").config();
-const session = require("express-session");
-const passport = require("passport");
+
 
 const usersRouter = require("./src/routes/users.routes");
 const habitsRouters = require("./src/routes/habits.routes");
+const handleError = require('./src/middlewares/error.middleware')
 
 const usersApi = new UsersDaoMongoDB();
 
@@ -22,6 +22,8 @@ app.use(express.json());
 app.use(usersRouter);
 app.use(habitsRouters);
 
+
+app.use(handleError);
 /* __________________ SERVIDOR */
 const PORT = process.env.PORT;
 const server = app.listen(PORT, () => {

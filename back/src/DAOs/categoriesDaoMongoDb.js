@@ -1,7 +1,7 @@
-const ContenedorMongoDB = require("../container/contenedorMongoDB");
+const ContainerMongoDB = require("../container/containerMongoDB");
 const categoryModel = require("../models/categories.model");
 
-class CategoriesDaoMongoDB extends ContenedorMongoDB {
+class CategoriesDaoMongoDB extends ContainerMongoDB {
   constructor() {
     super(categoryModel);
   }

@@ -22,6 +22,7 @@ router.get(`${path}/:id`, async (req, res) => {
     const response = await habitsApi.findOneById(id)
     res.json(response);
 })
+
 //ruta para subir un habito
 router.post(`${path}`,async (req,res)=>{
     const { name, description, category, priority, experience, avatar, frecuency, isActive} = req.body;

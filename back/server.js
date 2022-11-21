@@ -1,13 +1,15 @@
 const express = require("express");
-const UsuariosDaoMongoDB = require("./src/DAOs/usuariosDaoMongoDb.js");
-require('dotenv').config()
+const UsersDaoMongoDB = require("./src/DAOs/usersDaoMongoDb.js");
+require("dotenv").config();
 
-const usersRouter = require('./src/routes/users')
-const habitsRouters=require('./src/routes/habits')
 
-const usuariosApi = new UsuariosDaoMongoDB();
+const usersRouter = require("./src/routes/users.routes");
+const habitsRouters = require("./src/routes/habits.routes");
+const handleError = require('./src/middlewares/error.middleware')
 
-usuariosApi.connect();
+const usersApi = new UsersDaoMongoDB();
+
+usersApi.connect();
 
 /* __________________ INSTANCIA DE SERVER */
 const app = express();
@@ -17,9 +19,11 @@ app.use(express.urlencoded({ encoded: true, extended: true }));
 app.use(express.json());
 
 /* ____________RUTAS */
-app.use(usersRouter)
-app.use(habitsRouters)
+app.use(usersRouter);
+app.use(habitsRouters);
 
+
+app.use(handleError);
 /* __________________ SERVIDOR */
 const PORT = process.env.PORT;
 const server = app.listen(PORT, () => {

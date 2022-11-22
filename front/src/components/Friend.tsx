@@ -1,4 +1,7 @@
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 import { CiCirclePlus } from "react-icons/ci";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 
 interface Friend {
@@ -19,10 +22,11 @@ const Friend = ({
   return (
     <div className="flex justify-between items-center pt-4">
       <div className="flex items-center gap-4">
-        <img
+        <LazyLoadImage
           src={pictureUrl}
           alt="Friend picture"
           className="rounded-full h-10 w-10 object-cover"
+          effect="blur"
         />
         <Link to={`/friend/${id}`}>
           <div>

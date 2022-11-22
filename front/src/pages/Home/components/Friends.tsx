@@ -6,17 +6,17 @@ const friendsList = [
   {
     name: "César Herrera",
     email: "herrera.cesar.arg@gmail.com",
-    photo: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
+    photo: "https://i.ibb.co/rmy0SYC/pexels-photo-220453.jpg",
   },
   {
     name: "José Carlos del Valle",
     email: "seck.dv15@gmail.com",
-    photo: "https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg",
+    photo: "https://i.ibb.co/qW0ZcR3/pexels-photo-1040880.jpg",
   },
   {
     name: "Nathalia Riascos",
     email: "riascosnathalia6@gmail.com",
-    photo: "https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg",
+    photo: "https://i.ibb.co/D8VnNZ2/pexels-photo-3763188.jpg",
   },
 ];
 

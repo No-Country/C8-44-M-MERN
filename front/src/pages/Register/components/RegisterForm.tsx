@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+import { SubmitHandler, useForm } from "react-hook-form";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useForm, SubmitHandler } from "react-hook-form";
-
-import { FaGoogle } from "react-icons/fa";
 import { CiWarning } from "react-icons/ci";
-import { BsEyeSlash, BsEye } from "react-icons/bs";
+import { FaGoogle } from "react-icons/fa";
+import { useState } from "react";
 
 interface FormValues {
   email: string;
@@ -168,19 +167,17 @@ const Form = () => {
             Sign Up
           </button>
         </div>
-        <div className="flex items-center justify-between">
+        {/* <div className="flex items-center justify-between">
           <hr className="w-full text-secondary-light" />
           <p className="text-secondary-regular text-sm m-2">or</p>
           <hr className="w-full text-secondary-light" />
         </div>
         <div className="form-group">
-          {/*
-            <button className="btn btn-secondary auth-btn flex justify-center items-center gap-2">
-              <FaGoogle />
-                Sign Up with Google
-            </button>
-          */}
-        </div>
+          <button className="btn btn-secondary auth-btn flex justify-center items-center gap-2">
+            <FaGoogle />
+            Sign Up with Google
+          </button>
+        </div> */}
       </div>
     </form>
   );

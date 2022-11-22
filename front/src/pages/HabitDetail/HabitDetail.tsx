@@ -1,26 +1,21 @@
-import { useParams } from 'react-router-dom';
-import { ExperienceRing } from '../../components';
-import { tempColorAssing } from '../../utils/changeColor';
+import { ExperienceRing, Header } from "../../components";
 
-
-import {
-  Details,
-  Header
-} from './components'
-
+import { Details } from "./components";
+import { tempColorAssing } from "../../utils/changeColor";
+import { useParams } from "react-router-dom";
 
 type Habit = {
-  id: number
-  habitName: string
+  id: number;
+  habitName: string;
   frequency: string;
   category: string;
   description: string;
-  priority: number
+  priority: number;
   experience: {
-    progress: number,
-    level: number,
-  }
-}
+    progress: number;
+    level: number;
+  };
+};
 const habitsList: Habit[] = [
   {
     id: 1,
@@ -32,7 +27,7 @@ const habitsList: Habit[] = [
     experience: {
       progress: 50,
       level: 1,
-    }
+    },
   },
   {
     id: 2,
@@ -44,7 +39,7 @@ const habitsList: Habit[] = [
     experience: {
       progress: 30,
       level: 2,
-    }
+    },
   },
   {
     id: 3,
@@ -56,7 +51,7 @@ const habitsList: Habit[] = [
     experience: {
       progress: 40,
       level: 3,
-    }
+    },
   },
   {
     id: 4,
@@ -68,7 +63,7 @@ const habitsList: Habit[] = [
     experience: {
       progress: 60,
       level: 2,
-    }
+    },
   },
   {
     id: 5,
@@ -80,34 +75,38 @@ const habitsList: Habit[] = [
     experience: {
       progress: 90,
       level: 5,
-    }
+    },
   },
-]
-
+];
 
 function HabitDetail() {
-  const { id } = useParams()
+  const { id } = useParams();
 
-  const data = habitsList.find(habit => String(habit.id) === id)!
-  console.log(tempColorAssing(data.experience.level, 'class'))
+  const data = habitsList.find((habit) => String(habit.id) === id)!;
+  console.log(tempColorAssing(data.experience.level, "class"));
   return (
     <div className="main-container flex flex-col gap-9">
-      <Header />
-      <p className="text-center font-bold text-3xl">{ data?.habitName }</p>
+      <Header title="Habit Details" editUrl="/login" />
+      <p className="text-center font-bold text-3xl">{data?.habitName}</p>
       <div className="flex flex-col items-center">
         <h3
-          className={`text-2xl font-bold text-${tempColorAssing(data.experience.level, 'class')}`}
-        >Lvl { data.experience.level }</h3>      
-          <ExperienceRing
-            size={170}
-            textColor={`${tempColorAssing(data.experience.level, 'class')}`}
-            experience={data.experience.progress}
-            level={data.experience.level}
-          />
-        </div>
-      <Details data={ data } />
+          className={`text-2xl font-bold text-${tempColorAssing(
+            data.experience.level,
+            "class"
+          )}`}
+        >
+          Lvl {data.experience.level}
+        </h3>
+        <ExperienceRing
+          size={170}
+          textColor={`${tempColorAssing(data.experience.level, "class")}`}
+          experience={data.experience.progress}
+          level={data.experience.level}
+        />
+      </div>
+      <Details data={data} />
     </div>
-  )
+  );
 }
 
-export default HabitDetail
+export default HabitDetail;

@@ -1,12 +1,11 @@
-import { useState } from "react";
-
 import { AnimatePresence, motion } from "framer-motion";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { Navigate, useNavigate } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { FaGoogle } from "react-icons/fa";
 import { CiWarning } from "react-icons/ci";
-import { BsEyeSlash, BsEye } from "react-icons/bs";
+import { FaGoogle } from "react-icons/fa";
+import { useState } from "react";
 
 type FormValues = {
   email: string;
@@ -113,7 +112,7 @@ const Form = () => {
           <span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
             {isPasswordVisible ? (
               <BsEye className="password-toggle-icon" />
-              ) : (
+            ) : (
               <BsEyeSlash className="password-toggle-icon" />
             )}
           </span>
@@ -123,17 +122,15 @@ const Form = () => {
         <button type="submit" className="btn btn-primary auth-btn">
           Sign In
         </button>
-        <div className="flex justify-center items-center">
+        {/* <div className="flex justify-center items-center">
           <hr className="w-full text-secondary-light" />
           <p className="text-secondary-regular text-sm m-2">or</p>
           <hr className="w-full text-secondary-light" />
         </div>
-        {/*
-          <button className="btn btn-secondary auth-btn flex justify-center gap-3 items-center">
-            <FaGoogle className="inline-block" />
-              Sign In with Google
-          </button>
-        */}
+        <button className="btn btn-secondary auth-btn flex justify-center gap-3 items-center">
+          <FaGoogle className="inline-block" />
+          Sign In with Google
+        </button> */}
       </div>
     </form>
   );

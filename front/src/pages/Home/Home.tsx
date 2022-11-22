@@ -1,5 +1,5 @@
+import { Header, Loader, Navbar } from "../../components";
 import { HomeExperience, HomeFriends, HomeHabits } from "./components";
-import { Loader, Navbar } from "../../components";
 
 import profilePicture from "../../assets/profile.jpg";
 import { useState } from "react";

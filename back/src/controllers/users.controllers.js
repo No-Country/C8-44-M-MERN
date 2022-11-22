@@ -15,7 +15,7 @@ const getAllUsers = async (req, res, next) => {
     next({
       status: 400,
       errorContent: error,
-      message: "Faltan datos",
+      message: "Algo salio mal",
     });
   }
 };

@@ -94,6 +94,15 @@ class ContainerMongoDB {
       console.log(error);
     }
   }
+
+  async destroyOne(id){
+    try {
+      await this.model.deleteOne({_id: id})
+    } catch (error) {
+      console.log("error al borrar");
+      console.log(error);
+    }
+  }
 }
 
 module.exports = ContainerMongoDB;

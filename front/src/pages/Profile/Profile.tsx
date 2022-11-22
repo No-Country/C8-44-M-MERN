@@ -1,9 +1,11 @@
-import { Navbar } from "../../components";
+import { Header, Navbar } from "../../components";
 
 const Profile = () => {
   return (
     <>
-      <div className="main-container flex flex-col gap-4">Profile</div>
+      <div className="main-container flex flex-col gap-4">
+        <Header title="My Profile" editUrl={"/"} />
+      </div>
       <Navbar />
     </>
   );

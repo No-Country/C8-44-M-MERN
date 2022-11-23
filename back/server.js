@@ -1,6 +1,7 @@
 const express = require("express");
 const UsersDaoMongoDB = require("./src/DAOs/usersDaoMongoDb.js");
 require("dotenv").config();
+const cors=require("cors");
 
 
 const usersRouter = require("./src/routes/users.routes");
@@ -13,6 +14,7 @@ usersApi.connect();
 
 /* __________________ INSTANCIA DE SERVER */
 const app = express();
+app.use(cors());
 
 /* __________________ MIDDLEWARES */
 app.use(express.urlencoded({ encoded: true, extended: true }));

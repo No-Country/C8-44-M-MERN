@@ -8,7 +8,7 @@ const { hashPassword } = require("../utils/crypt");
 
 const getAllUsers = async (req, res, next) => {
   try {
-    const users = await usersApi.getAll();
+    const users = await usersApi.getAll()
     console.log(users)
     res.json(users)
   } catch (error) {
@@ -71,6 +71,7 @@ const register = async (req, res, next) =>{
       rol,
       isActive,
       isPublic,
+      followers:[],
       habits: [],
     };
     console.log(newUser);
@@ -184,6 +185,26 @@ const getMyUser = async (req, res, next) => {
   }
 };
 
+const addFollower = async (req, res, next) => {
+  try {
+    let user = await usersApi.findOneById(req.user.id);
+    console.log("user: ",req.user)
+    const follower = await usersApi.findOneById(req.body.id);
+    user.followers.push(follower);
+    console.log(user);
+    console.log(follower);
+    await usersApi.updateOne(user.username, user);
+    res.json({ msg: "follower agregado", data: follower });
+  } catch (error) {
+    next({
+      status: 400,
+      errorContent: error,
+      message: "Faltan datos",
+    });
+  }
+};
+
+
 module.exports = {
   getAllUsers,
   getUserById,
@@ -193,5 +214,6 @@ module.exports = {
   deleteUser,
   createHabit,
   login,
-  getMyUser
+  getMyUser,
+  addFollower
 }

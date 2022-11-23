@@ -41,6 +41,8 @@ const userSchema = new Schema({
     /*a revisar*/ type: Boolean,
     required: true,
   },
+  followers:[
+    {type: Schema.Types.ObjectId, ref: 'users'}],
   habits: [
     {
       name: {

@@ -86,7 +86,7 @@ function HabitDetail() {
   console.log(tempColorAssing(data.experience.level, "class"));
   return (
     <div className="main-container flex flex-col gap-9">
-      <Header title="Habit Details" editUrl="/login" />
+      <Header title="Habit Details" />
       <p className="text-center font-bold text-3xl">{data?.habitName}</p>
       <div className="flex flex-col items-center">
         <h3

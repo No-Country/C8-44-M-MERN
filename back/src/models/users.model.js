@@ -42,7 +42,7 @@ const userSchema = new Schema({
     required: true,
   },
   followers:[
-    {type: Schema.Types.ObjectId, ref: this.model}],
+    {type: Schema.Types.ObjectId, ref: 'users'}],
   habits: [
     {
       name: {

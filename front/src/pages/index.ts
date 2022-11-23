@@ -7,3 +7,4 @@ export * from "./HabitsList";
 export * from "./Profile";
 export * from "./AddFriends";
 export * from "./FriendDetails";
+export * from "./AddHabit";

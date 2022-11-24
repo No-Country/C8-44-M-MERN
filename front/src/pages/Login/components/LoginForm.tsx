@@ -1,11 +1,11 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { Navigate, useNavigate } from "react-router-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { AnimatePresence, motion } from 'framer-motion';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { CiWarning } from "react-icons/ci";
-import { FaGoogle } from "react-icons/fa";
-import { useState } from "react";
+import { CiWarning } from 'react-icons/ci';
+import { FaGoogle } from 'react-icons/fa';
+import { useState } from 'react';
 
 type FormValues = {
   email: string;
@@ -56,7 +56,7 @@ const Form = () => {
     formState: { errors },
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    navigate("/home");
+    navigate('/home');
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -70,7 +70,7 @@ const Form = () => {
         <input
           id="email-input"
           placeholder="Your email address"
-          {...register("email", {
+          {...register('email', {
             required: true,
             pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
           })}
@@ -80,11 +80,11 @@ const Form = () => {
         <Message
           errors={errors}
           property="email"
-          type={errors?.email?.type == "required" ? "required" : "pattern"}
+          type={errors?.email?.type == 'required' ? 'required' : 'pattern'}
           text={
-            errors?.email?.type == "required"
-              ? "This field is required"
-              : "Please insert a valid email"
+            errors?.email?.type == 'required'
+              ? 'This field is required'
+              : 'Please insert a valid email'
           }
         />
         {/*****************************************/}
@@ -95,12 +95,19 @@ const Form = () => {
         </label>
         <div>
           <input
-            type={isPasswordVisible ? "text" : "password"}
+            type={isPasswordVisible ? 'text' : 'password'}
             id="password-input"
             placeholder="Your password"
-            {...register("password", { required: true })}
+            {...register('password', { required: true })}
             className="form-input text-secondary-dark"
           />
+          <span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
+            {isPasswordVisible ? (
+              <BsEye className="password-toggle-icon" />
+            ) : (
+              <BsEyeSlash className="password-toggle-icon" />
+            )}
+          </span>
           {/************* Error section **************/}
           <Message
             errors={errors}
@@ -109,13 +116,6 @@ const Form = () => {
             text="This field is required"
           />
           {/*****************************************/}
-          <span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
-            {isPasswordVisible ? (
-              <BsEye className="password-toggle-icon" />
-            ) : (
-              <BsEyeSlash className="password-toggle-icon" />
-            )}
-          </span>
         </div>
       </div>
       <div className="flex flex-col w-full gap-2 mt-4">

@@ -1,10 +1,11 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { BsEye, BsEyeSlash } from "react-icons/bs";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { AnimatePresence, motion } from 'framer-motion';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { CiWarning } from "react-icons/ci";
-import { FaGoogle } from "react-icons/fa";
-import { useState } from "react";
+import { CiWarning } from 'react-icons/ci';
+import { FaGoogle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 interface FormValues {
   email: string;
@@ -49,6 +50,7 @@ const Message = ({ errors, property, type, text }: MessageForm) => {
 };
 
 const Form = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -56,7 +58,7 @@ const Form = () => {
     formState: { errors },
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    navigate('/home');
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -72,7 +74,7 @@ const Form = () => {
           type="email"
           id="email-input"
           placeholder="Your email address"
-          {...register("email", {
+          {...register('email', {
             required: true,
             pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
           })}
@@ -82,11 +84,11 @@ const Form = () => {
         <Message
           errors={errors}
           property="email"
-          type={errors?.email?.type == "required" ? "required" : "pattern"}
+          type={errors?.email?.type == 'required' ? 'required' : 'pattern'}
           text={
-            errors?.email?.type == "required"
-              ? "This field is required"
-              : "Please insert a valid email"
+            errors?.email?.type == 'required'
+              ? 'This field is required'
+              : 'Please insert a valid email'
           }
         />
         {/*****************************************/}
@@ -97,10 +99,10 @@ const Form = () => {
         </label>
         <div>
           <input
-            type={isPassword2Visible ? "text" : "password"}
+            type={isPassword2Visible ? 'text' : 'password'}
             id="password-input"
             placeholder="Your password"
-            {...register("password", { required: true })}
+            {...register('password', { required: true })}
             className="form-input outline-none text-secondary-dark"
           />
           <span onClick={() => setIsPassword2Visible(!isPassword2Visible)}>
@@ -126,13 +128,13 @@ const Form = () => {
         </label>
         <div>
           <input
-            type={isPasswordVisible ? "text" : "password"}
+            type={isPasswordVisible ? 'text' : 'password'}
             id="password-confirm-input"
             placeholder="Confirm Password"
-            {...register("passwordConfirm", {
+            {...register('passwordConfirm', {
               required: true,
               validate: (value) =>
-                value === getValues("password") ? true : false,
+                value === getValues('password') ? true : false,
             })}
             className="form-input outline-none text-secondary-dark"
           />
@@ -149,13 +151,13 @@ const Form = () => {
           errors={errors}
           property="passwordConfirm"
           type={
-            errors?.passwordConfirm?.type == "required"
-              ? "required"
-              : "validate"
+            errors?.passwordConfirm?.type == 'required'
+              ? 'required'
+              : 'validate'
           }
           text={
-            errors?.passwordConfirm?.type == "required"
-              ? "This field is required"
+            errors?.passwordConfirm?.type == 'required'
+              ? 'This field is required'
               : "Password fields don't match"
           }
         />

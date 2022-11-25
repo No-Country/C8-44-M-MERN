@@ -61,9 +61,9 @@ const Form = () => {
   } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(postLogin(data.email, data.password));
-
     /* const { token } = postLogin(data.email, data.password);
     dispatch(setToken(token)); */
+    navigate('/home');
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
@@ -108,6 +108,13 @@ const Form = () => {
             {...register('password', { required: true })}
             className="form-input text-secondary-dark"
           />
+          <span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
+            {isPasswordVisible ? (
+              <BsEye className="password-toggle-icon" />
+            ) : (
+              <BsEyeSlash className="password-toggle-icon" />
+            )}
+          </span>
           {/************* Error section **************/}
           <Message
             errors={errors}
@@ -116,13 +123,6 @@ const Form = () => {
             text="This field is required"
           />
           {/*****************************************/}
-          <span onClick={() => setIsPasswordVisible(!isPasswordVisible)}>
-            {isPasswordVisible ? (
-              <BsEye className="password-toggle-icon" />
-            ) : (
-              <BsEyeSlash className="password-toggle-icon" />
-            )}
-          </span>
         </div>
       </div>
       <div className="flex flex-col w-full gap-2 mt-4">

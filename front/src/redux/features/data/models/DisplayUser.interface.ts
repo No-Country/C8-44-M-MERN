@@ -1,8 +1,9 @@
-export interface User {
+export interface DataUser {
+
    _id: string;
    username: string;
+   fullname: string;
    email: string;
-   image: string;
-   fullName: string;
+   birdthday: string;
    habits: [];
 }

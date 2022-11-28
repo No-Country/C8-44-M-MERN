@@ -4,9 +4,10 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CiWarning } from 'react-icons/ci';
 import { FaGoogle } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import axios from 'axios';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { login } from '../../../redux/features/auth/authSlice';
 
 type FormValues = {
    email: string;
@@ -50,25 +51,21 @@ const Message = ({ errors, property, type, text }: MessageForm) => {
 
 const Form = () => {
    const navigate = useNavigate();
+   const dispatch = useAppDispatch();
+    const { isLoading, isSuccess } = useAppSelector(
+       (state) => state.auth
+    );   
    const {
       register,
       handleSubmit,
       formState: { errors },
    } = useForm<FormValues>();
    // 'https://c8-44-m-mern-production.up.railway.app/api/user/login',
-   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-      console.log(data);
-         try {
-         const response = await axios.post(
-            'https://c8-44-m-mern-production.up.railway.app/api/user/login',
-            data
-         );
-         localStorage.setItem('token', response.data.token);
-         navigate('/home');
-      } catch (error) {
-         console.log(error);
-      }
+   const onSubmit: SubmitHandler<FormValues> = (data) => {
+      dispatch(login(data));
+      navigate('/home');
    };
+
    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
    //
    return (

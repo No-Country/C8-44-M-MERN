@@ -1,12 +1,13 @@
 import { Header, Loader, Navbar } from '../../components';
 import { HomeExperience, HomeFriends, HomeHabits } from './components';
-
 import Confetti from 'react-confetti';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import profilePicture from '../../assets/profile.jpg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
 
 const Home = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [party, setParty] = useState(false);
   setTimeout(() => {

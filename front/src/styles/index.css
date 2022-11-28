@@ -3,152 +3,152 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: "Asap", system-ui, sans-serif;
-  }
+   html {
+      font-family: 'Asap', system-ui, sans-serif;
+   }
 }
 
 .title {
-  @apply font-bold text-2xl font-quicksand text-secondary-dark;
+   @apply font-bold text-2xl font-quicksand text-secondary-dark;
 }
 
 .auth-form {
-  @apply flex flex-col gap-3 mx-auto items-center text-left w-full;
+   @apply flex flex-col gap-3 mx-auto items-center text-left w-full;
 }
 
 .btn {
-  @apply w-full h-11 rounded-md font-semibold;
+   @apply w-full h-11 rounded-md font-semibold;
 }
 
 .btn-primary {
-  @apply bg-primary-dark text-white;
+   @apply bg-primary-dark text-white;
 }
 
 .btn-secondary {
-  @apply border border-primary-dark text-primary-dark;
+   @apply border border-primary-dark text-primary-dark;
 }
 
 .auth-btn {
-  @apply 2xl:h-12 2xl:text-lg;
+   @apply 2xl:h-12 2xl:text-lg;
 }
 
 .password-toggle-icon {
-  @apply -ml-6 inline-block cursor-pointer text-secondary-dark;
+   @apply -ml-6 inline-block cursor-pointer text-secondary-dark;
 }
 
 .form-group {
-  @apply flex flex-col w-full gap-0.5;
+   @apply flex flex-col w-full gap-0.5;
 }
 
 .form-input {
-  @apply w-full border-b-2 pb-1 border-secondary-light placeholder:text-secondary-regular;
+   @apply w-full border-b-2 pb-1 border-secondary-light placeholder:text-secondary-regular;
 }
 
 .form-error {
-  @apply text-primary-dark text-xs inline;
+   @apply text-primary-dark text-xs inline;
 }
 
 .main-container {
-  @apply px-8 pb-12 pt-16 min-h-screen min-w-full;
+   @apply px-8 pb-12 pt-16 min-h-screen min-w-full;
 }
 
 .red-label {
-  @apply text-primary-dark font-bold;
+   @apply text-primary-dark font-bold;
 }
 
 .home-title {
-  @apply mb-1 text-primary-light font-bold;
+   @apply mb-1 text-primary-light font-bold;
 }
 
 /* -----------RING------------ */
 #progress {
-  transform: rotate(-90deg);
+   transform: rotate(-90deg);
 }
 .bg {
-  stroke: #dbdbdb;
-  opacity: 0.3;
+   stroke: #dbdbdb;
+   opacity: 0.3;
 }
 
 circle {
-  stroke-linecap: round;
-  stroke-dashoffset: 0;
-  stroke-width: 5%;
-  fill: none;
+   stroke-linecap: round;
+   stroke-dashoffset: 0;
+   stroke-width: 5%;
+   fill: none;
 }
 
 /* -----------LOADER------------ */
 .spinner {
-  --color: grey;
-  position: relative;
-  width: 60px;
+   --color: grey;
+   position: relative;
+   width: 60px;
 }
 
 .spinner:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
+   content: '';
+   display: block;
+   padding-top: 100%;
 }
 
 .circular {
-  animation: rotate73451 2s linear infinite;
-  height: 100%;
-  transform-origin: center center;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+   animation: rotate73451 2s linear infinite;
+   height: 100%;
+   transform-origin: center center;
+   width: 100%;
+   position: absolute;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   margin: auto;
 }
 
 .path {
-  stroke-dasharray: 1, 200;
-  stroke-dashoffset: 0;
-  animation: dash0175 1.5s ease-in-out infinite,
-    color7123 6s ease-in-out infinite;
-  stroke-linecap: round;
+   stroke-dasharray: 1, 200;
+   stroke-dashoffset: 0;
+   animation: dash0175 1.5s ease-in-out infinite,
+      color7123 6s ease-in-out infinite;
+   stroke-linecap: round;
 }
 
 @keyframes rotate73451 {
-  100% {
-    transform: rotate(360deg);
-  }
+   100% {
+      transform: rotate(360deg);
+   }
 }
 
 @keyframes dash0175 {
-  0% {
-    stroke-dasharray: 1, 200;
-    stroke-dashoffset: 0;
-  }
+   0% {
+      stroke-dasharray: 1, 200;
+      stroke-dashoffset: 0;
+   }
 
-  50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
-  }
+   50% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -35px;
+   }
 
-  100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
-  }
+   100% {
+      stroke-dasharray: 89, 200;
+      stroke-dashoffset: -124px;
+   }
 }
 
 @keyframes color7123 {
-  100%,
-  0% {
-    stroke: var(--color);
-  }
+   100%,
+   0% {
+      stroke: var(--color);
+   }
 
-  40% {
-    stroke: var(--color);
-  }
+   40% {
+      stroke: var(--color);
+   }
 
-  66% {
-    stroke: var(--color);
-  }
+   66% {
+      stroke: var(--color);
+   }
 
-  80%,
-  90% {
-    stroke: var(--color);
-  }
+   80%,
+   90% {
+      stroke: var(--color);
+   }
 }

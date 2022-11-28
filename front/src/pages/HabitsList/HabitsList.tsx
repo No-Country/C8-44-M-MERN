@@ -66,6 +66,7 @@ const habitsList = [
     },
   },
 ];
+
 const HabitsList = () => {
   const [selectedOrder, setSelectedOrder] = useState("proximity");
   const [searchResult, setSearchResult] = useState(habitsList);

@@ -1,5 +1,7 @@
-import React from 'react'
-import { Habit } from '../../../components'
+import { Habit } from "../../../components";
+import { HiPlus } from "react-icons/hi";
+import { Link } from "react-router-dom";
+import React from "react";
 
 const habitsList = [
   {
@@ -12,7 +14,7 @@ const habitsList = [
     experience: {
       progress: 50,
       level: 1,
-    }
+    },
   },
   {
     id: 2,
@@ -24,7 +26,7 @@ const habitsList = [
     experience: {
       progress: 30,
       level: 2,
-    }
+    },
   },
   {
     id: 3,
@@ -36,7 +38,7 @@ const habitsList = [
     experience: {
       progress: 40,
       level: 3,
-    }
+    },
   },
   {
     id: 5,
@@ -48,7 +50,7 @@ const habitsList = [
     experience: {
       progress: 90,
       level: 5,
-    }
+    },
   },
   {
     id: 4,
@@ -60,34 +62,39 @@ const habitsList = [
     experience: {
       progress: 60,
       level: 2,
-    }
+    },
   },
-]
+];
 
 const Habits = () => {
   return (
     <div>
-      <h2 className="home-title">Habits</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="home-title">Habits</h2>
+        <Link to="/add-habits">
+          <HiPlus className="text-primary-light text-lg" />
+        </Link>
+      </div>
       <div className="relative h-1 w-full bg-secondary-light rounded-full">
         <div className="absolute w-1/3 bg-primary-dark rounded-full"></div>
       </div>
-      <ul className='pt-4'>
+      <ul className="pt-4">
         {habitsList.map((habit) => (
           <li key={habit.id}>
-            <Habit 
-            id={habit.id}
-            habitName={habit.habitName}
-            frequency={habit.frequency}
-            category={habit.category}
-            description={habit.description}
-            priority={habit.priority}
-            experience={habit.experience}
-          />
+            <Habit
+              id={habit.id}
+              habitName={habit.habitName}
+              frequency={habit.frequency}
+              category={habit.category}
+              description={habit.description}
+              priority={habit.priority}
+              experience={habit.experience}
+            />
           </li>
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Habits
+export default Habits;

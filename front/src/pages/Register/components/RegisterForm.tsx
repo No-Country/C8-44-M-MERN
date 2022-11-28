@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 interface FormValues {
+  username: string;
   email: string;
   password: string;
   passwordConfirm: string;
@@ -68,6 +69,28 @@ const Form = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
       <div className="form-group">
         <label htmlFor="email-input" className="red-label">
+          Username
+        </label>
+        <input
+          type="text"
+          id="username"
+          placeholder="Your username"
+          {...register('username')}
+          className="form-input outline-none text-secondary-dark"
+        />
+        <Message
+          errors={errors}
+          property="email"
+          type={errors?.email?.type == 'required' ? 'required' : 'pattern'}
+          text={
+            errors?.email?.type == 'required'
+              ? 'This field is required'
+              : 'Please insert a valid email'
+          }
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="email-input" className="red-label">
           Email
         </label>
         <input
@@ -84,12 +107,8 @@ const Form = () => {
         <Message
           errors={errors}
           property="email"
-          type={errors?.email?.type == 'required' ? 'required' : 'pattern'}
-          text={
-            errors?.email?.type == 'required'
-              ? 'This field is required'
-              : 'Please insert a valid email'
-          }
+          type={'required'}
+          text={'This field is required'}
         />
         {/*****************************************/}
       </div>

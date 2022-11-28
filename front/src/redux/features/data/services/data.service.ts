@@ -1,12 +1,15 @@
 import axios from 'axios';
 const data = async () => {
-   let jwt = JSON.parse(localStorage.getItem('jwt') || '{}');
+   let jwt = await JSON.parse(localStorage.getItem('jwt') || '{}');
+   console.log(jwt);
+   
+
    try {
       const response = await axios.get(
          `https://c8-44-m-mern-production.up.railway.app/api/user/me`,
          {
             headers: {
-            'Content-Type': 'application/json',
+               'Content-Type': 'application/json',
                Authorization: `JWT ${jwt}`,
             },
          }

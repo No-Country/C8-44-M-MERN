@@ -1,24 +1,24 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
+import { HabitsData } from './models/DisplayHabits.interface';
 import habitsService from './services/habits.service';
 interface AsyncState {
-   data: any;
+   habitys: any;
    isLoading: boolean;
    isSuccess: boolean;
    isError: boolean;
 }
 interface HabitsState extends AsyncState {
-   habits: any;
+   habits?: HabitsData | null;
 }
 const initialState: HabitsState = {
-   data: null,
-   habits: null,
+   habitys: null,
    isLoading: false,
    isSuccess: false,
    isError: false,
 };
 export const habits = createAsyncThunk('habits', async () => {
-   return await habitsService;
+   return await habitsService.getHabits();
 });
 export const habitsSlice = createSlice({
    name: 'habits',
@@ -40,7 +40,7 @@ export const habitsSlice = createSlice({
          state.isLoading = false;
          state.isSuccess = true;
          state.isError = false;
-         state.habits = action.payload;
+         state.habitys = action.payload;
       });
       builder.addCase(habits.rejected, (state) => {
          state.isLoading = false;

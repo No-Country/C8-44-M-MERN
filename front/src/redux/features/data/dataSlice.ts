@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import { DisplayUser } from '../auth/models/DisplayUser.interface';
+import { Jwt } from './models/Jwt';
 import dataService from './services/data.service';
 
 interface AsyncState {
@@ -13,6 +14,7 @@ interface AsyncState {
 
 interface DataState extends AsyncState {
    user?: DisplayUser | null;
+   jwt?: Jwt;
 }
 
 const initialState: DataState = {

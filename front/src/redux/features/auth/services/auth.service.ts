@@ -17,31 +17,25 @@ import { LoginUser } from '../models/LoginUser.interface';
 //   return response.data;
 // };
 
-const login = async (
-  user: LoginUser
-): Promise<{ jwt: Jwt}> => {
-  const response = await axios.post(
-     `https://c8-44-m-mern-production.up.railway.app/api/user/login`,
-     user
-  );
+const login = async (user: LoginUser): Promise<{ jwt: Jwt }> => {
+   const response = await axios.post(
+      `https://c8-44-m-mern-production.up.railway.app/api/user/login`,
+      user
+   );
 
-  if (response.data) {
-    localStorage.setItem('jwt', JSON.stringify(response.data.token));
-
-  }
-  return { jwt: response.data};
+   if (response.data) {
+      localStorage.setItem('jwt', JSON.stringify(response.data.token));
+   }
+   return { jwt: response.data };
 };
 
 const logout = (): void => {
-  localStorage.removeItem('user');
-  localStorage.removeItem('jwt');
+   localStorage.removeItem('jwt');
 };
 
-
 const authService = {
-  
-  login,
-  logout,
+   login,
+   logout,
 };
 
 export default authService;

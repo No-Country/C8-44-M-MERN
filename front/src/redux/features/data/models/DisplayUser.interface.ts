@@ -6,4 +6,5 @@ export interface DataUser {
    email: string;
    birdthday: string;
    habits: [];
+   avatar: string;
 }

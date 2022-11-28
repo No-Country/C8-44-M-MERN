@@ -1,15 +1,9 @@
 import axios from 'axios';
 
-const habits = async () => {
-   let jwt = JSON.parse(localStorage.getItem('jwt') || '{}');
+const getHabits = async () => {
    try {
       const response = await axios.get(
          `https://c8-44-m-mern-production.up.railway.app/api/habits`,
-         {
-            headers: {
-               'Content-Type': 'application/json',
-            },
-         }
       );
       return response.data;
    } catch (error) {
@@ -17,6 +11,6 @@ const habits = async () => {
    }
 };
 const habitsService = {
-   habits,
+   getHabits,
 };
 export default habitsService;

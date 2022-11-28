@@ -13,12 +13,12 @@ import { data } from '../../redux/features/data/dataSlice';
 const Home = () => {
    const navigate = useNavigate();
    // const [isLoading, setIsLoading] = useState(true);
-   
+
    const dispatch = useAppDispatch();
    const { isLoading, isSuccess, user } = useAppSelector((state) => state.data);
    useEffect(() => {
       dispatch(data());
-   }, [dispatch]);
+   }, []);
    // setTimeout(() => {
    //    isLoading(false);
    // }, 1000);
@@ -30,7 +30,9 @@ const Home = () => {
             <div className='flex justify-between'>
                <h1 className='title text-secondary-dark'>Home</h1>
                {user?.map((us: any) => (
-                  <div key={us._id} className='h-16 w-16 rounded-full overflow-hidden'>
+                  <div
+                     key={us._id}
+                     className='h-16 w-16 rounded-full overflow-hidden'>
                      <img
                         src={`${
                            us.avatar.length > 17
@@ -43,12 +45,12 @@ const Home = () => {
                   </div>
                ))}
             </div>
-        </div>
-        <HomeExperience />
-        <HomeHabits />
-        <HomeFriends />
-      <Navbar />
-       {/* <Confetti
+            <HomeExperience />
+            <HomeHabits />
+            <HomeFriends />
+            <Navbar />
+         </div>
+         {/* <Confetti
         numberOfPieces={party ? 300 : 0}
         recycle={false}
         onConfettiComplete={(confetti) => {
@@ -56,8 +58,8 @@ const Home = () => {
           confetti.reset();
         }}
       /> */}
-    </>
-  );
+      </>
+   );
 };
 
 export default Home;

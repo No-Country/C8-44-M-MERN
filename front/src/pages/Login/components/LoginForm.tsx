@@ -63,9 +63,11 @@ const Form = () => {
       formState: { errors },
    } = useForm<FormValues>();
    // 'https://c8-44-m-mern-production.up.railway.app/api/user/login',
-   const onSubmit: SubmitHandler<FormValues> = (data) => {
-      dispatch(login(data));
-      navigate('/home');
+   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+      await dispatch(login(data ));
+         navigate('/home');
+
+      
    };
 
    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);

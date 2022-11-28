@@ -1,9 +1,7 @@
-import { Link } from "react-router-dom";
-// import { useAppDispatch } from "../../redux/store";
-import { LoginForm } from "./components";
+import { Link } from 'react-router-dom';
+import { LoginForm } from './components';
 
 const Login = () => {
-
   return (
     <div className="main-container flex flex-col items-center">
       <div className="flex flex-col gap-9 w-80 sm:w-96 2xl:w-[500px] mx-auto mb-auto mt-0">

@@ -1,15 +1,17 @@
 import { Header, Loader, Navbar } from '../../components';
 import { HomeExperience, HomeFriends, HomeHabits } from './components';
-import Confetti from 'react-confetti';
 import { Link, useNavigate } from 'react-router-dom';
-import profilePicture from '../../assets/profile.jpg';
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+
+import Confetti from 'react-confetti';
+import profilePicture from '../../assets/profile.jpg';
+import { useAppSelector } from '../../redux/hooks';
 
 const Home = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [party, setParty] = useState(false);
+  const { darkmode } = useAppSelector((state) => state.theme);
   setTimeout(() => {
     setIsLoading(false);
   }, 1000);
@@ -17,11 +19,11 @@ const Home = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <>
-      <div className="main-container flex flex-col gap-4">
+    <div className={`${darkmode && 'dark'} `}>
+      <div className="main-container flex flex-col gap-4 dark:bg-secondary-dark">
         <div className="flex justify-between">
           <h1
-            className="title text-secondary-dark"
+            className="title text-secondary-dark dark:text-neutral-300"
             onClick={() => setParty(true)}
           >
             Home
@@ -49,7 +51,7 @@ const Home = () => {
           confetti.reset();
         }}
       />
-    </>
+    </div>
   );
 };
 

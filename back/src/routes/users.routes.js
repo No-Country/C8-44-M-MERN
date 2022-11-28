@@ -28,12 +28,12 @@ router.put(`${path}/update`, userControllers.editUser);
 router.put(`${path}`, userControllers.deleteUser);
 
 
+
 router.route(`${path}/me`)
   .get(passport.authenticate('jwt', {session: false}), userControllers.getMyUser)
   .put(passport.authenticate('jwt', {session: false}), userControllers.addFollower);
-// POST hábito a un user
-// incorpora hábitos al user por ID de hábito
-router.post(`${path}/:id/productos`, userControllers.createHabitAdmin);
+
+
 //ruta para pedir un user(id)
 router.route(`${path}/:id`)
   .get(userControllers.getUserById)

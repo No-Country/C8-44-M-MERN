@@ -18,18 +18,18 @@ const habitSchema = new Schema({
       }
     },
   ],
-  priority: {
+  priority: { /*a revisar para eliminar*/
     type: Number,
     required: true,
   },
   experience: {
     type: Number /*a revisar*/,
-    default: 1,
+    default: 0,
     required: true,
   },
   frecuency: {
-    type: String,
-    required: true,
+    type: String, /*a revisar para sacar porq dejariamos habitos DIARIOS*/
+    required: false,
   },
   isActive: {
     /*a revisar NO ES PRIORIDAD*/ type: Boolean,

@@ -119,9 +119,9 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-const createHabitAdmin = async (req, res, next) => {
+const addHabit = async (req, res, next) => {
   try {
-    let user = await usersApi.findOneById(req.params.id);
+    let user = await usersApi.findOneById(req.params.id); //este user soy YO
     let habit = await habitsApi.findOneById(req.body.id);
     user.habits.push(habit);
     console.log(user);
@@ -179,10 +179,10 @@ const getMyUser = async (req, res, next) => {
 
 const addFollower = async (req, res, next) => {
   try {
-    let user = await usersApi.findOneById(req.user.id);
+    let user = await usersApi.findOneByIdFollowers(req.user.id);       //este user soy YO
     console.log("user: ",req.user)
-    const follower = await usersApi.findOneById(req.body.id);
-    user.followers.push(follower);
+    const follower = await usersApi.findOneById(req.body.id); //user que quiero agregar
+    user.followers.push(follower);                            //pusheo al key followers
     console.log(user);
     console.log(follower);
     await usersApi.updateOne(user.username, user);
@@ -204,7 +204,7 @@ module.exports = {
   register,
   editUser,
   deleteUser,
-  createHabitAdmin,
+  addHabit,
   login,
   getMyUser,
   addFollower

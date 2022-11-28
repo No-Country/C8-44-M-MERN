@@ -13,6 +13,7 @@ import {
 
 import App from "../App";
 import { createBrowserRouter } from "react-router-dom";
+import { ProtectedRoute } from './ProtectedRoutes'
 
 const router = createBrowserRouter([
   {
@@ -29,31 +30,31 @@ const router = createBrowserRouter([
   },
   {
     path: "home",
-    element: <Home />,
+    element: <ProtectedRoute><Home /></ProtectedRoute>,
   },
   {
     path: "friends",
-    element: <AddFriends />,
+    element: <ProtectedRoute><AddFriends /></ProtectedRoute>,
   },
   {
     path: "friend/:id",
-    element: <FriendDetails />,
+    element: <ProtectedRoute><FriendDetails /></ProtectedRoute>,
   },
   {
     path: "profile",
-    element: <Profile />,
+    element: <ProtectedRoute><Profile /></ProtectedRoute>,
   },
   {
     path: "habits",
-    element: <HabitsList />,
+    element: <ProtectedRoute><HabitsList /></ProtectedRoute>,
   },
   {
     path: "add-habits",
-    element: <AddHabit />,
+    element: <ProtectedRoute><AddHabit /></ProtectedRoute>,
   },
   {
     path: "habit-detail/:id",
-    element: <HabitDetail />,
+    element: <ProtectedRoute><HabitDetail /></ProtectedRoute>,
   },
   {
     path: "*",

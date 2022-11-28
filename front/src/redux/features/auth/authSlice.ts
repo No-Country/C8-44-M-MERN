@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
-import { DisplayUser } from './models/DisplayUser.interface';
-import { Jwt } from './models/Jwt';
-import { LoginUser } from './models/LoginUser.interface';
-import authService from './services/auth.service';
+
+import { login } from './thunks';
+import { Jwt, User } from '../../../models';
+
 interface AsyncState {
    isLoading: boolean;
    isSuccess: boolean;
    isError: boolean;
 }
 interface AuthState extends AsyncState {
-   user?: DisplayUser | null;
+   user?: User | null;
    jwt?: Jwt;
    isAuthenicated?: boolean;
 }
@@ -21,24 +21,12 @@ const initialState: AuthState = {
    isSuccess: false,
    isError: false,
 };
-export const login = createAsyncThunk(
-   'user/login',
-   async (user: LoginUser, thunkAPI) => {
-      try {
-         return await authService.login(user);
-      } catch (error) {
-         return thunkAPI.rejectWithValue('Unable to login');
-      }
-   }
-);
-export const logout = createAsyncThunk('auth/logout', async () => {
-   await authService.logout();
-});
+
 export const authSlice = createSlice({
    name: 'auth',
    initialState,
    reducers: {
-      reset: (state) => {
+      resetAuth: (state) => {
          state.isLoading = false;
          state.isSuccess = false;
          state.isError = false;
@@ -63,10 +51,8 @@ export const authSlice = createSlice({
          });
    },
 });
-export const { reset } = authSlice.actions;
+export const { resetAuth } = authSlice.actions;
 
 export const selectedUser = (state: RootState) => {
    return state.auth;
 };
-
-export default authSlice.reducer;

@@ -1,11 +1,14 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
-import { DecodeJwt } from '../models/DecodeJwt.interface';
+import { DecodeJwt } from '../models/models/DecodeJwt.interface';
 
-import { DisplayUser } from '../models/DisplayUser.interface';
-import { Jwt } from '../models/Jwt';
-import { LoginUser } from '../models/LoginUser.interface';
+import { DisplayUser } from '../models/models/DisplayUser.interface';
+// import { Jwt } from '../models/models/Jwt';
+// import { LoginUser } from '../models/models/LoginUser.interface';
+
+import { Jwt, User } from '../models';
+
 // import { NewUser } from '../models/NewUser';
 
 // const register = async (newUser: NewUser): Promise<DisplayUser | null> => {
@@ -18,7 +21,7 @@ import { LoginUser } from '../models/LoginUser.interface';
 // };
 
 const login = async (
-  user: LoginUser
+  user: User
 ): Promise<{ jwt: Jwt}> => {
   const response = await axios.post(
      `https://c8-44-m-mern-production.up.railway.app/api/user/login`,

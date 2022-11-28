@@ -1,5 +1,6 @@
 import {
   AddFriends,
+  AddHabit,
   FriendDetails,
   HabitDetail,
   HabitsList,
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "habits",
     element: <HabitsList />,
+  },
+  {
+    path: "add-habits",
+    element: <AddHabit />,
   },
   {
     path: "habit-detail/:id",

@@ -1,1 +1,1 @@
-export { default as HabitsList } from "./HabitsList";
+export { default as HabitsList } from './HabitsList';

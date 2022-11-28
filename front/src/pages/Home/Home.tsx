@@ -1,13 +1,13 @@
 import { Header, Loader, Navbar } from '../../components';
 import { HomeExperience, HomeFriends, HomeHabits } from './components';
-
+import Confetti from 'react-confetti';
+import { Link, useNavigate } from 'react-router-dom';
 import profilePicture from '../../assets/profile.jpg';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
-// import { selectAuth, setUser } from '../../redux/features/auth/authSlice';
+
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-// import { selectUser } from '../../redux/features/user/userSlice';
+
 import { data } from '../../redux/features/data/dataSlice';
 
 const Home = () => {
@@ -43,13 +43,21 @@ const Home = () => {
                   </div>
                ))}
             </div>
-            <HomeExperience />
-            <HomeHabits />
-            <HomeFriends />
-         </div>
-         <Navbar />
-      </>
-   );
+        </div>
+        <HomeExperience />
+        <HomeHabits />
+        <HomeFriends />
+      <Navbar />
+       {/* <Confetti
+        numberOfPieces={party ? 300 : 0}
+        recycle={false}
+        onConfettiComplete={(confetti) => {
+          setParty(false);
+          confetti.reset();
+        }}
+      /> */}
+    </>
+  );
 };
 
 export default Home;

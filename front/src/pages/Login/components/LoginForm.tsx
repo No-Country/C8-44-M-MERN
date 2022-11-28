@@ -1,13 +1,15 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { login } from '../../../redux/features/auth/authSlice';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CiWarning } from 'react-icons/ci';
 import { FaGoogle } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { postLogin } from '../../../utils/dataFetch';
+import { setToken } from '../../../redux/features';
+import { useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../../redux/store';
-import { login } from '../../../redux/features/auth/authSlice';
 
 type FormValues = {
    email: string;

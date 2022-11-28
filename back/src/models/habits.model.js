@@ -15,11 +15,7 @@ const habitSchema = new Schema({
       name: {
         type: String,
         required: true,
-      },
-      description: {
-        type: String,
-        required: true,
-      },
+      }
     },
   ],
   priority: {
@@ -30,10 +26,6 @@ const habitSchema = new Schema({
     type: Number /*a revisar*/,
     default: 1,
     required: true,
-  },
-  avatar: {
-    type: String,
-    default: "http://image.com",
   },
   frecuency: {
     type: String,

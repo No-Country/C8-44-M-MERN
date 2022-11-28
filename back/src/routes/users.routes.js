@@ -33,7 +33,7 @@ router.route(`${path}/me`)
   .put(passport.authenticate('jwt', {session: false}), userControllers.addFollower);
 // POST hábito a un user
 // incorpora hábitos al user por ID de hábito
-router.post(`${path}/:id/productos`, userControllers.createHabit);
+router.post(`${path}/:id/productos`, userControllers.createHabitAdmin);
 //ruta para pedir un user(id)
 router.route(`${path}/:id`)
   .get(userControllers.getUserById)

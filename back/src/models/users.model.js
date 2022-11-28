@@ -10,24 +10,20 @@ const userSchema = new Schema({
   },
   fullname: {
     type: String,
-    required: true,
+    required: false,
   },
   email: {
     type: String,
     unique: true,
-    required: false,
+    required: true,
   },
   password: {
     type: String,
     required: true,
   },
-  birthday: {
-    type: Date,
-    required: false,
-  },
   avatar: {
     type: String,
-    default: "http://image.com",
+    default: "https://i.imgur.com/WxNkK7J.png",
   },
   rol: {
     type: String,
@@ -35,10 +31,6 @@ const userSchema = new Schema({
   },
   isActive: {
     type: Boolean,
-    required: true,
-  },
-  isPublic: {
-    /*a revisar*/ type: Boolean,
     required: true,
   },
   followers:[
@@ -65,10 +57,6 @@ const userSchema = new Schema({
         type: Number /*a revisar*/,
         default: 1,
         required: true,
-      },
-      avatar: {
-        type: String,
-        default: "http://image.com",
       },
       frecuency: {
         type: String,

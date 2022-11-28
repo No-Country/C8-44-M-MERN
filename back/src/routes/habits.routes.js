@@ -2,13 +2,13 @@ const express = require("express");
 const router= express.Router()
 
 const habitsControllers = require('../controllers/habits.controllers');
-//HABITS  --> /home -> GET->getAllHabits | GET->`:id`getHabit | DELETE->`:id` deleteHabit | *PUT->`:id`updateHabit | POST->createHabit
+//HABITS  --> /home -> GET->getAllHabits | GET->`:id`getHabit | DELETE->`:id` deleteHabit | *PUT->`:id`updateHabit | POST->createHabitAdmin
 
 const path="/api/habits"
 //ruta para pedir todos los habitos y crear
 router.route(`${path}`)
     .get(habitsControllers.getAllHabits)
-    .post(habitsControllers.createHabit)
+    .post(habitsControllers.createHabitAdmin)
 
 //ruta para pedir un habito(id)
 router.route(`${path}/:id`)

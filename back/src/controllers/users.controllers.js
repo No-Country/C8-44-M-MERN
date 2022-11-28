@@ -53,24 +53,16 @@ const register = async (req, res, next) =>{
     const {
       username,
       fullname,
-      email,
-      password,
-      birthday,
-      avatar,
-      rol,
-      isActive,
-      isPublic,
+      password
     } = req.body;
     const newUser = {
       username,
       fullname,
       email,
       password: hashPassword(password),
-      birthday,
       avatar,
-      rol,
-      isActive,
-      isPublic,
+      rol: 'user', //ver si sacamos esto
+      isActive: true,
       followers:[],
       habits: [],
     };
@@ -127,7 +119,7 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-const createHabit = async (req, res, next) => {
+const createHabitAdmin = async (req, res, next) => {
   try {
     let user = await usersApi.findOneById(req.params.id);
     let habit = await habitsApi.findOneById(req.body.id);
@@ -212,7 +204,7 @@ module.exports = {
   register,
   editUser,
   deleteUser,
-  createHabit,
+  createHabitAdmin,
   login,
   getMyUser,
   addFollower

@@ -30,7 +30,7 @@ const getHabitById = async (req, res, next) => {
   }
 };
 
-const createHabit = async (req, res, next) => {
+const createHabitAdmin = async (req, res, next) => {
   try {
     const { name, description, category, priority, experience, avatar, frecuency, isActive} = req.body;
     const newHabit = {
@@ -85,7 +85,7 @@ const deleteHabit = async (req, res, next) => {
 module.exports = {
   getAllHabits,
   getHabitById,
-  createHabit,
+  createHabitAdmin,
   deActivateHabit,
   deleteHabit
 }

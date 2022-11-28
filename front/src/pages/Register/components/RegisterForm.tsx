@@ -81,7 +81,7 @@ const Form = () => {
         <Message
           errors={errors}
           property="email"
-          type={errors?.email?.type == 'required' ? 'required' : 'pattern'}
+          type={errors?.username?.type == 'required' ? 'required' : 'pattern'}
           text={
             errors?.email?.type == 'required'
               ? 'This field is required'

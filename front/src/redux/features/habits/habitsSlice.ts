@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
-import habitsService from './services/habits.service';
+import { habits } from './thunks';
+
 interface AsyncState {
    data: any;
    isLoading: boolean;
@@ -17,14 +18,12 @@ const initialState: HabitsState = {
    isSuccess: false,
    isError: false,
 };
-export const habits = createAsyncThunk('habits', async () => {
-   return await habitsService;
-});
+
 export const habitsSlice = createSlice({
    name: 'habits',
    initialState,
    reducers: {
-      reset: (state) => {
+      resetHabit: (state) => {
          state.isLoading = false;
          state.isSuccess = false;
          state.isError = false;
@@ -49,6 +48,5 @@ export const habitsSlice = createSlice({
       });
    },
 });
-export const { reset } = habitsSlice.actions;
+export const { resetHabit } = habitsSlice.actions;
 export const selectHabits = (state: RootState) => state.habits;
-export default habitsSlice.reducer;

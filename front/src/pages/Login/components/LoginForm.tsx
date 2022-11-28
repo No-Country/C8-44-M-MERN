@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
-import { login } from '../../../redux/features/auth/authSlice';
+import { login } from '../../../redux/features/auth';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { CiWarning } from 'react-icons/ci';
 import { FaGoogle } from 'react-icons/fa';

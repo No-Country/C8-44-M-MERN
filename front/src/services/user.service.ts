@@ -26,7 +26,7 @@ const data = async () => {
 //                'Content-Type': 'application/json',
 
 // }
-const dataService = {
+const userService = {
    data,
 };
-export default dataService;
+export default userService;

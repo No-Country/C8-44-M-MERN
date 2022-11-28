@@ -3,16 +3,16 @@ import profilePicture from '../../assets/profile.jpg';
 import { GiToken, GiTrophyCup } from 'react-icons/gi';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { logout } from '../../redux/features/auth/authSlice';
+import { logout } from '../../redux/features/auth';
 import { useNavigate } from 'react-router-dom';
-import { data } from '../../redux/features/data/dataSlice';
+import { getUser } from '../../redux/features/user';
 
 const Profile = () => {
    const navigate = useNavigate();
    const dispatch = useAppDispatch();
-   const { isLoading, isSuccess, user } = useAppSelector((state) => state.data);
+   const { isLoading, isSuccess, user } = useAppSelector((state) => state.user);
    useEffect(() => {
-      dispatch(data());
+      dispatch(getUser());
  
    }, []);
    // console.log(user);
@@ -25,28 +25,28 @@ const Profile = () => {
       <>
          <div className='main-container flex flex-col gap-4 mb-7 '>
             <Header title='My Profile' editUrl={'/'} />
-            {user?.map((us: any) => (
-               <div key={us._id}>
+            {/* {user?.map((us: any) => ( */}
+               <div>
                   <div className='grid justify-items-center mt-4'>
                      <div className='h-16 w-16 rounded-full overflow-hidden mb-3 '>
                         <img
                            src={`${
-                              us.avatar.length > 17
-                                 ? us.avatar
+                              user?.avatar
+                                 ? user?.avatar
                                  : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
                            }`}
                            alt='Profile picture'
                            className='object-cover h-full'
                         />
                      </div>
-                     <h1>{us.fullname}</h1>
-                     <h2 className='text-secondary-regular'>{us.email}</h2>
+                     <h1>{user?.fullname}</h1>
+                     <h2 className='text-secondary-regular'>{user?.email}</h2>
                   </div>
                   <div>
                      <h2 className='home-title'>Progress</h2>
                      <div className='relative h-1 w-full  bg-primary-light rounded-full'></div>
                      <div className='grid gap-3 mt-3'>
-                        {us.habilits?.length ? (
+                        {user?.habits?.length ? (
                            <div className='flex items-center justify-between text-sm rounded-full bg-secondary-light/30 w-full py-4 px-6'>
                               <h3 className='text-secondary-dark'>
                                  Habit Streak
@@ -89,7 +89,6 @@ const Profile = () => {
                      <button className='p-1'>delete account</button>
                   </div>
                </div>
-            ))}
          </div>
          <Navbar />
       </>

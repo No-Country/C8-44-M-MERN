@@ -98,16 +98,14 @@ const register = async (req, res, next) =>{
       username,
       email,
       password: hashPassword(password),
-      rol: 'user', //ver si sacamos esto
-      isActive: true,
       followers:[],
       habits: [],
     };
     usersApi.save(newUser);
     const auth=await authenticated(email,password)
     if(auth){
-      console.log(auth, "user authenticated")
-      res.json(auth)
+      console.log(auth, "user authenticated and created")
+      res.json(auth, "user authenticated and createdd")
     }else{
       return auth
     }
@@ -115,7 +113,7 @@ const register = async (req, res, next) =>{
     next({
       status: 400,
       errorContent: error,
-      message: "Faltan datos",
+      message: "Algo salio mal",
     });
   }
 };

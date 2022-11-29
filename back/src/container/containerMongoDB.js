@@ -49,7 +49,6 @@ class ContainerMongoDB {
 
   async findOneById(id) {
     try {
-      console.log(id)
       let response = await this.model.findOne({ _id: id });
       return response;
     } catch (error) {

@@ -52,36 +52,24 @@ const register = async (req, res, next) =>{
   try {
     const {
       username,
-      fullname,
       email,
-      password,
-      birthday,
-      avatar,
-      rol,
-      isActive,
-      isPublic,
+      password
     } = req.body;
     const newUser = {
       username,
-      fullname,
       email,
       password: hashPassword(password),
-      birthday,
-      avatar,
-      rol,
-      isActive,
-      isPublic,
       followers:[],
       habits: [],
     };
     console.log(newUser);
     usersApi.save(newUser);
-    res.send("User created!");
+    res.json({message: "User created!", newUser })
   } catch (error) {
     next({
       status: 400,
       errorContent: error,
-      message: "Faltan datos",
+      message: "Algo salio mal",
     });
   }
 };
@@ -127,9 +115,9 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-const createHabit = async (req, res, next) => {
+const addHabit = async (req, res, next) => {
   try {
-    let user = await usersApi.findOneById(req.params.id);
+    let user = await usersApi.findOneById(req.params.id); //este user soy YO
     let habit = await habitsApi.findOneById(req.body.id);
     user.habits.push(habit);
     console.log(user);
@@ -187,10 +175,10 @@ const getMyUser = async (req, res, next) => {
 
 const addFollower = async (req, res, next) => {
   try {
-    let user = await usersApi.findOneById(req.user.id);
+    let user = await usersApi.findOneByIdFollowers(req.user.id);       //este user soy YO
     console.log("user: ",req.user)
-    const follower = await usersApi.findOneById(req.body.id);
-    user.followers.push(follower);
+    const follower = await usersApi.findOneById(req.body.id); //user que quiero agregar
+    user.followers.push(follower);                            //pusheo al key followers
     console.log(user);
     console.log(follower);
     await usersApi.updateOne(user.username, user);
@@ -212,7 +200,7 @@ module.exports = {
   register,
   editUser,
   deleteUser,
-  createHabit,
+  addHabit,
   login,
   getMyUser,
   addFollower

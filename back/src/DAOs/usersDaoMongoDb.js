@@ -38,7 +38,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
     }
   }
 
-  async findOneById(id) {
+  async findOneByIdFollowers(id) {
     try {
       console.log(id)
       let response = await userModel.find({ _id: id }).populate('followers');

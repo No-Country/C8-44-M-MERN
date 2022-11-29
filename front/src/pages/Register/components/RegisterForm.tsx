@@ -6,6 +6,9 @@ import { CiWarning } from "react-icons/ci";
 import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useAppDispatch } from "../../../redux/hooks";
+import { registerUser } from '../../../redux/features/user';
+
 
 interface FormValues {
   username: string;
@@ -51,16 +54,20 @@ const Message = ({ errors, property, type, text }: MessageForm) => {
 };
 
 const Form = () => {
+
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,
     getValues,
     formState: { errors },
   } = useForm<FormValues>();
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data)
-    navigate("/home");
+    console.log("Form Data", data)
+    dispatch(registerUser(data));
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);

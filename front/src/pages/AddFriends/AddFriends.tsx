@@ -21,9 +21,8 @@ const friendsList = [
 ];
 
 const AddFriends = () => {
-  const { darkmode } = useAppSelector((state) => state.theme);
   return (
-    <div className={`${darkmode && 'dark'}`}>
+    <>
       <div className="main-container flex flex-col gap-4 dark:bg-secondary-dark">
         <Header title="Add Friend" />
         <input
@@ -45,7 +44,7 @@ const AddFriends = () => {
         })}
       </div>
       <Navbar />
-    </div>
+    </>
   );
 };
 

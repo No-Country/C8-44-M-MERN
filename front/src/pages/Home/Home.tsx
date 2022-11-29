@@ -11,7 +11,6 @@ const Home = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [party, setParty] = useState(false);
-  const { darkmode } = useAppSelector((state) => state.theme);
   setTimeout(() => {
     setIsLoading(false);
   }, 1000);
@@ -19,7 +18,7 @@ const Home = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <div className={`${darkmode && 'dark'} `}>
+    <>
       <div className="main-container flex flex-col gap-4 dark:bg-secondary-dark">
         <div className="flex justify-between">
           <h1
@@ -51,7 +50,7 @@ const Home = () => {
           confetti.reset();
         }}
       />
-    </div>
+    </>
   );
 };
 

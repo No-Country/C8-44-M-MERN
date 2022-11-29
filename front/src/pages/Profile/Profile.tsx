@@ -1,5 +1,6 @@
 import { GiToken, GiTrophyCup } from 'react-icons/gi';
 import { Header, Loader, Navbar } from '../../components';
+import { RiToggleFill, RiToggleLine } from 'react-icons/ri';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { changeTheme } from '../../redux/features';
@@ -32,9 +33,8 @@ const Profile = () => {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4 mb-7 ">
+      <div className="main-container flex flex-col gap-4 mb-7 dark:bg-black transition-colors duration-700">
         <Header title="My Profile" editUrl={'/'} />
-        <h1>{JSON.stringify(darkmode)}</h1>
         {/* {user?.map((us: any) => ( */}
         <div>
           <div className="grid justify-items-center mt-4">
@@ -89,9 +89,14 @@ const Profile = () => {
           <div className="flex flex-col m-5 gap-3 home-title">
             <button
               onClick={themeHandler}
-              className="rounded-xl border-primary-light border-2 p-2 hover:border-white hover:bg-primary-light hover:text-white transition-colors"
+              className="btn btn-secondary border-2 flex items-center gap-4 justify-center"
             >
-              Dark Mode
+              dark mode
+              {darkmode ? (
+                <RiToggleFill className="w-10 h-10" />
+              ) : (
+                <RiToggleLine className="w-10 h-10" />
+              )}
             </button>
             <button
               onClick={logoutHandler}

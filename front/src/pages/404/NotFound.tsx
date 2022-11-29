@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../redux/hooks';
 
 const NotFound = () => {
-  const { darkmode } = useAppSelector((state) => state.theme);
   return (
-    <div className={`${darkmode && 'dark'}`}>
+    <>
       <div className="main-container flex flex-col items-center justify-center gap-6 dark:bg-secondary-dark">
         <img src={Image} alt="" />
         <Link
@@ -15,7 +14,7 @@ const NotFound = () => {
           Go to Home
         </Link>
       </div>
-    </div>
+    </>
   );
 };
 export default NotFound;

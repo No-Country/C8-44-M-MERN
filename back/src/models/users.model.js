@@ -11,6 +11,7 @@ const userSchema = new Schema({
   fullname: {
     type: String,
     required: false,
+    default: '',
   },
   email: {
     type: String,
@@ -28,10 +29,12 @@ const userSchema = new Schema({
   rol: {
     type: String,
     required: true,
+    default: 'user',
   },
   isActive: {
     type: Boolean,
     required: true,
+    default: true,
   },
   followers:[
     {type: Schema.Types.ObjectId, ref: 'users'}],

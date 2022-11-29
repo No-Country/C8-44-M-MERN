@@ -52,28 +52,24 @@ const register = async (req, res, next) =>{
   try {
     const {
       username,
-      fullname,
+      email,
       password
     } = req.body;
     const newUser = {
       username,
-      fullname,
       email,
       password: hashPassword(password),
-      avatar,
-      rol: 'user', //ver si sacamos esto
-      isActive: true,
       followers:[],
       habits: [],
     };
     console.log(newUser);
     usersApi.save(newUser);
-    res.send("User created!");
+    res.json({message: "User created!", newUser })
   } catch (error) {
     next({
       status: 400,
       errorContent: error,
-      message: "Faltan datos",
+      message: "Algo salio mal",
     });
   }
 };

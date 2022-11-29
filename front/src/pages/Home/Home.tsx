@@ -43,14 +43,6 @@ const Home = () => {
         <HomeFriends />
       </div>
       <Navbar />
-      <Confetti
-        numberOfPieces={party ? 300 : 0}
-        recycle={false}
-        onConfettiComplete={(confetti) => {
-          setParty(false);
-          confetti.reset();
-        }}
-      />
     </div>
   );
 };

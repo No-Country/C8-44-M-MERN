@@ -48,27 +48,69 @@ const getUserByName = async (req, res, next) => {
   }
 };
 
+const authenticated = async(email,password)=>{
+  try{
+    const result = await usersApi.login(email, password)
+    if(result){
+      const token = jwt.sign(
+        {
+          id: result.id,
+          email: result.email,
+          rol: result.rol
+        },
+        'No_Country-C8_44'
+        );
+        return token
+      }
+  }catch (error) {
+    console.log(error);
+    return false
+  }
+}
+
+const login = async (req, res, next) => {
+  try {
+    const { email, password} = req.body;
+    const auth=await authenticated(email,password)
+    if(auth){
+      console.log(auth, "user authenticated")
+      res.json(auth)
+    }else{
+      return auth
+    }
+  } catch (error) {
+    next({
+      status: 400,
+      errorContent: error,
+      message: "Faltan datos",
+    });
+  }
+};
+
 const register = async (req, res, next) =>{
   try {
     const {
       username,
-      fullname,
+      email,
       password
     } = req.body;
     const newUser = {
       username,
-      fullname,
       email,
       password: hashPassword(password),
-      avatar,
       rol: 'user', //ver si sacamos esto
       isActive: true,
       followers:[],
       habits: [],
     };
-    console.log(newUser);
     usersApi.save(newUser);
-    res.send("User created!");
+    const auth=await authenticated(email,password)
+    if(auth){
+      console.log(auth, "user authenticated")
+      res.json(auth)
+    }else{
+      return auth
+    }
   } catch (error) {
     next({
       status: 400,
@@ -136,31 +178,7 @@ const addHabit = async (req, res, next) => {
   }
 };
 
-const login = async (req, res, next) => {
-  try {
-    const { email, password} = req.body;
-    const result = await usersApi.login(email, password)
-    if(result){
-      const token = jwt.sign(
-        {
-          id: result.id,
-          email: result.email,
-          rol: result.rol
-        },
-        'No_Country-C8_44'
-      );
-      return res.status(200).json({message: 'User autenticated', token: token})
-    } else {
-      return res.status(401).json({message: 'Invalid Credentials'})
-    }
-  } catch (error) {
-    next({
-      status: 400,
-      errorContent: error,
-      message: "Faltan datos",
-    });
-  }
-};
+
 
 const getMyUser = async (req, res, next) => {
   try {

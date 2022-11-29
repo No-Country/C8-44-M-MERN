@@ -10,7 +10,6 @@ import { useState } from "react";
 interface FormValues {
   username: string;
   email: string;
-  birthday: Date;
   password: string;
   passwordConfirm: string;
 }
@@ -115,26 +114,6 @@ const Form = () => {
           }
         />
         {/*****************************************/}
-      </div>
-      <div className="form-group">
-        <label htmlFor="birthday" className="red-label">
-          Birthday
-        </label>
-        <input
-          type="date"
-          id="birthday"
-          placeholder="Your birthday"
-          {...register("birthday", {
-            required: true,
-          })}
-          className="form-input outline-none text-secondary-dark"
-        />
-        <Message
-          errors={errors}
-          property="birthday"
-          type={"required"}
-          text={"This field is required"}
-        />
       </div>
       <div className="form-group">
         <label htmlFor="password-input" className="red-label">

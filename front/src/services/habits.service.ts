@@ -16,6 +16,7 @@ const habits = async () => {
       console.log(error);
    }
 };
+
 const habitsService = {
    habits,
 };

@@ -68,6 +68,7 @@ const Form = () => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log("Form Data", data)
     dispatch(registerUser(data));
+    navigate("/login");
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);

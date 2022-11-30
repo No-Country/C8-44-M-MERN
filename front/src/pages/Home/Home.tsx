@@ -1,11 +1,11 @@
-import { Header, Loader, Navbar } from '../../components';
-import { HomeExperience, HomeFriends, HomeHabits } from './components';
-import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Header, Loader, Navbar } from "../../components";
+import { HomeExperience, HomeFriends, HomeHabits } from "./components";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-import Confetti from 'react-confetti';
-import profilePicture from '../../assets/profile.jpg';
-import { useAppSelector } from '../../redux/hooks';
+import Confetti from "react-confetti";
+import profilePicture from "../../assets/profile.jpg";
+import { useAppSelector } from "../../redux/hooks";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Home = () => {
             Home
           </h1>
           <Link to="/profile">
-            <div className="h-16 w-16 rounded-full overflow-hidden">
+            <div className="h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden">
               <img
                 src={profilePicture}
                 alt="Profile picture"

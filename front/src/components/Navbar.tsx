@@ -30,11 +30,11 @@ const Navbar = () => {
   return (
     <div
       className="fixed bg-white z-10 w-full h-18 bottom-0 flex justify-evenly items-center  
-    lg:w-60 lg:flex-col lg:h-full lg:justify-center lg:gap-3
-    border-secondary-light shadow-[0_0_40px_-15px_rgba(0,0,0,0.2)]"
+    lg:w-56 lg:flex-col lg:h-full lg:justify-center lg:gap-3
+    border-secondary-light shadow-[0_0_40px_-15px_rgba(0,0,0,0.2)] lg:bg-secondary-light/50 lg:shadow-none lg:border lg-border-solid"
     >
-      <Link to="/profile" className="hidden lg:block">
-        <div className="h-0 w-0 lg:h-16 lg:w-16 rounded-full overflow-hidden">
+      <Link to="/profile" className="hidden lg:flex ">
+        <div className="h-0 w-0 lg:h-20 lg:w-20 rounded-full overflow-hidden">
           <img
             src={profilePicture}
             alt="Profile picture"

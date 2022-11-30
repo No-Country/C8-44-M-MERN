@@ -5,6 +5,6 @@ export interface User {
   email?: string;
   birdthday?: string;
   avatar?: string;
-  password: string;
+  password?: string;
   habits?: [];
 }

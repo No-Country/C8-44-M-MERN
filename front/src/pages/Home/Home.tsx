@@ -46,7 +46,7 @@ const Home = () => {
         recycle={false}
         onConfettiComplete={(confetti) => {
           setParty(false);
-          confetti.reset();
+          confetti?.reset();
         }}
       />
     </>

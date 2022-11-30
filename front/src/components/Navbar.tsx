@@ -33,8 +33,8 @@ const Navbar = () => {
     lg:w-60 lg:flex-col lg:h-full lg:justify-center lg:gap-3
     border-secondary-light shadow-[0_0_40px_-15px_rgba(0,0,0,0.2)]"
     >
-      <Link to="/profile">
-        <div className="h-16 w-16 rounded-full overflow-hidden">
+      <Link to="/profile" className="hidden lg:block">
+        <div className="h-0 w-0 lg:h-16 lg:w-16 rounded-full overflow-hidden">
           <img
             src={profilePicture}
             alt="Profile picture"

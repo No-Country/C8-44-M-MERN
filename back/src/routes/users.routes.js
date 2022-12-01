@@ -12,15 +12,21 @@ const userControllers = require('../controllers/users.controllers');
 
 const path = "/api/user";
 
-//ruta para pedir todos los user
-router.get(`${path}`, userControllers.getAllUsers);
+router.post(`${path}/login`, userControllers.login);
+router.post(`${path}/register`, userControllers.register);
+
+router.route(`${path}/me`)
+  .get(passport.authenticate('jwt', {session: false}), userControllers.getMyUser)
+  .put(passport.authenticate('jwt', {session: false}), userControllers.addFollower);
+
+router.get(`${path}`, userControllers.getAllUsers)
+
+router.put(`${path}`, userControllers.getAllUsers)
 
 //ruta para pedir un user(name)
 router.get(`${path}/one`, userControllers.getUserByName);
 
-//ruta para postear un user
-router.post(`${path}/register`, userControllers.register);
-router.post(`${path}/login`, userControllers.login);
+
 
 router.put(`${path}/update`, userControllers.editUser);
 
@@ -29,9 +35,7 @@ router.put(`${path}`, userControllers.deleteUser);
 
 
 
-router.route(`${path}/me`)
-  .get(passport.authenticate('jwt', {session: false}), userControllers.getMyUser)
-  .put(passport.authenticate('jwt', {session: false}), userControllers.addFollower);
+
 
 
 //ruta para pedir un user(id)

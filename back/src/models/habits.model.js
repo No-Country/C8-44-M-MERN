@@ -21,7 +21,6 @@ const habitSchema = new Schema({
   experience: {
     type: Number /*a revisar*/,
     default: 0,
-    required: true,
   },
   frecuency: {
     type: String, /*a revisar para sacar porq dejariamos habitos DIARIOS*/

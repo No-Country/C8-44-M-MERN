@@ -1,6 +1,7 @@
 export interface Friend {
   id: string;
-  email?: string;
+  email: string;
   name: string;
   pictureUrl: string;
+  showButton?: boolean;
 }

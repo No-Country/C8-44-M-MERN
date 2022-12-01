@@ -2,9 +2,11 @@ export interface User {
   _id?: string;
   username?: string;
   fullname?: string;
-  email?: string;
-  birdthday?: string;
+  email: string;
+  password: string;
   avatar?: string;
-  password?: string;
+  rol?: string;
+  birdthday?: string;
+  followers?: [];
   habits?: [];
 }

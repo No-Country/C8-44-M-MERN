@@ -1,20 +1,22 @@
-import { Header, Loader, Navbar } from '../../components';
 import { HomeExperience, HomeFriends, HomeHabits } from './components';
-import { Link, useNavigate } from 'react-router-dom';
+import { Loader, Navbar } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
 
 import Confetti from 'react-confetti';
+import { Link } from 'react-router-dom';
 import { getUser } from '../../redux/features';
 import profilePicture from '../../assets/profile.jpg';
+import { toast } from 'react-toastify';
 
 const Home = () => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLoading, isSuccess, user } = useAppSelector((state) => state.user);
+  const { isLoading, isSuccess, isError, user } = useAppSelector(
+    (state) => state.user
+  );
   const [party, setParty] = useState(false);
   useEffect(() => {
-    dispatch(getUser());
+    !user && dispatch(getUser());
   }, []);
   return isLoading ? (
     <Loader />

@@ -11,6 +11,7 @@ const user: User = {
   username: 'Consuelo',
   email: 'consuelo@gmail.com',
   avatar: undefined,
+  password: '',
 };
 
 function EditProfile() {

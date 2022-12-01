@@ -1,13 +1,11 @@
 import { GiToken, GiTrophyCup } from 'react-icons/gi';
 import { Header, Loader, Navbar } from '../../components';
 import { RiToggleFill, RiToggleLine } from 'react-icons/ri';
+import { changeTheme, getUser, logout, resetUser } from '../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import Avatar from '../../components/AvatarEdit';
 import EditProfile from './components/EditProfile';
-import { changeTheme } from '../../redux/features';
-import { getUser } from '../../redux/features/user';
-import { logout } from '../../redux/features/auth';
 import profilePicture from '../../assets/profile.jpg';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +13,9 @@ import { useNavigate } from 'react-router-dom';
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { isLoading, isSuccess, user } = useAppSelector((state) => state.user);
+  const { isLoading, isSuccess, isError, user } = useAppSelector(
+    (state) => state.user
+  );
   const { darkmode } = useAppSelector((state) => state.theme);
 
   useEffect(() => {
@@ -27,7 +27,8 @@ const Profile = () => {
   };
 
   const logoutHandler = async () => {
-    await dispatch(logout());
+    dispatch(logout());
+    dispatch(resetUser());
     navigate('/login');
   };
 

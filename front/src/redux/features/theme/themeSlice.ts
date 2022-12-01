@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-const root = document.getElementById('root');
+const root: any = document.getElementById('root');
 
 interface Theme {
   darkmode: boolean;

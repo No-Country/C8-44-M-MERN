@@ -3,6 +3,8 @@ import { Header, Loader, Navbar } from '../../components';
 import { RiToggleFill, RiToggleLine } from 'react-icons/ri';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
+import Avatar from '../../components/AvatarEdit';
+import EditProfile from './components/EditProfile';
 import { changeTheme } from '../../redux/features';
 import { getUser } from '../../redux/features/user';
 import { logout } from '../../redux/features/auth';
@@ -33,60 +35,59 @@ const Profile = () => {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4 mb-7 dark:bg-black transition-colors duration-700">
-        <Header title="My Profile" editUrl={'/'} />
-        {/* {user?.map((us: any) => ( */}
+      <div className="main-container flex flex-col gap-4 mb-7 dark:bg-gray-800 transition-colors duration-700">
+        <Header title="My Profile" />
         <div>
-          <div className="grid justify-items-center mt-4">
-            <div className="h-16 w-16 rounded-full overflow-hidden mb-3 ">
-              <img
-                src={`${
-                  user?.avatar
-                    ? user?.avatar
-                    : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-                }`}
-                alt="Profile picture"
-                className="object-cover h-full"
-              />
-            </div>
-            <h1>{user?.fullname}</h1>
-            <h2 className="text-secondary-regular">{user?.email}</h2>
-          </div>
-          <div>
+          <EditProfile />
+          <div className="mt-4">
             <h2 className="home-title">Progress</h2>
-            <div className="relative h-1 w-full  bg-primary-light rounded-full"></div>
+            <div className="relative h-1 w-full bg-secondary-light rounded-md dark:bg-secondary-regular">
+              <div className="absolute w-1/3 bg-primary-light rounded-md"></div>
+            </div>
             <div className="grid gap-3 mt-3">
               {user?.habits?.length ? (
-                <div className="flex items-center justify-between text-sm rounded-full bg-secondary-light/30 w-full py-4 px-6">
-                  <h3 className="text-secondary-dark">Habit Streak</h3>
+                <div className="flex items-center justify-between text-sm rounded-md bg-secondary-light/30 w-full py-4 px-6">
+                  <h3 className="text-secondary-dark dark:text-secondary-light">
+                    Habit Streak
+                  </h3>
                   <p className="font-bold text-red-700">5 days</p>
                 </div>
               ) : (
-                <div className="items-center justify-between text-sm  rounded-full bg-secondary-light/30 w-full py-4 px-6">
-                  <h3 className="text-secondary-dark text-center">No Habits</h3>
+                <div className="items-center justify-between text-sm  rounded-md bg-secondary-light/30 w-full py-4 px-6">
+                  <h3 className="text-secondary-dark text-center dark:text-secondary-light">
+                    No Habits
+                  </h3>
                 </div>
               )}
             </div>
           </div>
-          <div>
+          <div className="mt-4">
             <h2 className="home-title">Trophys</h2>
-            <div className="relative h-1 w-full  bg-primary-light rounded-full "></div>
+            <div className="relative h-1 w-full bg-secondary-light rounded-md dark:bg-secondary-regular">
+              <div className="absolute w-1/3 bg-primary-light rounded-md"></div>
+            </div>
             <div className="grid gap-3 mt-3">
-              <div className="flex items-center justify-between text-sm rounded-full bg-secondary-light/30 w-full py-4 px-6">
-                <h3 className="text-secondary-dark">Habit Streak</h3>
+              <div className="flex items-center justify-between text-sm rounded-md bg-secondary-light/30 w-full py-4 px-6">
+                <h3 className="text-secondary-dark dark:text-secondary-light">
+                  Habit Streak
+                </h3>
                 <GiTrophyCup className="text-xl text-gray-400" />
               </div>
-              <div className="flex items-center justify-between text-sm rounded-full bg-secondary-light/30 w-full py-4 px-6">
-                <h3 className="text-secondary-dark">Habit Streak</h3>
+              <div className="flex items-center justify-between text-sm rounded-md bg-secondary-light/30 w-full py-4 px-6">
+                <h3 className="text-secondary-dark dark:text-secondary-light">
+                  Habit Streak
+                </h3>
                 <GiTrophyCup className="text-xl text-gray-400" />
               </div>
-              <div className="flex items-center justify-between text-sm rounded-full bg-secondary-light/30 w-full py-4 px-6">
-                <h3 className="text-secondary-dark">Habit Streak</h3>
+              <div className="flex items-center justify-between text-sm rounded-md bg-secondary-light/30 w-full py-4 px-6">
+                <h3 className="text-secondary-dark dark:text-secondary-light">
+                  Habit Streak
+                </h3>
                 <GiTrophyCup className="text-xl text-gray-400" />
               </div>
             </div>
           </div>
-          <div className="flex flex-col m-5 gap-3 home-title">
+          <div className="flex flex-col mt-6 gap-3 home-title w-full">
             <button
               onClick={themeHandler}
               className="btn btn-secondary border-2 flex items-center gap-4 justify-center"
@@ -100,7 +101,7 @@ const Profile = () => {
             </button>
             <button
               onClick={logoutHandler}
-              className="rounded-xl border-primary-light border-2 p-2 hover:border-white hover:bg-primary-light hover:text-white transition-colors"
+              className="btn btn-secondary border-2"
             >
               log out
             </button>

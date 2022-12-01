@@ -1,12 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { getUser, login } from '../../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { useEffect, useState } from 'react';
 
 import { CiWarning } from 'react-icons/ci';
 import { FaGoogle } from 'react-icons/fa';
-import { login } from '../../../redux/features/auth';
 import { useNavigate } from 'react-router-dom';
 
 type FormValues = {
@@ -50,20 +50,20 @@ const Message = ({ errors, property, type, text }: MessageForm) => {
 };
 
 const Form = () => {
-   const navigate = useNavigate();
-   const dispatch = useAppDispatch();
-   const { isLoading, isSuccess } = useAppSelector((state) => state.auth);
-   const {
-      register,
-      handleSubmit,
-      formState: { errors },
-   } = useForm<FormValues>();
-   // 'https://c8-44-m-mern-production-4f57.up.railway.app/api/user/login',
-   const onSubmit: SubmitHandler<FormValues> = async (data) => {
 
-      await dispatch(login(data));
-      navigate('/home');
-   };
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { isLoading, isSuccess } = useAppSelector((state) => state.auth);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    await dispatch(login(data));
+    navigate('/home');
+  };
 
    const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
    //

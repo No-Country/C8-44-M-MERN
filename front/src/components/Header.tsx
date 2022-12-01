@@ -1,6 +1,6 @@
-import { AiOutlineArrowLeft, AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineArrowLeft, AiOutlineEdit } from 'react-icons/ai';
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 interface Header {
   title: string;
@@ -23,7 +23,11 @@ function Header({
           <AiOutlineArrowLeft className="text-primary-dark w-5 h-5" />
         </button>
       )}
-      <h1 className={`title w-full absolute text-center left-0`}>{title}</h1>
+      <h1
+        className={`title w-full absolute text-center left-0 dark:text-white`}
+      >
+        {title}
+      </h1>
       {editUrl && (
         <button onClick={() => navigate(editUrl)} className="z-10 ">
           {icon}

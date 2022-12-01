@@ -1,4 +1,4 @@
-const UsersDaoMongoDB = require("../DAOs/usersDaoMongoDB")
+const UsersDaoMongoDB = require("../DAOs/usersDaoMongoDb")
 const HabitsDaoMongoDB = require("../DAOs/habitsDaoMongoDb")
 const habitsApi = new HabitsDaoMongoDB();
 const usersApi = new UsersDaoMongoDB();

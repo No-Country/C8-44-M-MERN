@@ -1,10 +1,11 @@
-import { Header, Loader, Navbar } from '../../components';
-import { HomeExperience, HomeFriends, HomeHabits } from './components';
-import Confetti from 'react-confetti';
-import { Link, useNavigate } from 'react-router-dom';
-import profilePicture from '../../assets/profile.jpg';
-import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { Header, Loader, Navbar } from "../../components";
+import { HomeExperience, HomeFriends, HomeHabits } from "./components";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import Confetti from "react-confetti";
+import profilePicture from "../../assets/profile.jpg";
+import { useAppSelector } from "../../redux/hooks";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -18,16 +19,16 @@ const Home = () => {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4">
+      <div className="main-container flex flex-col gap-4 dark:bg-secondary-dark">
         <div className="flex justify-between">
           <h1
-            className="title text-secondary-dark"
+            className="title text-secondary-dark dark:text-neutral-300"
             onClick={() => setParty(true)}
           >
             Home
           </h1>
           <Link to="/profile">
-            <div className="h-16 w-16 rounded-full overflow-hidden">
+            <div className="h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden">
               <img
                 src={profilePicture}
                 alt="Profile picture"

@@ -4,7 +4,7 @@ const AddHabit = () => {
   return (
     <>
       <div className="main-container flex flex-col gap-4">
-        <Header title="Add Habits" />
+        <Header title="New Habit" />
       </div>
       <Navbar />
     </>

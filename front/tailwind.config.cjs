@@ -19,6 +19,9 @@ module.exports = {
          backgroundImage: {
             'split-2': 'linear-gradient(to right, #ff8787 30%, #35424a 70%)',
          },
+         screens: {
+            'xs': '450px'
+         }
       },
    },
    plugins: [],

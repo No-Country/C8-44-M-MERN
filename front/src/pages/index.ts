@@ -5,6 +5,7 @@ export * from "./404";
 export * from "./HabitDetail";
 export * from "./HabitsList";
 export * from "./Profile";
+export * from "./EditProfile";
 export * from "./AddFriends";
 export * from "./FriendDetails";
 export * from "./AddHabit";

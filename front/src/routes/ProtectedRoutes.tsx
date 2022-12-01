@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 
 interface Props {
-  children: JSX.Element | JSX.Element[]
+  children: React.ReactElement
 }
 export const ProtectedRoute = ({ children }: Props) => {
   const auth = localStorage.getItem('jwt')

@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { logout } from '../../redux/features/auth';
 import { useNavigate } from 'react-router-dom';
 import { getUser } from '../../redux/features/user';
+import Avatar from '../../components/AvatarEdit';
+import EditProfile from './components/EditProfile';
 
 const Profile = () => {
    const navigate = useNavigate();
@@ -24,10 +26,12 @@ const Profile = () => {
    return (
       <>
          <div className='main-container flex flex-col gap-4 mb-7 '>
-            <Header title='My Profile' editUrl={'/'} />
+            <Header title='My Profile' />
+
             {/* {user?.map((us: any) => ( */}
                <div>
-                  <div className='grid justify-items-center mt-4'>
+                  <EditProfile />
+                 {/*  <div className='grid justify-items-center mt-4'>
                      <div className='h-16 w-16 rounded-full overflow-hidden mb-3 '>
                         <img
                            src={`${
@@ -41,7 +45,7 @@ const Profile = () => {
                      </div>
                      <h1>{user?.fullname}</h1>
                      <h2 className='text-secondary-regular'>{user?.email}</h2>
-                  </div>
+                  </div> */}
                   <div>
                      <h2 className='home-title'>Progress</h2>
                      <div className='relative h-1 w-full  bg-primary-light rounded-full'></div>

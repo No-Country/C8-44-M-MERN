@@ -1,13 +1,6 @@
-import axios from "axios";
-import jwt_decode from "jwt-decode";
-
-import { DecodeJwt } from "../models/models/DecodeJwt.interface";
-
-import { DisplayUser } from "../models/models/DisplayUser.interface";
-// import { Jwt } from '../models/models/Jwt';
-// import { LoginUser } from '../models/models/LoginUser.interface';
-
-import { Jwt, User } from "../models";
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
+import { Jwt, NewUser, User } from '../models';
 
 // import { NewUser } from '../models/NewUser';
 
@@ -19,31 +12,39 @@ import { Jwt, User } from "../models";
 
 //   return response.data;
 // };
-
-const login = async (user: User): Promise<{ jwt: Jwt }> => {
-  try {
-    const response = await axios.post(
-      `https://c8-44-m-mern-production.up.railway.app/api/user/login`,
+const register = async (user: NewUser): Promise<User | null> => {
+   const response = await axios.post(
+      'https://c8-44-m-mern-production-4f57.up.railway.app/api/user/register',
       user
-    );
-    if (response.data) {
-      localStorage.setItem("jwt", JSON.stringify(response.data.token));
-    }
-    return { jwt: response.data };
-  } catch (error) {
-    console.log(error);
-    return {jwt: null}
-  }
+   );
+   console.log(response);
+   return response.data;
+};
+const login = async (user: User): Promise<{ jwt: Jwt }> => {
+   try {
+      const response = await axios.post(
+         `https://c8-44-m-mern-production-4f57.up.railway.app/api/user/login`,
+         user
+      );
+      if (response.data) {
+         localStorage.setItem('jwt', JSON.stringify(response.data.token));
+      }
+      return { jwt: response.data };
+   } catch (error) {
+      console.log(error);
+      return { jwt: null };
+   }
 };
 
 const logout = (): void => {
-  localStorage.removeItem("user");
-  localStorage.removeItem("jwt");
+   localStorage.removeItem('user');
+   localStorage.removeItem('jwt');
 };
 
 const authService = {
-  login,
-  logout,
+   register,
+   login,
+   logout,
 };
 
 export default authService;

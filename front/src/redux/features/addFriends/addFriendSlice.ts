@@ -1,7 +1,7 @@
 import { RootState } from '../../store';
-import { User } from '../../../models';
+import { allUser } from '../../../models';
 import { createSlice } from '@reduxjs/toolkit';
-import {  getUser } from './thunks';
+import { getAllUsers } from './thunks';
 
 interface AsyncState {
    data: any;
@@ -11,22 +11,22 @@ interface AsyncState {
 }
 
 interface DataState extends AsyncState {
-   user?: User | null;
+   allUser?: allUser | null;
 }
 
 const initialState: DataState = {
    data: null,
-   user: null,
+   allUser: null,
    isLoading: true,
    isSuccess: false,
    isError: false,
 };
 
-export const userSlice = createSlice({
-   name: 'user',
+export const addFriendSlice = createSlice({
+   name: 'allUser',
    initialState,
    reducers: {
-      resetUser: (state) => {
+      resetAllUser: (state) => {
          state.isLoading = false;
          state.isSuccess = false;
          state.isError = false;
@@ -34,25 +34,24 @@ export const userSlice = createSlice({
    },
    extraReducers: (builder) => {
       builder
-         .addCase(getUser.pending, (state) => {
+         .addCase(getAllUsers.pending, (state) => {
             state.isLoading = true;
             state.isSuccess = false;
             state.isError = false;
          })
-         .addCase(getUser.fulfilled, (state, action) => {
+         .addCase(getAllUsers.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
             state.isError = false;
-            state.user = action.payload;
+            state.allUser = action.payload;
          })
-         .addCase(getUser.rejected, (state) => {
+         .addCase(getAllUsers.rejected, (state) => {
             state.isLoading = false;
             state.isSuccess = false;
             state.isError = true;
-         })
-         
+         });
    },
 });
 
-export const { resetUser } = userSlice.actions;
-export const selectData = (state: RootState) => state.user;
+export const { resetAllUser } = addFriendSlice.actions;
+export const selectUser = (state: RootState) => state.allUser;

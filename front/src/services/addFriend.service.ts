@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const habits = async () => {
-   let jwt = JSON.parse(localStorage.getItem('jwt') || '{}');
+const getAll = async () => {
+   // let jwt = JSON.parse(localStorage.getItem('jwt') || '{}');
    try {
       const response = await axios.get(
-         `https://c8-44-m-mern-production-4f57.up.railway.app/api/habits`,
+         `https://c8-44-m-mern-production-4f57.up.railway.app/api/user`,
          {
             headers: {
                'Content-Type': 'application/json',
@@ -16,8 +16,7 @@ const habits = async () => {
       console.log(error);
    }
 };
-
-const habitsService = {
-   habits,
+const addFriendService = {
+   getAll,
 };
-export default habitsService;
+export default addFriendService;

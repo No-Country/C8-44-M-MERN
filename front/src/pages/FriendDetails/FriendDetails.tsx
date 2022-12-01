@@ -3,6 +3,7 @@ import { Avatar, Header, Navbar } from "../../components";
 import { useParams } from "react-router-dom";
 import { Experience, Habits } from "./compontents";
 import { AiOutlinePlus } from "react-icons/ai";
+import { useState } from "react";
 
 
 const friendsList = [
@@ -28,6 +29,7 @@ const friendsList = [
 
 const FriendDetails = () => {
   const { id } = useParams();
+  const [ isFollwing, setFollwing ] = useState(false)
   const data = friendsList.find((friend) => friend.id === id)!;
 
   return (
@@ -36,11 +38,11 @@ const FriendDetails = () => {
         <Header title="Friend Details" />
         <Avatar user={data} />
         <button
-          // onClick={logoutHandler}
+          onClick={() => setFollwing(true)}
           className='rounded-xl bg-primary-dark text-white border-2 p-2 hover:border-primary-dark hover:bg-white hover:text-primary-dark transition-colors'>
          <div className='flex items-center gap-2 justify-center'>
           <AiOutlinePlus />
-          Follow
+          { isFollwing? 'Following' : 'Follow'}
          </div>
         </button>
         <Experience />

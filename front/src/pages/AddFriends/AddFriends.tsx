@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
 import { Friend, Header, Loader, Navbar } from '../../components';
-import { getAllUsers } from '../../redux/features';
-
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useEffect, useState } from 'react';
+
+import { getAllUsers } from '../../redux/features';
 
 // const friendsList = [
 //   {
@@ -23,44 +23,44 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 // ];
 
 const AddFriends = () => {
-   const dispatch = useAppDispatch();
-   const { isLoading, isSuccess, allUser } = useAppSelector(
-      (state) => state.allUser
-   );
-   useEffect(() => {
-      const allUs = async () => {
-         await dispatch(getAllUsers());
-      };
-      allUs();
-   }, []);
-   return isLoading ? (
-      <Loader />
-   ) : (
-      <>
-         <div className='main-container flex flex-col gap-4 dark:bg-secondary-dark'>
-            <Header title='Add Friend' />
-            <input
-               id='search'
-               placeholder='Search friends'
-               className=' rounded-full border-secondary-light border-2 p-2 text-secondary-dark'
-            />
+  const dispatch = useAppDispatch();
+  const { isLoading, isSuccess, allUser } = useAppSelector(
+    (state) => state.allUser
+  );
+  useEffect(() => {
+    const allUs = async () => {
+      await dispatch(getAllUsers());
+    };
+    allUs();
+  }, []);
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <>
+      <div className="main-container flex flex-col gap-4 dark:bg-secondary-dark">
+        <Header title="Add Friend" />
+        <input
+          id="search"
+          placeholder="Search friends"
+          className=" rounded-full border-secondary-light border-2 p-2 text-secondary-dark"
+        />
 
-            {allUser.map((friend) => {
-               return (
-                  <Friend
-                     id={friend.email}
-                     key={friend.email}
-                     name={friend.name}
-                     pictureUrl={friend.photo}
-                     email={friend.email}
-                     showButton={true}
-                  />
-               );
-            })}
-         </div>
-         <Navbar />
-      </>
-   );
+        {allUser.map((friend) => {
+          return (
+            <Friend
+              id={friend.email}
+              key={friend.email}
+              name={friend.name}
+              pictureUrl={friend.pictureUrl}
+              email={friend.email}
+              showButton={true}
+            />
+          );
+        })}
+      </div>
+      <Navbar />
+    </>
+  );
 };
 
 export default AddFriends;

@@ -1,15 +1,22 @@
-import { authSlice, habitsSlice, themeSlice, userSlice } from './features';
+import {
+   authSlice,
+   habitsSlice,
+   themeSlice,
+   userSlice,
+   addFriendSlice,
+} from './features';
 
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 export const store = configureStore({
-  reducer: {
-    auth: authSlice.reducer,
-    user: userSlice.reducer,
-    habits: habitsSlice.reducer,
-    theme: themeSlice.reducer,
-  },
+   reducer: {
+      auth: authSlice.reducer,
+      user: userSlice.reducer,
+      habits: habitsSlice.reducer,
+      allUser: addFriendSlice.reducer,
+      theme: themeSlice.reducer,
+   },
 });
 
 setupListeners(store.dispatch);

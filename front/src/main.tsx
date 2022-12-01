@@ -1,18 +1,30 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { Provider } from 'react-redux'
-import { RouterProvider } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.min.css';
+import './styles/index.css';
 
-import { store } from './redux/store'
+import { Flip, ToastContainer } from 'react-toastify';
+
+import { Provider } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
 import { router } from './routes';
-
-import './styles/index.css'
-
+import { store } from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </React.StrictMode>
-)
+  <Provider store={store}>
+    <RouterProvider router={router} />
+    <ToastContainer
+      position="top-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      transition={Flip}
+    />
+  </Provider>
+);

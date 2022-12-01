@@ -32,7 +32,7 @@ const Home = () => {
             <div className="h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden">
               <img
                 src={
-                  user.avatar == 'http://image.com'
+                  user?.avatar == 'http://image.com'
                     ? profilePicture
                     : user?.avatar
                 }

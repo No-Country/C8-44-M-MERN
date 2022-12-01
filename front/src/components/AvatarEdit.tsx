@@ -3,14 +3,14 @@ import { User } from '../models';
 
 interface Props {
   user: User;
-  values: { username: string; image: string };
+  values: { username: string | undefined; image: string };
   fn: (ele: any) => void;
 }
 
 function AvatarCard({ user, values, fn }: Props) {
   const { username, image } = values;
 
-  const handleFile = ({ target }) => {
+  const handleFile = ({ target }: any) => {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
@@ -23,7 +23,7 @@ function AvatarCard({ user, values, fn }: Props) {
     reader.readAsDataURL(target.files[0]);
   };
 
-  const handleUserName = ({ target }) => {
+  const handleUserName = ({ target }: any) => {
     fn({
       ...values,
       username: target.value,

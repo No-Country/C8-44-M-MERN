@@ -1,9 +1,9 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
 
-import { AiFillHome } from "react-icons/ai";
-import { BsFillPersonFill } from "react-icons/bs";
-import { TiThList } from "react-icons/ti";
-import profilePicture from "../assets/profile.jpg";
+import { AiFillHome } from 'react-icons/ai';
+import { BsFillPersonFill } from 'react-icons/bs';
+import { TiThList } from 'react-icons/ti';
+import profilePicture from '../assets/profile.jpg';
 
 interface Icon {
   icon: any;
@@ -11,13 +11,13 @@ interface Icon {
   color?: string;
 }
 
-const Icon = ({ icon, url, color = "secondary-regular" }: Icon) => {
+const Icon = ({ icon, url, color = 'secondary-regular' }: Icon) => {
   let { pathname } = useLocation();
   return (
     <Link to={url} className="p-5">
       <div
         className={`w-7 h-7 ${
-          pathname == url ? "text-primary-dark" : "text-" + color
+          pathname == url ? 'text-primary-dark' : 'text-' + color
         }`}
       >
         {icon}
@@ -42,21 +42,21 @@ const Navbar = () => {
           />
         </div>
       </Link>
-      <Link to="/profile" className="navbar-button">
+      <div className="navbar-button">
         <Icon
-          url={"/profile"}
+          url={'/profile'}
           icon={<BsFillPersonFill className="w-full h-full" />}
         />
         Profile
-      </Link>
-      <Link to="/home" className="navbar-button">
-        <Icon url={"/home"} icon={<AiFillHome className="w-full h-full" />} />
+      </div>
+      <div className="navbar-button">
+        <Icon url={'/home'} icon={<AiFillHome className="w-full h-full" />} />
         Home
-      </Link>
-      <Link to="/habits" className="navbar-button">
-        <Icon url={"/habits"} icon={<TiThList className="w-full h-full" />} />
+      </div>
+      <div className="navbar-button">
+        <Icon url={'/habits'} icon={<TiThList className="w-full h-full" />} />
         Habits
-      </Link>
+      </div>
     </div>
   );
 };

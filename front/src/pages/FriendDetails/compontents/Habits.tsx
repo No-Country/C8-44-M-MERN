@@ -11,7 +11,6 @@ const habitsList = [
     category: "Health",
     description: "Brush your teeth daily",
     priority: 3,
-    isComplete: true,
     experience: {
       progress: 50,
       level: 1,
@@ -24,7 +23,6 @@ const habitsList = [
     category: "Health",
     description: "cycle for 1h",
     priority: 5,
-    isComplete: false,
     experience: {
       progress: 30,
       level: 2,
@@ -36,7 +34,6 @@ const habitsList = [
     frequency: "once a month",
     category: "Health",
     description: "Medical check",
-    isComplete: true,
     priority: 3,
     experience: {
       progress: 40,
@@ -50,7 +47,6 @@ const habitsList = [
     category: "Health",
     description: "Go to the bed early",
     priority: 3,
-    isComplete: true,
     experience: {
       progress: 90,
       level: 5,
@@ -62,7 +58,6 @@ const habitsList = [
     frequency: "once a day",
     category: "Education",
     description: "Read a book",
-    isComplete: false,
     priority: 3,
     experience: {
       progress: 60,
@@ -89,12 +84,6 @@ const Habits = () => {
             <Habit
               id={habit.id}
               habitName={habit.habitName}
-              frequency={habit.frequency}
-              category={habit.category}
-              description={habit.description}
-              priority={habit.priority}
-              isComplete={habit.isComplete}
-              showChecked={true}
               experience={habit.experience}
             />
           </li>

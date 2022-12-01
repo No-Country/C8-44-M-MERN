@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 
 const friendsList = [
   {
+    id: '1',
     name: "César Herrera",
     email: "herrera.cesar.arg@gmail.com",
     photo: "https://i.ibb.co/rmy0SYC/pexels-photo-220453.jpg",
   },
   {
+    id: '2',
     name: "José Carlos del Valle",
     email: "seck.dv15@gmail.com",
     photo: "https://i.ibb.co/qW0ZcR3/pexels-photo-1040880.jpg",
   },
   {
+    id: '3',
     name: "Nathalia Riascos",
     email: "riascosnathalia6@gmail.com",
     photo: "https://i.ibb.co/D8VnNZ2/pexels-photo-3763188.jpg",
@@ -35,8 +38,8 @@ const Friends = () => {
       {friendsList.map((friend) => {
         return (
           <Friend
-            key={friend.email}
-            id={friend.email}
+            key={friend.id}
+            id={friend.id}
             name={friend.name}
             pictureUrl={friend.photo}
           />

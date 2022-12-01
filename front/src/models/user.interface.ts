@@ -6,5 +6,9 @@ export interface User {
   password: string;
   birdthday?: string;
   avatar?: string;
+<<<<<<< HEAD
+  password?: string;
+=======
+>>>>>>> front
   habits?: [];
 }

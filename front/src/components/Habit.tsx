@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom';
 import { MdCheckCircle } from 'react-icons/md';
 import { tempColorAssing } from '../utils/changeColor';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 
 interface Habit {
   id: number;
   habitName: string;
-  frequency: string;
-  category: string;
-  description: string;
-  priority: number;
+  frequency?: string;
+  category?: string;
+  description?: string;
+  priority?: number;
+  isComplete?: boolean;
+  showChecked?: boolean;
   experience: any;
 }
 
@@ -19,6 +22,8 @@ const Habit = ({
   description,
   priority,
   experience,
+  isComplete,
+  showChecked,
   id,
 }: Habit) => {
   const handleCheck = () => {
@@ -38,7 +43,11 @@ const Habit = ({
         >
           lvl {experience.level}
         </span>
-        <MdCheckCircle color={'#5ED55E'} size={'35px'} onClick={handleCheck} />
+        {showChecked? isComplete
+         ? <MdCheckCircle color={'#5ED55E'} size={'35px'} onClick={handleCheck} />
+         : <AiOutlineCheckCircle color={'#8492a6'} size={'35px'} />
+         : null
+        }
       </div>
     </div>
   );

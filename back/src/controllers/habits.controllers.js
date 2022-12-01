@@ -34,6 +34,7 @@ const getHabitById = async (req, res, next) => {
 
 const createHabitAdmin = async (req, res, next) => {
   try {
+    console.log("hi")
     const { name, description, category, frecuency} = req.body;
     const newHabit = {
         name,
@@ -43,6 +44,7 @@ const createHabitAdmin = async (req, res, next) => {
         frecuency,
         isDone:false
     };
+    console.log(newHabit);
     habitsApi.save(newHabit);
     res.status(201).json(newHabit)
   } catch (error) {

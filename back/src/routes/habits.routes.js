@@ -9,7 +9,7 @@ const path="/api/habits"
 //ruta para pedir todos los habitos y crear
 router.route(`${path}`)
     .get(habitsControllers.getAllHabits)
-    .put(habitsControllers.createHabitAdmin); 
+    .post(habitsControllers.createHabitAdmin); 
     //habitos por defecto
 
 router.route(`${path}/user`)

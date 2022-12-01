@@ -1,22 +1,16 @@
-import { Jwt, User } from '../../../models';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
 import { RootState } from '../../store';
+import { createSlice } from '@reduxjs/toolkit';
 import { login } from './thunks';
 
-interface AsyncState {
+interface AuthState {
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
+  jwt: string | null;
 }
-interface AuthState extends AsyncState {
-  user?: User | null;
-  jwt?: Jwt;
-  isAuthenicated?: boolean;
-}
+
 const initialState: AuthState = {
-  user: null, //user,
-  jwt: null, //jwt,
+  jwt: JSON.parse(localStorage.getItem('jwt') || 'null'),
   isLoading: true,
   isSuccess: false,
   isError: false,
@@ -25,13 +19,7 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    resetAuth: (state) => {
-      state.isLoading = false;
-      state.isSuccess = false;
-      state.isError = false;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       //Login
@@ -46,12 +34,11 @@ export const authSlice = createSlice({
       .addCase(login.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
-        state.user = null;
-        state.user = null;
       });
   },
 });
-export const { resetAuth } = authSlice.actions;
+
+export const {} = authSlice.actions;
 
 export const selectedUser = (state: RootState) => {
   return state.auth;

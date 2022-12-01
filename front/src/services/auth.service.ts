@@ -1,44 +1,23 @@
-import axios from "axios";
-import jwt_decode from "jwt-decode";
+import { Jwt, User } from '../models';
 
-import { DecodeJwt } from "../models/models/DecodeJwt.interface";
+import { BASE_URL } from './config';
+import axios from 'axios';
 
-import { DisplayUser } from "../models/models/DisplayUser.interface";
-// import { Jwt } from '../models/models/Jwt';
-// import { LoginUser } from '../models/models/LoginUser.interface';
-
-import { Jwt, User } from "../models";
-
-// import { NewUser } from '../models/NewUser';
-
-// const register = async (newUser: NewUser): Promise<DisplayUser | null> => {
-//   const response = await axios.post(
-//     `${process.env.REACT_APP_BASE_API}/auth/register`,
-//     newUser
-//   );
-
-//   return response.data;
-// };
-
-const login = async (user: User): Promise<{ jwt: Jwt }> => {
+const login = async (user: User): Promise<{ jwt: string | null }> => {
   try {
-    const response = await axios.post(
-      `https://c8-44-m-mern-production.up.railway.app/api/user/login`,
-      user
-    );
+    const response = await axios.post(`${BASE_URL}/user/login`, user);
     if (response.data) {
-      localStorage.setItem("jwt", JSON.stringify(response.data.token));
+      localStorage.setItem('jwt', JSON.stringify(response.data));
     }
     return { jwt: response.data };
   } catch (error) {
     console.log(error);
-    return {jwt: null}
+    return { jwt: null };
   }
 };
 
 const logout = (): void => {
-  localStorage.removeItem("user");
-  localStorage.removeItem("jwt");
+  localStorage.removeItem('jwt');
 };
 
 const authService = {

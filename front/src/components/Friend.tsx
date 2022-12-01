@@ -1,8 +1,8 @@
-import "react-lazy-load-image-component/src/effects/blur.css";
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import { CiCirclePlus } from "react-icons/ci";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link } from "react-router-dom";
+import { CiCirclePlus } from 'react-icons/ci';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Link } from 'react-router-dom';
 
 interface Friend {
   id: string;
@@ -30,14 +30,20 @@ const Friend = ({
         />
         <Link to={`/friend/${id}`}>
           <div>
-            <p className="text-secondary-dark">{name}</p>
-            {email && <p className="text-secondary-regular text-sm">{email}</p>}
+            <p className="text-secondary-dark dark:text-secondary-light">
+              {name}
+            </p>
+            {email && (
+              <p className="text-secondary-regular text-sm dark:text-secondary-light">
+                {email}
+              </p>
+            )}
           </div>
         </Link>
       </div>
       {showButton && (
         <CiCirclePlus
-          onClick={() => console.log("Solicitud enviada")}
+          onClick={() => console.log('Solicitud enviada')}
           className="text-3xl text-primary-dark"
         />
       )}

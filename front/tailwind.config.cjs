@@ -14,7 +14,7 @@ module.exports = {
             'secondary-dark': '#35424a',
             'secondary-regular': '#8492a6',
             'secondary-light': '#dbdbdb',
-            blue: '#255DEB',
+            blue: '#5f83f8',
             white: '#ffffff',
          },
          backgroundImage: {

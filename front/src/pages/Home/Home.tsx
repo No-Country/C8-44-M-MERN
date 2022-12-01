@@ -20,10 +20,10 @@ const Home = () => {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4 dark:bg-secondary-dark">
+      <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
         <div className="flex justify-between">
           <h1
-            className="title text-secondary-dark dark:text-neutral-300"
+            className="title text-secondary-dark dark:text-white"
             onClick={() => setParty(true)}
           >
             Home

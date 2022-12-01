@@ -61,7 +61,7 @@
 }
 
 .navbar-button {
-  @apply flex items-center text-[0px] lg:text-2xl lg:text-secondary-dark lg:-ml-5 ;
+  @apply flex items-center text-[0px] lg:text-2xl lg:text-secondary-dark lg:-ml-5;
 }
 
 /* -----------RING------------ */
@@ -114,26 +114,25 @@ circle {
   stroke-linecap: round;
 }
 
-
 /* INPUT FILE */
 .custom-file-input {
-   width: 30px;
-   height: 30px;
-   position: absolute;
-   bottom: -5px;
-   right: -5px;
-   border-radius: 100%;
-   cursor: pointer;
-   background-color: #f85f6a;
-   color: white;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  border-radius: 100%;
+  cursor: pointer;
+  background-color: #f85f6a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .file-input {
-   display: none;
-   visibility: hidden;
+  display: none;
+  visibility: hidden;
 }
 
 @keyframes rotate73451 {

@@ -1,11 +1,11 @@
 import { HomeExperience, HomeFriends, HomeHabits } from './components';
 import { Loader, Navbar } from '../../components';
+import { getFollowers, getUser } from '../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
 
 import Confetti from 'react-confetti';
 import { Link } from 'react-router-dom';
-import { getUser, getFollowers } from '../../redux/features';
 import profilePicture from '../../assets/profile.jpg';
 import { toast } from 'react-toastify';
 
@@ -17,7 +17,6 @@ const Home = () => {
   );
   useEffect(() => {
     user.email === '' && dispatch(getUser());
-    dispatch(getFollowers())
   }, []);
   return isLoading ? (
     <Loader />
@@ -43,21 +42,23 @@ const Home = () => {
                 className="object-cover h-full "
               />
             </div>
-            <HomeExperience />
-            <HomeHabits />
-            <HomeFriends user={user}/>
-         </div>
-         <Navbar />
-         <Confetti
-            numberOfPieces={party ? 300 : 0}
-            recycle={false}
-            onConfettiComplete={(confetti) => {
-               setParty(false);
-               confetti?.reset();
-            }}
-         />
-      </>
-   );
+          </Link>
+        </div>
+        <HomeExperience />
+        <HomeHabits />
+        <HomeFriends user={user} />
+      </div>
+      <Navbar />
+      <Confetti
+        numberOfPieces={party ? 300 : 0}
+        recycle={false}
+        onConfettiComplete={(confetti) => {
+          setParty(false);
+          confetti?.reset();
+        }}
+      />
+    </>
+  );
 };
 
 export default Home;

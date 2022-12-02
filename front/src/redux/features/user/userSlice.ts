@@ -1,6 +1,6 @@
 import { User } from '../../../models';
 import { createSlice } from '@reduxjs/toolkit';
-import { getUser } from './thunks';
+import { getFollowers, getUser } from './thunks';
 
 interface UserState {
   user: User | null;
@@ -40,7 +40,21 @@ export const userSlice = createSlice({
       .addCase(getUser.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
-      });
+      })
+      //followers
+      .addCase(getFollowers.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getFollowers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(getFollowers.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+
   },
 });
 

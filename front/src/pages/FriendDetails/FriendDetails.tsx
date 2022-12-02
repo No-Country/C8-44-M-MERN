@@ -36,12 +36,12 @@ const FriendDetails = () => {
 
   return (
     <>
-      <div className="main-container flex flex-col gap-5">
+      <div className="main-container flex flex-col gap-5 dark:bg-gray-800">
         <Header title="Friend Details" />
         <Avatar user={data} />
         <button
           onClick={() => setFollwing(true)}
-          className="rounded-xl bg-primary-dark text-white border-2 p-2 hover:border-primary-dark hover:bg-white hover:text-primary-dark transition-colors"
+          className="rounded-xl bg-primary-dark text-white border-2 p-2 hover:border-primary-dark hover:bg-white hover:text-primary-dark transition-colors dark:border-none"
         >
           <div className="flex items-center gap-2 justify-center">
             <AiOutlinePlus />

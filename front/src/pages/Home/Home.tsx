@@ -10,39 +10,38 @@ import profilePicture from '../../assets/profile.jpg';
 import { toast } from 'react-toastify';
 
 const Home = () => {
-   const dispatch = useAppDispatch();
-   const { isLoading, isSuccess, isError, user } = useAppSelector(
-      (state) => state.user
-   );
-   const [party, setParty] = useState(false);
-   useEffect(() => {
-      !user && dispatch(getUser());
-      dispatch(getFollowers())
-   }, []);
-   return isLoading ? (
-      <Loader />
-   ) : (
-      <>
-         <div className='main-container flex flex-col gap-4 dark:bg-gray-800'>
-            <div className='flex justify-between'>
-               <h1
-                  className='title text-secondary-dark dark:text-white'
-                  onClick={() => setParty(true)}>
-                  Home
-               </h1>
-               <Link to='/profile'>
-                  <div className='h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden'>
-                     <img
-                        src={
-                           user?.avatar == 'http://image.com'
-                              ? profilePicture
-                              : user?.avatar
-                        }
-                        alt='Profile picture'
-                        className='object-cover h-full '
-                     />
-                  </div>
-               </Link>
+  const dispatch = useAppDispatch();
+  const [party, setParty] = useState(false);
+  const { isLoading, isSuccess, isError, user } = useAppSelector(
+    (state) => state.user
+  );
+  useEffect(() => {
+    user.email === '' && dispatch(getUser());
+    dispatch(getFollowers())
+  }, []);
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <>
+      <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
+        <div className="flex justify-between">
+          <h1
+            className="title text-secondary-dark dark:text-white"
+            onClick={() => setParty(true)}
+          >
+            Home
+          </h1>
+          <Link to="/profile">
+            <div className="h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden">
+              <img
+                src={
+                  user?.avatar == 'http://image.com'
+                    ? profilePicture
+                    : user?.avatar
+                }
+                alt="Profile picture"
+                className="object-cover h-full "
+              />
             </div>
             <HomeExperience />
             <HomeHabits />

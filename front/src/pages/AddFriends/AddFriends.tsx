@@ -23,40 +23,38 @@ import { getAllUsers } from '../../redux/features';
 // ];
 
 const AddFriends = () => {
-   const dispatch = useAppDispatch();
-   const { isLoading, isSuccess, allUser } = useAppSelector(
-      (state) => state.allUser
-   );
-   useEffect(() => {
-      const allUs = async () => {
-         await dispatch(getAllUsers());
-      };
-      allUs();
-   }, []);
-   return isLoading ? (
-      <Loader />
-   ) : (
-      <>
-         <div className='main-container flex flex-col gap-4 dark:bg-secondary-dark'>
-            <Header title='Add Friend' />
-            <input
-               id='search'
-               placeholder='Search friends'
-               className=' rounded-full border-secondary-light border-2 p-2 text-secondary-dark'
+  const dispatch = useAppDispatch();
+  const { isLoading, isSuccess, allUser } = useAppSelector(
+    (state) => state.allUser
+  );
+  useEffect(() => {
+    const allUs = async () => {
+      await dispatch(getAllUsers());
+    };
+    allUs();
+    console.log(allUser);
+  }, []);
+  return isLoading ? (
+    <Loader />
+  ) : (
+    <>
+      <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
+        <Header title="Add Friend" />
+        <input
+          id="search"
+          placeholder="Search friends"
+          className="rounded-full border-secondary-light border-2 p-2 text-secondary-dark dark:bg-secondary-dark dark:border-none dark:text-secondary-light"
+        />
+        {allUser.map((friend) => {
+          return (
+            <Friend
+              id={friend.email}
+              key={friend.email}
+              name={friend.name}
+              pictureUrl={friend.avatar}
+              email={friend.email}
+              showButton={true}
             />
-
-            {allUser.map((friend) => {
-               console.log(friend);
-
-               return (
-                  <Friend
-                     id={friend.id}
-                     key={friend.email}
-                     pictureUrl={friend.pictureUrl}
-                     name={friend.name}
-                     email={friend.email}
-                     showButton={true}
-                  />
                );
             })}
          </div>

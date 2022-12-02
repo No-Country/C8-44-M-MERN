@@ -82,7 +82,6 @@ circle {
 
 /* -----------LOADER------------ */
 .spinner {
-  --color: grey;
   position: relative;
   width: 60px;
 }
@@ -161,19 +160,19 @@ circle {
 @keyframes color7123 {
   100%,
   0% {
-    stroke: var(--color);
+    stroke: #f85f6a;
   }
 
   40% {
-    stroke: var(--color);
+    stroke: #f85f6a;
   }
 
   66% {
-    stroke: var(--color);
+    stroke: #f85f6a;
   }
 
   80%,
   90% {
-    stroke: var(--color);
+    stroke: #f85f6a;
   }
 }

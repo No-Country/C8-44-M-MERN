@@ -32,26 +32,26 @@ const AddFriends = () => {
       await dispatch(getAllUsers());
     };
     allUs();
+    console.log(allUser);
   }, []);
   return isLoading ? (
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4 dark:bg-secondary-dark">
+      <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
         <Header title="Add Friend" />
         <input
           id="search"
           placeholder="Search friends"
-          className=" rounded-full border-secondary-light border-2 p-2 text-secondary-dark"
+          className="rounded-full border-secondary-light border-2 p-2 text-secondary-dark dark:bg-secondary-dark dark:border-none dark:text-secondary-light"
         />
-
         {allUser.map((friend) => {
           return (
             <Friend
               id={friend.email}
               key={friend.email}
               name={friend.name}
-              pictureUrl={friend.pictureUrl}
+              pictureUrl={friend.avatar}
               email={friend.email}
               showButton={true}
             />

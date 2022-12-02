@@ -2,11 +2,11 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import './styles/index.css';
 
 import { Flip, ToastContainer } from 'react-toastify';
+import { RouterProvider, ScrollRestoration } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
 import { router } from './routes';
 import { store } from './redux/store';
 

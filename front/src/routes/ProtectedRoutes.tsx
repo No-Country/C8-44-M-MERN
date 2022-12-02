@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, ScrollRestoration } from 'react-router-dom';
 
 interface Props {
   children: React.ReactElement;
@@ -6,5 +6,12 @@ interface Props {
 export const ProtectedRoute = ({ children }: Props) => {
   const auth = localStorage.getItem('jwt') || null;
 
-  return auth ? children : <Navigate to="/login" />;
+  return auth ? (
+    <>
+      <ScrollRestoration />
+      {children}
+    </>
+  ) : (
+    <Navigate to="/login" />
+  );
 };

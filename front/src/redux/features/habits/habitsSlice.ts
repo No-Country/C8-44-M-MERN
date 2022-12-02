@@ -20,7 +20,10 @@ export const habitsSlice = createSlice({
   initialState,
   reducers: {
     resetHabits: (state) => {
-      state = initialState;
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = false;
+      state.habits = [];
     },
   },
   extraReducers: (builder) => {

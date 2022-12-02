@@ -11,12 +11,12 @@ import { toast } from 'react-toastify';
 
 const Home = () => {
   const dispatch = useAppDispatch();
+  const [party, setParty] = useState(false);
   const { isLoading, isSuccess, isError, user } = useAppSelector(
     (state) => state.user
   );
-  const [party, setParty] = useState(false);
   useEffect(() => {
-    !user && dispatch(getUser());
+    user.email === '' && dispatch(getUser());
   }, []);
   return isLoading ? (
     <Loader />

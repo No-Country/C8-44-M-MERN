@@ -13,6 +13,20 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  /* useEffect(() => {
+    if (jwt.jwt && user.user.email !== '') {
+      toast.success(`Welcome back ${user.user.username}`);
+      navigate('/home');
+    } else if (jwt.jwt && user.user.email == '') {
+      dispatch(getUser());
+      if (jwt.isSuccess) {
+        toast.success(`User successfully registered`);
+      } else if (jwt.isError) {
+        toast.error(`There was a problem registering the user`);
+      }
+    }
+  }, [jwt, user]); */
+
   useEffect(() => {
     jwt.jwt && dispatch(getUser());
     if (jwt.isSuccess) {

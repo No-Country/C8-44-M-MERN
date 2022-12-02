@@ -1,7 +1,7 @@
 const Loader = () => {
   return (
-    <div className="w-full h-screen flex items-center justify-center dark:bg-secondary-dark">
-      <div className="spinner dark:text-white">
+    <div className="w-full h-screen flex items-center justify-center dark:bg-gray-900">
+      <div className="spinner ">
         <svg viewBox="25 25 50 50" className="circular">
           <circle
             strokeMiterlimit="10"

@@ -3,14 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getUser } from './thunks';
 
 interface UserState {
-  user: User | null;
+  user: User;
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
 }
 
 const initialState: UserState = {
-  user: null,
+  user: {
+    email: '',
+    password: '',
+    habits: [],
+  },
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -21,10 +25,14 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     resetUser: (state) => {
-      state.user = null;
       state.isLoading = false;
       state.isSuccess = false;
       state.isError = false;
+      state.user = {
+        email: '',
+        password: '',
+        habits: [],
+      };
     },
   },
   extraReducers: (builder) => {

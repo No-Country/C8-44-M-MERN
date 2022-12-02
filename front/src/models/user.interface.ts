@@ -8,5 +8,5 @@ export interface User {
   rol?: string;
   birdthday?: string;
   followers?: [];
-  habits?: [];
+  habits: [];
 }

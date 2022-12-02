@@ -35,13 +35,17 @@ const getHabitById = async (req, res, next) => {
 const createHabitAdmin = async (req, res, next) => {
   try {
     console.log("hi")
-    const { name, description, category, frecuency} = req.body;
+    const { 
+      name,
+      description,
+      category,
+    } = req.body;
     const newHabit = {
         name,
         description,
         category,
-        experience,
-        frecuency,
+        experience:0,
+        frecuency:"each day",
         isDone:false
     };
     console.log(newHabit);

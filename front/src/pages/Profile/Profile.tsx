@@ -19,7 +19,7 @@ const Profile = () => {
   const { darkmode } = useAppSelector((state) => state.theme);
 
   useEffect(() => {
-    dispatch(getUser());
+    user.email == '' && dispatch(getUser());
   }, []);
 
   const themeHandler = () => {

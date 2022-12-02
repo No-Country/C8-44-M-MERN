@@ -1,4 +1,4 @@
-import { Header, Navbar } from "../../components";
+import { Header, Loader, Navbar } from '../../components';
 
 const AddHabit = () => {
   return (

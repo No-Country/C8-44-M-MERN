@@ -61,19 +61,21 @@ const createHabitAdmin = async (req, res, next) => {
 };
 
 const createCustomHabit = async (req, res, next) => {
-
   try {
     let user = await usersApi.findOneById(req.user.id);       //este user soy YO
-    const { name, description, category, priority, frecuency} = req.body;
+    const { 
+      name,
+      description,
+      category,
+    } = req.body;
     const newHabit = {
-        name,
-        description,
-        category,
-        priority,
-        experience:0,
-        frecuency, /* a revisar*/
-        isActive:true
-    };
+      name,
+      description,
+      category,
+      experience:0,
+      frecuency:"each day",
+      isDone:false
+  };
     console.log(user)
     console.log(user.habits,"hello")
     user.habits.push(newHabit);                            //pusheo al key followers

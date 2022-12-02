@@ -54,18 +54,21 @@ class UsersDaoMongoDB extends ContainerMongoDB {
 
   //RESETEADOR DE HABITOS
   // async UpdateIsDoneHabit(){
-  //   schedule.scheduleJob('*/2 * * * * *',()=>{
+  //   schedule.scheduleJob('*/2 * * * * *',()=>{ //cada dos segundos
   //     console.log('I ran....')
   //   })
   // }
 
+  // cron expresions:
+  // https://crontab.cronhub.io/
+
   // async UpdateIsDoneHabit() {
   //   try {
-  //     schedule.scheduleJob('*/8 * */5 * * *', async()=>{
+  //     schedule.scheduleJob('*/8 * * * * *', async()=>{
   //       console.log('I ran....')
   //       let users = await userModel.find();
   //       users.map(user=>{
-  //         user.habits.map(habit=>console.log(habit.isActive))
+  //         user.habits.map(habit=>console.log(habit))
   //       })
   //         // response.map(user=>{console.log(user.habits.map(atributes=>console.log(atributes.name)));})
   //     })
@@ -74,7 +77,6 @@ class UsersDaoMongoDB extends ContainerMongoDB {
   //     console.log(error);
   //   }
   // }
-
 
 }
 

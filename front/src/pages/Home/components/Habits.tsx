@@ -19,8 +19,8 @@ const Habits = ({ user }: any) => {
         <div className="absolute w-1/3 bg-primary-dark rounded-full"></div>
       </div>
       <ul>
-        {user.habits.length !== 0 ? (
-          user.habits.map((habit: any) => (
+        {user?.habits.length !== 0 ? (
+          user?.habits.map((habit: any) => (
             <li key={habit._id} className="first-of-type:mt-5">
               <Habit
                 _id={habit._id}

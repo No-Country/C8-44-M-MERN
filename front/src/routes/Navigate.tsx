@@ -13,7 +13,7 @@ import {
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import App from '../App';
-import EditProfile from '../pages/EditProfile/EditProfile';
+
 import { ProtectedRoute } from './ProtectedRoutes';
 
 const router = createBrowserRouter([
@@ -58,14 +58,6 @@ const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <Profile />
-      </ProtectedRoute>
-    ),
-  },
-  {
-    path: 'edit-profile',
-    element: (
-      <ProtectedRoute>
-        <EditProfile />
       </ProtectedRoute>
     ),
   },

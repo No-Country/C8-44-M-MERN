@@ -9,7 +9,7 @@ interface Props {
 }
 
 function Avatar({ user }: Props) {
-  const photoProfile = user.avatar ? user.avatar : imgDedault;
+const photoProfile = user?.avatar ? user.avatar : imgDedault;
 
   return (
     <div className="flex flex-col items-center mt-4 w-full">

@@ -1,17 +1,14 @@
 import { HomeExperience, HomeFriends, HomeHabits } from './components';
 import { Loader, Navbar } from '../../components';
-import { getFollowers, getUser } from '../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { useEffect, useState } from 'react';
 
-import Confetti from 'react-confetti';
 import { Link } from 'react-router-dom';
+import { getUser } from '../../redux/features';
 import profilePicture from '../../assets/profile.jpg';
-import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const [party, setParty] = useState(false);
   const { isLoading, isSuccess, isError, user } = useAppSelector(
     (state) => state.user
   );
@@ -24,12 +21,7 @@ const Home = () => {
     <>
       <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
         <div className="flex justify-between">
-          <h1
-            className="title text-secondary-dark dark:text-white"
-            onClick={() => setParty(true)}
-          >
-            Home
-          </h1>
+          <h1 className="title text-secondary-dark dark:text-white">Home</h1>
           <Link to="/profile">
             <div className="h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden">
               <img
@@ -44,19 +36,11 @@ const Home = () => {
             </div>
           </Link>
         </div>
-        <HomeExperience />
-        <HomeHabits />
+        <HomeExperience user={user} />
+        <HomeHabits user={user} />
         <HomeFriends user={user} />
       </div>
       <Navbar />
-      <Confetti
-        numberOfPieces={party ? 300 : 0}
-        recycle={false}
-        onConfettiComplete={(confetti) => {
-          setParty(false);
-          confetti?.reset();
-        }}
-      />
     </>
   );
 };

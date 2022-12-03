@@ -1,77 +1,12 @@
 import { Habit } from '../../../components';
 import { HiPlus } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import React from 'react';
+import { useAppSelector } from '../../../redux/hooks';
 
-const habitsList = [
-  {
-    id: 1,
-    habitName: 'Brush your teeth',
-    frequency: 'once a day',
-    category: 'Health',
-    description: 'Brush your teeth daily',
-    priority: 3,
-    isComplete: true,
-    experience: {
-      progress: 50,
-      level: 1,
-    },
-  },
-  {
-    id: 2,
-    habitName: 'cycle for 1h',
-    frequency: 'once a day',
-    category: 'Health',
-    description: 'cycle for 1h',
-    priority: 5,
-    isComplete: false,
-    experience: {
-      progress: 30,
-      level: 2,
-    },
-  },
-  {
-    id: 3,
-    habitName: 'Medical check',
-    frequency: 'once a month',
-    category: 'Health',
-    description: 'Medical check',
-    isComplete: true,
-    priority: 3,
-    experience: {
-      progress: 40,
-      level: 3,
-    },
-  },
-  {
-    id: 5,
-    habitName: 'Go to the bed early',
-    frequency: 'once a day',
-    category: 'Health',
-    description: 'Go to the bed early',
-    priority: 3,
-    isComplete: true,
-    experience: {
-      progress: 90,
-      level: 5,
-    },
-  },
-  {
-    id: 4,
-    habitName: 'Read a book',
-    frequency: 'once a day',
-    category: 'Education',
-    description: 'Read a book',
-    isComplete: false,
-    priority: 3,
-    experience: {
-      progress: 60,
-      level: 2,
-    },
-  },
-];
-
-const Habits = () => {
+const Habits = ({ user }: any) => {
+  /* const { isLoading, isSuccess, isError, user } = useAppSelector(
+    (state) => state.user
+  ); */
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -83,22 +18,28 @@ const Habits = () => {
       <div className="relative h-1 w-full bg-secondary-light rounded-full dark:bg-secondary-regular">
         <div className="absolute w-1/3 bg-primary-dark rounded-full"></div>
       </div>
-      <ul className="pt-4">
-        {habitsList.map((habit) => (
-          <li key={habit.id}>
-            <Habit
-              id={habit.id}
-              habitName={habit.habitName}
-              frequency={habit.frequency}
-              category={habit.category}
-              description={habit.description}
-              priority={habit.priority}
-              isComplete={habit.isComplete}
-              showChecked={true}
-              experience={habit.experience}
-            />
-          </li>
-        ))}
+      <ul>
+        {user.habits.length !== 0 ? (
+          user.habits.map((habit: any) => (
+            <li key={habit._id} className="first-of-type:mt-5">
+              <Habit
+                _id={habit._id}
+                name={habit.name}
+                frequency={habit.frequency}
+                category={habit.category}
+                description={habit.description}
+                showChecked={true}
+                experience={habit.experience}
+              />
+            </li>
+          ))
+        ) : (
+          <div className="items-center mt-5 justify-between text-sm  rounded-md bg-secondary-light/30 w-full py-4 px-6">
+            <h3 className="text-secondary-dark text-center dark:text-secondary-light">
+              No Habits
+            </h3>
+          </div>
+        )}
       </ul>
     </div>
   );

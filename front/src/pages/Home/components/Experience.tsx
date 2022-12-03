@@ -1,6 +1,6 @@
 import { ExperienceRing } from '../../../components';
 
-const Experience = () => {
+const Experience = ({ user }: any) => {
   return (
     <div>
       <h2 className="home-title">Experience</h2>

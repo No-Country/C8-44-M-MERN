@@ -25,7 +25,7 @@ router.route(`${path}/agregar`)
 
 // Cambia el IsDone del habito del usuario a true y aumenta exp
 router.route(`${path}/user/:habitId`)
-    .put(passport.authenticate('jwt', {session: false}), )
+    .put(passport.authenticate('jwt', {session: false}), habitsControllers.updateIsDoneHabit)
     .get(passport.authenticate('jwt', {session: false}), habitsControllers.getMyHabitById)
 
 //ruta para pedir un habito(id)

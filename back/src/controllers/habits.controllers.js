@@ -176,10 +176,17 @@ const updateIsDoneHabit = async (req, res, next) => {
     const userId = req.user.id;
     const habitId = req.params.habitId;
 
-    const { habits } = await usersApi.findOneById(userId)
-    const habit = habits.filter(habit => habit.id === habitId)
-    
-    res.json(habit)
+    const { habits } = await usersApi.findOneById(userId);
+    const habit = habits.filter(habit => habit.id === habitId);
+
+    if(habit[0].isDone){
+      res.json({message: 'Ya haz cumplido este habito por hoy'})
+    }else{
+      const newExperience = habit[0].experience + 10;
+      const result = await usersApi.updateIsDone(userId, habitId, newExperience );
+      res.json(result)
+    }
+
   } catch (error) {
     next({
       status: 400,

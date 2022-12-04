@@ -48,25 +48,26 @@ const userSchema = new Schema({
         type: String,
         required: true,
       },
-      category: {
-        type: String,
-        required: true,
-      },
-      priority: {
-        type: Number,
-        required: true,
-      },
+      category: [
+        {
+          name: {
+            type: String,
+            required: true,
+          }
+        },
+      ],
       experience: {
-        type: Number /*a revisar*/,
-        default: 1,
+        type: Number,
+        default: 0,
         required: true,
       },
       frecuency: {
         type: String,
-        required: true,
+        required: false,
       },
-      isActive: {
-        /*a revisar NO ES PRIORIDAD*/ type: Boolean,
+      isDone: {
+        type: Boolean,
+        default:false,
         required: true,
       },
     },

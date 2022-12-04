@@ -52,11 +52,20 @@ class UsersDaoMongoDB extends ContainerMongoDB {
     }
   }
 
-  async updateIsDone (userId, habitId){
+  async updateIsDone (userId, habitId, exp){
+    console.log(exp, "exp")
     try {
-      const data  = await userModel.updateOne({_id: userId, "habits._id": habitId}, {$set: { "habits.isDone": true}})
+      const data  = await userModel.findOneAndUpdate(
+        {_id: userId, "habits._id": habitId},
+        {$set: 
+          {"habits.$.isDone": true,
+          "habits.$.experience": exp}
+        },
+        { returnOriginal: false })
+
+      return data
     } catch (error) {
-      
+      throw error
     }
   }
   //RESETEADOR DE HABITOS

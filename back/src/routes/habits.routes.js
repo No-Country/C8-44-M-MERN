@@ -13,13 +13,21 @@ router.route(`${path}`)
     //habitos por defecto
 
 router.route(`${path}/user`)
-    .put(passport.authenticate('jwt', {session: false}), habitsControllers.createCustomHabit) 
     //creamos y agregamos un habito custom al usuario
+    .put(passport.authenticate('jwt', {session: false}), habitsControllers.createCustomHabit)
+    // obtener solo los habitos del usuario logueado 
+    .get(passport.authenticate('jwt', {session: false}), habitsControllers.getMyHabits)
+    
     
 router.route(`${path}/agregar`)
     .put(passport.authenticate('jwt', {session: false}), habitsControllers.addHabit) 
     //agregamos un habito de los por defecto
-    
+
+// Cambia el IsDone del habito del usuario a true y aumenta exp
+router.route(`${path}/user/:habitId`)
+    .put(passport.authenticate('jwt', {session: false}), habitsControllers.updateIsDoneHabit)
+    .get(passport.authenticate('jwt', {session: false}), habitsControllers.getMyHabitById)
+
 //ruta para pedir un habito(id)
 router.route(`${path}/:id`)
     .get(habitsControllers.getHabitById)

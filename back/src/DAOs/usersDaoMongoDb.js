@@ -44,7 +44,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
 
   async getAll(){
     try {
-      let response = await userModel.find().populate('followers');
+      const response = await userModel.find().populate('followers');
       return response;
     } catch (error) {
       console.log("error al buscar documentos");
@@ -52,6 +52,13 @@ class UsersDaoMongoDB extends ContainerMongoDB {
     }
   }
 
+  async updateIsDone (userId, habitId){
+    try {
+      const data  = await userModel.updateOne({_id: userId, "habits._id": habitId}, {$set: { "habits.isDone": true}})
+    } catch (error) {
+      
+    }
+  }
   //RESETEADOR DE HABITOS
   // async UpdateIsDoneHabit(){
   //   schedule.scheduleJob('*/2 * * * * *',()=>{ //cada dos segundos

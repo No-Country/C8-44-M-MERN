@@ -80,11 +80,14 @@ class UsersDaoMongoDB extends ContainerMongoDB {
 
   async UpdateIsDoneHabit() {
     try {
-      schedule.scheduleJob('*/8 * * * * *', async()=>{
+      schedule.scheduleJob('*/86400 * * * * *', async()=>{
         console.log('I ran....')
         let users = await userModel.find();
         users.map(user=>{
-          user.habits.map(habit=>console.log(habit))
+          user.habits.map(habit=>{
+            habit.isDone = false;
+          })
+          this.updateOne(user.username, user);
         })
           // response.map(user=>{console.log(user.habits.map(atributes=>console.log(atributes.name)));})
       })

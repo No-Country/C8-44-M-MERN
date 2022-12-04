@@ -62,21 +62,21 @@ class UsersDaoMongoDB extends ContainerMongoDB {
   // cron expresions:
   // https://crontab.cronhub.io/
 
-  // async UpdateIsDoneHabit() {
-  //   try {
-  //     schedule.scheduleJob('*/8 * * * * *', async()=>{
-  //       console.log('I ran....')
-  //       let users = await userModel.find();
-  //       users.map(user=>{
-  //         user.habits.map(habit=>console.log(habit))
-  //       })
-  //         // response.map(user=>{console.log(user.habits.map(atributes=>console.log(atributes.name)));})
-  //     })
-  //   } catch (error) {
-  //     console.log("error al buscar documentos");
-  //     console.log(error);
-  //   }
-  // }
+  async UpdateIsDoneHabit() {
+    try {
+      schedule.scheduleJob('*/8 * * * * *', async()=>{
+        console.log('I ran....')
+        let users = await userModel.find();
+        users.map(user=>{
+          user.habits.map(habit=>console.log(habit))
+        })
+          // response.map(user=>{console.log(user.habits.map(atributes=>console.log(atributes.name)));})
+      })
+    } catch (error) {
+      console.log("error al buscar documentos");
+      console.log(error);
+    }
+  }
 
 }
 

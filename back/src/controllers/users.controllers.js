@@ -2,41 +2,40 @@ const UsersDaoMongoDB = require("../DAOs/usersDaoMongoDb");
 const HabitsDaoMongoDB = require("../DAOs/habitsDaoMongoDb");
 const usersApi = new UsersDaoMongoDB();
 const habitsApi = new HabitsDaoMongoDB();
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 const { hashPassword } = require("../utils/crypt");
 
-
-const authenticated = async(email,password)=>{
-  try{
-    const result = await usersApi.login(email, password)
-    if(result){
+const authenticated = async (email, password) => {
+  try {
+    const result = await usersApi.login(email, password);
+    if (result) {
       const token = jwt.sign(
         {
           id: result.id,
           email: result.email,
-          rol: result.rol
+          rol: result.rol,
         },
-        'No_Country-C8_44'
-        );
-        return token
-      }else{
-        const error ="Credenciales incorrectas, verificar correo o contraseña"
-        return error
-      }
-  }catch (error) {
-    return error
+        "No_Country-C8_44"
+      );
+      return token;
+    } else {
+      const error = "Credenciales incorrectas, verificar correo o contraseña";
+      return error;
+    }
+  } catch (error) {
+    return error;
   }
-}
+};
 
 const login = async (req, res, next) => {
   try {
-    const { email, password} = req.body;
-    const auth=await authenticated(email,password)
-    if(auth){
-      console.log(auth, "user authenticated")
-      res.status(200).json(auth)
-    }else{
-      res.status(400).json(auth)
+    const { email, password } = req.body;
+    const auth = await authenticated(email, password);
+    if (auth) {
+      console.log(auth, "user authenticated");
+      res.status(200).json(auth);
+    } else {
+      res.status(400).json(auth);
     }
   } catch (error) {
     next({
@@ -47,31 +46,27 @@ const login = async (req, res, next) => {
   }
 };
 
-const register = async (req, res, next) =>{
+const register = async (req, res, next) => {
   try {
-    const {
-      username,
-      email,
-      password
-    } = req.body;
+    const { username, email, password } = req.body;
     const newUser = {
       username,
       email,
       password: hashPassword(password),
-      followers:[],
+      followers: [],
       habits: [],
     };
-    const userSave=await usersApi.save(newUser);
-    if(!userSave){
-      let auth=await authenticated(email,password)
-      if(auth){
-        console.log(auth, "user authenticated and created")
-        res.json(auth)
-      }else{
-        return auth
+    const userSave = await usersApi.save(newUser);
+    if (!userSave) {
+      let auth = await authenticated(email, password);
+      if (auth) {
+        console.log(auth, "user authenticated and created");
+        res.json(auth);
+      } else {
+        return auth;
       }
-    }else{
-      res.status(400).send(userSave)
+    } else {
+      res.status(400).send(userSave);
     }
   } catch (error) {
     next({
@@ -84,9 +79,9 @@ const register = async (req, res, next) =>{
 
 const getMyUser = async (req, res, next) => {
   try {
-    const id = req.user.id
-    const data = await usersApi.findOneById(id)
-    res.json(data)
+    const id = req.user.id;
+    const data = await usersApi.findOneByIdFollowers(id);
+    res.json(data);
   } catch (error) {
     next({
       status: 400,
@@ -98,9 +93,9 @@ const getMyUser = async (req, res, next) => {
 
 const addFollower = async (req, res, next) => {
   try {
-    let user = await usersApi.findOneByIdFollowers(req.user.id);       //este user soy YO
+    let user = await usersApi.findOneByIdFollowers(req.user.id); //este user soy YO
     const follower = await usersApi.findOneById(req.body.id); //user que quiero agregar
-    user.followers.push(follower);                            //pusheo al key followers
+    user.followers.push(follower); //pusheo al key followers
     await usersApi.updateOne(user.username, user);
     res.json({ msg: "follower agregado", data: follower });
   } catch (error) {
@@ -114,9 +109,9 @@ const addFollower = async (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
   try {
-    const users = await usersApi.getAll()
-    console.log(users)
-    res.json(users)
+    const users = await usersApi.getAll();
+    console.log(users);
+    res.json(users);
   } catch (error) {
     next({
       status: 400,
@@ -126,7 +121,7 @@ const getAllUsers = async (req, res, next) => {
   }
 };
 
-const getUserById = async (req, res, next) =>{
+const getUserById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const response = await usersApi.findOneById(id);
@@ -154,27 +149,24 @@ const getUserByName = async (req, res, next) => {
   }
 };
 
-
-
-
-const editUser = async (req, res, next) =>{
+const editUser = async (req, res, next) => {
   try {
     let username = req.body.username;
     let modifiedUser = {
-    _id: req.body._id,
-    username: req.body.username,
-    fullname: req.body.fullname,
-    email: req.body.email,
-    password: req.body.password,
-    birthday: req.body.birthday,
-    avatar: req.body.avatar,
-    rol: req.body.rol,
-    isActive: req.body.isActive,
-    isPublic: req.body.isPublic,
-    habits: []
-    }
+      _id: req.body._id,
+      username: req.body.username,
+      fullname: req.body.fullname,
+      email: req.body.email,
+      password: req.body.password,
+      birthday: req.body.birthday,
+      avatar: req.body.avatar,
+      rol: req.body.rol,
+      isActive: req.body.isActive,
+      isPublic: req.body.isPublic,
+      habits: [],
+    };
     usersApi.updateOne(username, modifiedUser);
-    res.json({ msg:"User modificado!", data: modifiedUser});
+    res.json({ msg: "User modificado!", data: modifiedUser });
   } catch (error) {
     next({
       status: 400,
@@ -188,7 +180,7 @@ const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.body;
     const result = await usersApi.deleteOne(id);
-    res.json({message: "se modifico el archivo", result});
+    res.json({ message: "se modifico el archivo", result });
   } catch (error) {
     next({
       status: 400,
@@ -215,9 +207,6 @@ const addHabit = async (req, res, next) => {
   }
 };
 
-
-
-
 module.exports = {
   register,
   login,
@@ -228,5 +217,5 @@ module.exports = {
   editUser,
   deleteUser,
   addHabit,
-  addFollower
-}
+  addFollower,
+};

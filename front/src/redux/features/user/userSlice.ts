@@ -1,6 +1,7 @@
+import { getFollowers, getUser } from './thunks';
+
 import { User } from '../../../models';
 import { createSlice } from '@reduxjs/toolkit';
-import { getFollowers, getUser } from './thunks';
 
 interface UserState {
   user: User;
@@ -14,6 +15,7 @@ const initialState: UserState = {
     email: '',
     password: '',
     habits: [],
+    followers: [],
   },
   isLoading: false,
   isSuccess: false,
@@ -32,6 +34,7 @@ export const userSlice = createSlice({
         email: '',
         password: '',
         habits: [],
+        followers: [],
       };
     },
   },
@@ -44,6 +47,11 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
+        state.user.followers.forEach(
+          (follower) =>
+            (follower.avatar =
+              'https://cdn-icons-png.flaticon.com/512/848/848006.png?w=740&t=st=1669989256~exp=1669989856~hmac=384ca5876286758f437c893b22dfe430475eccaf9250c6a32d9ea615f7ee1f9e')
+        );
       })
       .addCase(getUser.rejected, (state) => {
         state.isLoading = false;
@@ -61,8 +69,7 @@ export const userSlice = createSlice({
       .addCase(getFollowers.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
-      })
-
+      });
   },
 });
 

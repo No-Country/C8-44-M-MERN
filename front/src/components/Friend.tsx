@@ -3,6 +3,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { CiCirclePlus } from 'react-icons/ci';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 interface Friend {
   id: string;
@@ -19,16 +20,23 @@ const Friend = ({
   showButton = false,
   id,
 }: Friend) => {
+  let location = useLocation();
+
   return (
-    <div className="flex justify-between items-center pt-4">
-      <div className="flex items-center gap-4">
-        <LazyLoadImage
-          src={pictureUrl}
-          alt="Friend picture"
-          className="rounded-full h-10 w-10 object-cover"
-          effect="blur"
-        />
+    <div className="flex justify-between items-center pt-4 lg:justify-center lg:w-full">
+      <div className="flex items-center gap-4 lg:justify-center w-full">
         <Link to={`/friend/${id}`}>
+          <LazyLoadImage
+            src={pictureUrl}
+            alt="Friend picture"
+            className="rounded-full h-10 w-10 object-cover cursor-pointer lg:w-14 lg:h-auto"
+            effect="blur"
+          />
+        </Link>
+        <Link
+          to={`/friend/${id}`}
+          className={`${location.pathname == '/home' && 'lg:hidden'} `}
+        >
           <div>
             <p className="text-secondary-dark dark:text-secondary-light">
               {name}

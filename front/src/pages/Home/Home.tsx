@@ -19,7 +19,7 @@ const Home = () => {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
+      <div className="main-container flex flex-col gap-4 lg:gap-8 dark:bg-gray-800">
         <div className="flex justify-between">
           <h1 className="title text-secondary-dark dark:text-white">Home</h1>
           <Link to="/profile">
@@ -36,11 +36,13 @@ const Home = () => {
             </div>
           </Link>
         </div>
-        <HomeExperience user={user} />
-        <HomeHabits user={user} />
-        <HomeFriends user={user} />
+        <div className="lg:flex  gap-16 justify-between">
+          <HomeExperience user={user} />
+          <HomeHabits user={user} />
+          <HomeFriends user={user} />
+        </div>
       </div>
-      <Navbar />
+      {/* <Navbar /> */}
     </>
   );
 };

@@ -1,9 +1,11 @@
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import { Link, useLocation } from 'react-router-dom';
 
 import { AiFillHome } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { TiThList } from 'react-icons/ti';
 import profilePicture from '../assets/profile.jpg';
+import { useState } from 'react';
 
 interface Icon {
   icon: any;
@@ -16,7 +18,7 @@ const Icon = ({ icon, url, color = 'secondary-regular' }: Icon) => {
   return (
     <Link to={url} className="p-5">
       <div
-        className={`w-7 h-7 ${
+        className={`flex gap-3 lg:w-full items-center ${
           pathname == url ? 'text-primary-dark' : 'text-' + color
         }`}
       >
@@ -27,35 +29,131 @@ const Icon = ({ icon, url, color = 'secondary-regular' }: Icon) => {
 };
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div
-      className="fixed bg-white dark:bg-gray-900 transition-colors duration-700 z-10 w-full h-18 bottom-0 flex justify-evenly items-center  
-    lg:w-56 lg:flex-col lg:h-full lg:justify-center lg:gap-3
-    border-secondary-light shadow-[0_0_40px_-15px_rgba(0,0,0,0.2)] lg:bg-secondary-light/50 lg:shadow-none lg:border lg-border-solid"
+      className={`
+        fixed left-0 bottom-0 h-18 w-full z-10
+        flex items-center justify-evenly
+        bg-white border-secondary-light
+        shadow-[0_0_40px_-15px_rgba(0,0,0,0.2)]
+        transition-all duration-500
+        lg:flex-col lg:h-full ${open ? 'lg:w-56' : 'lg:w-20'}
+        lg:bg-secondary-light/50 lg:border lg-border-solid
+      `}
     >
-      <Link to="/profile" className="hidden lg:flex ">
-        <div className="h-0 w-0 lg:h-20 lg:w-20 rounded-full overflow-hidden">
+      <Link to="/profile" className="hidden lg:block h-24">
+        <div
+          style={{ width: open ? '6rem' : '3rem' }}
+          className={` rounded-full overflow-hidden transition-all duration-700 `}
+        >
           <img
             src={profilePicture}
             alt="Profile picture"
-            className="object-cover h-full "
+            className="object-cover w-full"
           />
         </div>
       </Link>
-      <div className="navbar-button">
-        <Icon
-          url={'/profile'}
-          icon={<BsFillPersonFill className="w-full h-full" />}
-        />
-        Profile
+      <div
+        className="
+          flex w-full justify-evenly
+          lg:flex-col lg:w-auto
+          dark:bg-gray-900
+        "
+      >
+        <div className="navbar-button">
+          <Icon
+            url={'/profile'}
+            icon={
+              <>
+                <BsFillPersonFill
+                  className={`w-7 h-7 transition-all duration-500 ${
+                    open ? 'translate-x-0' : 'translate-x-6'
+                  }`}
+                />
+                <p
+                  className={`text-sm transition-all duration-500 hidden lg:block ${
+                    open
+                      ? 'translate-x-0 opacity-100'
+                      : 'translate-x-6 opacity-0'
+                  }`}
+                >
+                  Profile
+                </p>
+              </>
+            }
+          />
+        </div>
+        <div className="navbar-button">
+          <Icon
+            url={'/home'}
+            icon={
+              <>
+                <AiFillHome
+                  className={`w-7 h-7 transition-all duration-500 ${
+                    open ? 'translate-x-0' : 'translate-x-6'
+                  }`}
+                />
+                <p
+                  className={`text-sm transition-all duration-500 hidden lg:block ${
+                    open
+                      ? 'translate-x-0 opacity-100'
+                      : 'translate-x-6 opacity-0'
+                  }`}
+                >
+                  Home
+                </p>
+              </>
+            }
+          />
+        </div>
+        <div className="navbar-button">
+          <Icon
+            url={'/habits'}
+            icon={
+              <>
+                <TiThList
+                  className={`w-7 h-7 transition-all duration-500 ${
+                    open ? 'translate-x-0' : 'translate-x-6'
+                  }`}
+                />
+                <p
+                  className={`text-sm transition-all duration-500 hidden lg:block ${
+                    open
+                      ? 'translate-x-0 opacity-100'
+                      : 'translate-x-6 opacity-0'
+                  }`}
+                >
+                  Habits
+                </p>
+              </>
+            }
+          />
+        </div>
       </div>
-      <div className="navbar-button">
-        <Icon url={'/home'} icon={<AiFillHome className="w-full h-full" />} />
-        Home
-      </div>
-      <div className="navbar-button">
-        <Icon url={'/habits'} icon={<TiThList className="w-full h-full" />} />
-        Habits
+      <div className="hidden lg:block">
+        <div className="navbar-button">
+          <div
+            className={`flex items-center gap-3 text-secondary-regular cursor-pointer`}
+            onClick={() => setOpen(!open)}
+          >
+            <>
+              <IoChevronBack
+                className={`
+                  w-7 h-7 transition-all duration-500 rotate-180
+                  ${open ? 'translate-x-0 flip' : 'translate-x-6 '}
+                `}
+              />
+              <p
+                className={`text-sm transition-all  duration-500  hidden lg:block ${
+                  open ? 'translate-x-0 opacity-100' : 'translate-x-6 opacity-0'
+                }`}
+              >
+                Menu
+              </p>
+            </>
+          </div>
+        </div>
       </div>
     </div>
   );

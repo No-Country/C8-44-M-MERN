@@ -6,7 +6,7 @@ const AddHabit = () => {
       <div className="main-container flex flex-col gap-4">
         <Header title="New Habit" />
       </div>
-      <Navbar />
+      {/* <Navbar /> */}
     </>
   );
 };

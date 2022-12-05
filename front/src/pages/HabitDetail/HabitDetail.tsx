@@ -2,6 +2,7 @@ import { ExperienceRing, Header } from '../../components';
 
 import { Details } from './components';
 import { tempColorAssing } from '../../utils/changeColor';
+import { useAppSelector } from '../../redux/hooks';
 import { useParams } from 'react-router-dom';
 
 type Habit = {
@@ -16,7 +17,7 @@ type Habit = {
     level: number;
   };
 };
-const habitsList: Habit[] = [
+/* const habitsList: Habit[] = [
   {
     id: 1,
     habitName: 'Brush your teeth',
@@ -77,30 +78,32 @@ const habitsList: Habit[] = [
       level: 5,
     },
   },
-];
+]; */
 
 function HabitDetail() {
   const { id } = useParams();
-
-  const data = habitsList.find((habit) => String(habit.id) === id)!;
+  const { isLoading, isSuccess, isError, user } = useAppSelector(
+    (state) => state.user
+  );
+  const data = user.habits.find((habit) => String(habit._id) === id);
   return (
     <div className="main-container flex flex-col gap-9">
       <Header title="Habit Details" />
-      <p className="text-center font-bold text-3xl">{data?.habitName}</p>
+      <p className="text-center font-bold text-3xl">{data.name}</p>
       <div className="flex flex-col items-center">
         <h3
           className={`text-2xl font-bold text-${tempColorAssing(
-            data.experience.level,
+            data.experience / 10,
             'class'
           )}`}
         >
-          Lvl {data.experience.level}
+          Lvl {data.experience / 10}
         </h3>
         <ExperienceRing
           size={170}
-          textColor={`${tempColorAssing(data.experience.level, 'class')}`}
-          experience={data.experience.progress}
-          color={tempColorAssing(data.experience.level, 'hex')}
+          textColor={`${tempColorAssing(data.experience / 10, 'class')}`}
+          experience={data.experience}
+          color={tempColorAssing(data.experience / 10, 'hex')}
         />
       </div>
       <Details data={data} />

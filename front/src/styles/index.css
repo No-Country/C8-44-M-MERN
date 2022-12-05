@@ -5,6 +5,24 @@
 @layer base {
   html {
     font-family: 'Asap', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-secondary-light;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-secondary-regular;
+    border-radius: 20px;
+    border: 3px solid transparent;
+  }
+
+  *::selection {
+    @apply bg-primary-light text-secondary-dark;
   }
 }
 
@@ -49,7 +67,7 @@
 }
 
 .main-container {
-  @apply px-8 pb-12 pt-16 min-h-screen min-w-full lg:pl-64;
+  @apply px-8 pb-12 pt-16 min-h-screen w-full lg:pl-64 lg:pr-44;
 }
 
 .red-label {
@@ -61,7 +79,12 @@
 }
 
 .navbar-button {
-  @apply flex items-center text-[0px] lg:text-2xl lg:text-secondary-dark lg:-ml-5;
+  @apply flex items-center text-[0px] lg:text-2xl lg:text-secondary-dark;
+}
+
+.flip {
+  transform: rotateX(180deg);
+  transform-origin: center;
 }
 
 /* -----------RING------------ */

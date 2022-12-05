@@ -33,7 +33,7 @@ const login = async (req, res, next) => {
     const auth = await authenticated(email, password);
     if (auth) {
       console.log(auth, "user authenticated");
-      res.status(200).json(auth);
+      res.status(200).json({token: auth});
     } else {
       res.status(400).json(auth);
     }
@@ -41,7 +41,7 @@ const login = async (req, res, next) => {
     next({
       status: 400,
       errorContent: error,
-      message: "Faltan datos",
+      message: "Algo Salio mal",
     });
   }
 };
@@ -61,7 +61,7 @@ const register = async (req, res, next) => {
       let auth = await authenticated(email, password);
       if (auth) {
         console.log(auth, "user authenticated and created");
-        res.json(auth);
+        res.json({token: auth});
       } else {
         return auth;
       }

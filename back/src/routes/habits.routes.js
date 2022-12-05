@@ -19,7 +19,7 @@ router.route(`${path}/user`)
     .get(passport.authenticate('jwt', {session: false}), habitsControllers.getMyHabits)
     
     
-router.route(`${path}/agregar`)
+router.route(`${path}/add`)
     .put(passport.authenticate('jwt', {session: false}), habitsControllers.addHabit) 
     //agregamos un habito de los por defecto
 

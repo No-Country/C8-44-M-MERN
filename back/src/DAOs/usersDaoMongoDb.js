@@ -27,8 +27,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
         return user
       }
     }catch (error){
-      console.log("error al buscar documento");
-      console.log(error);
+      throw error
     }
   }
 
@@ -80,8 +79,8 @@ class UsersDaoMongoDB extends ContainerMongoDB {
 
   async UpdateIsDoneHabit() {
     try {
-      schedule.scheduleJob('*/86400 * * * * *', async()=>{
-        console.log('I ran....')
+      schedule.scheduleJob('0 0 * * *', async()=>{
+    
         let users = await userModel.find();
         users.map(user=>{
           user.habits.map(habit=>{
@@ -89,10 +88,9 @@ class UsersDaoMongoDB extends ContainerMongoDB {
           })
           this.updateOne(user.username, user);
         })
-          // response.map(user=>{console.log(user.habits.map(atributes=>console.log(atributes.name)));})
       })
     } catch (error) {
-      console.log("error al buscar documentos");
+      console.log("error al deshabilitar habitos");
       console.log(error);
     }
   }

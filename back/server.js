@@ -11,7 +11,7 @@ const handleError = require('./src/middlewares/error.middleware')
 const usersApi = new UsersDaoMongoDB();
 
 usersApi.connect();
-// usersApi.UpdateIsDoneHabit(); //reseteador de habitos
+usersApi.UpdateIsDoneHabit(); //reseteador de habitos
 
 
 /* __________________ INSTANCIA DE SERVER */

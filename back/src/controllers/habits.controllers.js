@@ -93,11 +93,16 @@ const createCustomHabit = async (req, res, next) => {
 const addHabit = async (req, res, next) => {
   try {
     let user = await usersApi.findOneById(req.user.id); //este user soy YO
-    let habit = await habitsApi.findOneById(req.body.id);
-    user.habits.push(habit);
-    console.log(user);
-    await usersApi.updateOne(user.username, user);
-    res.status(200).json({ msg: "hábito agregado", data: habit });
+    const habitDB = await habitsApi.findOneById(req.body.id);
+    const habitExist = user.habits.filter( habit => habitDB._id === habit._id);
+    if(!habitExist){
+      user.habits.push(habitDB);
+      console.log(user);
+      await usersApi.updateOne(user.username, user);
+      res.status(200).json({ msg: "hábito agregado", data: habitDB });
+    }else{
+      res.status(400).json({ msg: "El habito ya existe" });
+    }
   } catch (error) {
     next({
       status: 400,

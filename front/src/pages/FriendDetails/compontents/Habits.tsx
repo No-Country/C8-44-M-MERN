@@ -71,9 +71,6 @@ const Habits = () => {
     <div>
       <div className="flex justify-between items-center">
         <h2 className="home-title">Habits</h2>
-        <Link to="/add-habits">
-          <HiPlus className="text-primary-light text-lg" />
-        </Link>
       </div>
       <div className="relative h-1 w-full bg-secondary-light rounded-full dark:bg-secondary-regular">
         <div className="absolute w-1/3 bg-primary-dark rounded-full"></div>
@@ -82,8 +79,8 @@ const Habits = () => {
         {habitsList.map((habit) => (
           <li key={habit.id}>
             <Habit
-              id={habit.id}
-              habitName={habit.habitName}
+              _id={habit.id}
+              name={habit.habitName}
               experience={habit.experience}
             />
           </li>

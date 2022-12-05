@@ -49,7 +49,7 @@ const FriendDetails = () => {
           </div>
         </button>
         <Experience />
-        <Habits />
+        <Habits/>
       </div>
       <Navbar />
     </>

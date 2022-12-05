@@ -8,6 +8,7 @@ const { hashPassword } = require("../utils/crypt");
 const authenticated = async (email, password) => {
   try {
     const result = await usersApi.login(email, password);
+    console.log(result);
     if (result) {
       const token = jwt.sign(
         {

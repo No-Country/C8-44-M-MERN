@@ -22,9 +22,15 @@ class UsersDaoMongoDB extends ContainerMongoDB {
   async login(email, password){
     try{
       const user = await this.findOneByEmail(email)
-      const checkPassword = comparePassword(password, user.password)
-      if(checkPassword){
-        return user
+      console.log(user)
+      if(!user){
+        console.log("revisar credens")
+      }else{
+        const checkPassword = comparePassword(password, user.password)
+        console.log(checkPassword)
+        if(checkPassword){
+          return user
+        }
       }
     }catch (error){
       throw error

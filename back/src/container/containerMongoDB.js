@@ -1,3 +1,4 @@
+const { response } = require("express");
 const mongoose = require("mongoose");
 const { mongoDb } = require("../utils/config.js");
 
@@ -17,6 +18,7 @@ class ContainerMongoDB {
     }
   }
 
+
   async disconnect() {
     try {
       await mongoose.disconnect();
@@ -33,7 +35,7 @@ class ContainerMongoDB {
       console.log(`Documento insertado`, response);
     } catch (error) {
       console.log("error al guardar documento");
-      console.log(error);
+      return (error)
     }
   }
 
@@ -75,7 +77,7 @@ class ContainerMongoDB {
       console.log(error);
     }
   }
-  //DELETE ONE
+
   async deleteOne(id) {
     try {
       const data = await this.model.updateOne({ _id: id }, { isActive: false });
@@ -85,6 +87,7 @@ class ContainerMongoDB {
       console.log(error);
     }
   }
+
   async updateOne(username, obj) {
     try {
       await this.model.findOneAndUpdate({ username: username }, obj);
@@ -102,6 +105,7 @@ class ContainerMongoDB {
       console.log(error);
     }
   }
+
 }
 
 module.exports = ContainerMongoDB;

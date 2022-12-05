@@ -11,6 +11,8 @@ const handleError = require('./src/middlewares/error.middleware')
 const usersApi = new UsersDaoMongoDB();
 
 usersApi.connect();
+// usersApi.UpdateIsDoneHabit(); //reseteador de habitos
+
 
 /* __________________ INSTANCIA DE SERVER */
 const app = express();
@@ -23,8 +25,6 @@ app.use(express.json());
 /* ____________RUTAS */
 app.use(usersRouter);
 app.use(habitsRouters);
-
-
 app.use(handleError);
 /* __________________ SERVIDOR */
 const PORT = process.env.PORT;
@@ -34,3 +34,4 @@ const server = app.listen(PORT, () => {
 server.on("error", (err) => {
   console.log(`error en el server: ${err}`);
 });
+

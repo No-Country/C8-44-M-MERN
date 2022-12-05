@@ -178,25 +178,37 @@ const getMyHabitById = async(req, res, next) => {
 const updateIsDoneHabit = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const habitId = req.params.habitId;
+    const user = await usersApi.findOneById(userId)
 
+    const habitId = req.params.habitId;
     const { habits } = await usersApi.findOneById(userId);
     const habit = habits.filter(habit => habit.id === habitId);
-    
-    
+    console.log(habit);
     if(habit[0].isDone){
       res.json({message: 'Ya haz cumplido este habito por hoy'})
-    }else{
-      const newExperience = habit[0].experience + 10;
-      const result = await usersApi.updateIsDone(userId, habitId, newExperience );
-      
-      const healthHabits = habits.filter( habit  => 
-        habit.category === 'Education');
-      const healthExperience = healthHabits.reduce( (acumlator, habit) => acumlator + habit.experience, 0);
-      console.log(healthExperience)
-      res.json(result)
-    }
 
+      // if(habit[0].category=='Health'){
+      //   user.healthExperience+=10
+      //   console.log(user.habits[0].experience,"hellooo")
+      //   user.habits[0].experience+=10
+      // }
+      // if(habit[0].category=='Education'){
+      //   user.educationExperience+=10
+      // }
+    }else{
+      // user.updateOne(user.username,user)
+      console.log(user)
+      const newExperience = habit[0].experience + 10;
+      const updatedUser = await usersApi.updateIsDone(userId, habitId, newExperience);
+
+      // const healthHabits = await habits.filter( habit  => habit.category === 'Health');
+      // const healthExperience =await healthHabits.reduce( (acum, habit) => acum + habit.experience, 0);
+      // const educationExperience =await educationHabits.reduce( (acum, habit) => acum + habit.experience, 0);
+      // console.log(educationExperience,"education")
+      // console.log(healthExperience, "health")
+
+      res.json(updatedUser)
+    }
   } catch (error) {
     next({
       status: 400,

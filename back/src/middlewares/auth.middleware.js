@@ -15,7 +15,7 @@ module.exports = (passport) => {
       try {
         const response = await usersApi.findOneById(decoded.id);
         if (!response) return done(null, false);
-        console.log("decoded jwt", decoded);
+        // console.log("decoded jwt", decoded);
         return done(null, decoded);
       } catch (error) {
         done(error.message);

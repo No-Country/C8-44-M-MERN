@@ -51,7 +51,7 @@ const FriendDetails = () => {
         <Experience />
         <Habits />
       </div>
-      <Navbar />
+      {/* <Navbar /> */}
     </>
   );
 };

@@ -48,20 +48,16 @@ const userSchema = new Schema({
         type: String,
         required: true,
       },
-      category: [
-        {
-          name: {
-            type: String,
-            required: true,
-          }
-        },
-      ],
+      category: {
+        type: String,
+        required: true,
+      },
       experience: {
         type: Number,
         default: 0,
         required: true,
       },
-      frecuency: {
+      frequency: {
         type: String,
         required: false,
       },
@@ -72,6 +68,21 @@ const userSchema = new Schema({
       },
     },
   ],
+  healthExperience: {
+    type: Number,
+    default: 0,
+    required: false,
+  },
+  educationExperience: {
+    type: Number,
+    default: 0,
+    required: false,
+  },
+  experience: { //total
+    type: Number,
+    default: 0,
+    required: false,
+  }
 });
 const userModel = model("users", userSchema);
 

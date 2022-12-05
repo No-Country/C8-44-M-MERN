@@ -35,7 +35,7 @@ class ContainerMongoDB {
       console.log(`Documento insertado`, response);
     } catch (error) {
       console.log("error al guardar documento");
-      return (error)
+      throw error
     }
   }
 

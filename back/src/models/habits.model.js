@@ -1,5 +1,4 @@
 const { model, Schema } = require("mongoose");
-const userModel = require("./users.model");
 
 const habitSchema = new Schema({
   name: {
@@ -10,14 +9,10 @@ const habitSchema = new Schema({
     type: String,
     required: true,
   },
-  category: [
-    {
-      name: {
-        type: String,
-        required: true,
-      }
-    },
-  ],
+  category: {
+    type: String,
+    required: true,
+  },
   experience: {
     type: Number /*a revisar*/,
     default: 0,

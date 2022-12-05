@@ -31,7 +31,7 @@ const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const auth = await authenticated(email, password);
-    if (auth) {
+    if(auth){
       console.log(auth, "user authenticated");
       res.status(200).json({token: auth});
     } else {

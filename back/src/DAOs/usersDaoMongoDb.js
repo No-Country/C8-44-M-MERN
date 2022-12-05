@@ -67,6 +67,17 @@ class UsersDaoMongoDB extends ContainerMongoDB {
       throw error
     }
   }
+
+  async getMyHabitById (userId, habitId){
+    try {
+      const data  = await userModel.findOne(
+        {_id: userId, "habits._id": habitId},
+        { returnOriginal: false })
+      return data
+    } catch (error) {
+      throw error
+    }
+  }
   //RESETEADOR DE HABITOS
   // async UpdateIsDoneHabit(){
   //   schedule.scheduleJob('*/2 * * * * *',()=>{ //cada dos segundos

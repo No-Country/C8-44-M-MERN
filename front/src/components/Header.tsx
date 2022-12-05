@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 interface Header {
   title: string;
   editUrl?: string;
+  fn?: () => void;
   showBack?: boolean;
   icon?: any;
 }
@@ -12,6 +13,7 @@ interface Header {
 function Header({
   title,
   editUrl,
+  fn,
   showBack = true,
   icon = <AiOutlineEdit className="text-primary-dark w-5 h-5" />,
 }: Header) {
@@ -28,11 +30,12 @@ function Header({
       >
         {title}
       </h1>
-      {editUrl && (
-        <button onClick={() => navigate(editUrl)} className="z-10 ">
+      {editUrl || fn ?
+        <button onClick={() => fn? fn() : navigate(editUrl)} className="z-10">
           {icon}
         </button>
-      )}
+        : null
+      }
     </header>
   );
 }

@@ -32,8 +32,8 @@ const AddFriends = () => {
       await dispatch(getAllUsers());
     };
     allUs();
-    console.log(allUser);
   }, []);
+  
   return isLoading ? (
     <Loader />
   ) : (
@@ -46,7 +46,7 @@ const AddFriends = () => {
           className="rounded-full border-secondary-light border-2 p-2 text-secondary-dark dark:bg-secondary-dark dark:border-none dark:text-secondary-light"
         />
         {allUser.map((friend) => {
-          return (
+          return (            
             <Friend
               id={friend.email}
               key={friend.email}

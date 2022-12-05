@@ -4,10 +4,15 @@ import axios from 'axios';
 
 const register = async (user: User): Promise<{ jwt: string | null }> => {
   try {
-    const response = await axios.post(`${BASE_URL}/user/register`, user);
+    const response = await axios.post(
+       `https://c8-44-m-mern-production-32dc.up.railway.app/api/user/register`,
+       user
+    );
     if (response.data) {
       localStorage.setItem('jwt', JSON.stringify(response.data));
     }
+    console.log(response.data);
+    
     return { jwt: response.data };
   } catch (error) {
     console.log(error);

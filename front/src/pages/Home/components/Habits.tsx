@@ -3,10 +3,10 @@ import { HiPlus } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/hooks';
 
-const Habits = ({ user }: any) => {
-  /* const { isLoading, isSuccess, isError, user } = useAppSelector(
+const Habits = () => {
+   const { isLoading, isSuccess, isError, user } = useAppSelector(
     (state) => state.user
-  ); */
+  ); 
   return (
     <div>
       <div className="flex justify-between items-center">

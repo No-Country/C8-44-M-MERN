@@ -86,7 +86,9 @@ class UsersDaoMongoDB extends ContainerMongoDB {
   async UpdateIsDoneHabit() {
     try {
       schedule.scheduleJob('* * * * *', async()=>{
-        console.log("resetie", Date.now())
+        const timeElapsed = Date.now();
+        const today = new Date(timeElapsed);
+        console.log("resetie", today.toUTCString())
         let users = await userModel.find();
         users.map(user=>{
           user.habits.map(habit=>{

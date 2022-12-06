@@ -85,7 +85,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
 
   async UpdateIsDoneHabit() {
     try {
-      schedule.scheduleJob('53 16 * * *', async()=>{
+      schedule.scheduleJob('0 3 * * *', async()=>{ //a las 3am xq hay un delay de 3horas con el server
         const timeElapsed = Date.now();
         const today = new Date(timeElapsed);
         console.log("resetie", today.toUTCString())

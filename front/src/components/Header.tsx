@@ -26,7 +26,7 @@ function Header({
         </button>
       )}
       <h1
-        className={`title w-full absolute text-center left-0 dark:text-white`}
+        className={`title w-full text-center lg:text-left left-0 dark:text-white`}
       >
         {title}
       </h1>

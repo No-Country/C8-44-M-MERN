@@ -94,7 +94,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
 
   async UpdateIsDoneHabit() {
     try {
-      schedule.scheduleJob('18 13 * * *', async()=>{
+      schedule.scheduleJob('20 13 * * *', async()=>{
         console.log("resetie")
         let users = await userModel.find();
         users.map(user=>{

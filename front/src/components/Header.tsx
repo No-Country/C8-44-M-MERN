@@ -19,14 +19,14 @@ function Header({
 }: Header) {
   const navigate = useNavigate();
   return (
-    <header className="flex justify-between items-center">
+    <header className="flex justify-between gap-4 items-center">
       {showBack && (
         <button onClick={() => navigate(-1)} className="z-10">
           <AiOutlineArrowLeft className="text-primary-dark w-5 h-5" />
         </button>
       )}
       <h1
-        className={`title w-full absolute text-center left-0 dark:text-white`}
+        className={`title w-full text-center lg:text-left left-0 dark:text-white`}
       >
         {title}
       </h1>

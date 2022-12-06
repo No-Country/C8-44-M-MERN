@@ -95,7 +95,7 @@ const addHabit = async (req, res, next) => {
     let user = await usersApi.findOneById(req.user.id); //este user soy YO
     const habitDB = await habitsApi.findOneById(req.body.id);
     const myHabit = await usersApi.getMyHabitById(req.user.id, req.body.id)
-    if(!myHabit){
+    if(!myHabit && habitDB){
       user.habits.push(habitDB);
       await usersApi.updateOne(user.username, user);
       res.status(200).json({ msg: "hábito agregado", data: habitDB });
@@ -178,12 +178,11 @@ const getMyHabitById = async(req, res, next) => {
 const updateIsDoneHabit = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const user = await usersApi.findOneById(userId)
-
     const habitId = req.params.habitId;
+
     const { habits } = await usersApi.findOneById(userId);
     const habit = habits.filter(habit => habit.id === habitId);
-    console.log(habit);
+
     if(habit[0].isDone){
       res.json({message: 'Ya haz cumplido este habito por hoy'})
 
@@ -197,17 +196,24 @@ const updateIsDoneHabit = async (req, res, next) => {
       // }
     }else{
       // user.updateOne(user.username,user)
-      console.log(user)
+      //console.log(user)
       const newExperience = habit[0].experience + 10;
       const updatedUser = await usersApi.updateIsDone(userId, habitId, newExperience);
+      
+      const healthHabits = updatedUser.habits.filter( habit  => habit.category === 'Health');
+      const educationHabits = updatedUser.habits.filter( habit  => habit.category === 'Education');
 
+      updatedUser.healthExperience = healthHabits.reduce( (acum, habit) => acum + habit.experience, 0);
+      updatedUser.educationExperience = educationHabits.reduce( (acum, habit) => acum + habit.experience, 0);
+      updatedUser.experience = updatedUser.healthExperience + updatedUser.educationExperience;
+
+      const result = await usersApi.updateOne(updatedUser.username, updatedUser);
       // const healthHabits = await habits.filter( habit  => habit.category === 'Health');
       // const healthExperience =await healthHabits.reduce( (acum, habit) => acum + habit.experience, 0);
       // const educationExperience =await educationHabits.reduce( (acum, habit) => acum + habit.experience, 0);
       // console.log(educationExperience,"education")
       // console.log(healthExperience, "health")
-
-      res.json(updatedUser)
+      res.json(result)
     }
   } catch (error) {
     next({

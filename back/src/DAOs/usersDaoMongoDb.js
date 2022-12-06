@@ -58,7 +58,6 @@ class UsersDaoMongoDB extends ContainerMongoDB {
   }
 
   async updateIsDone (userId, habitId, exp){
-    console.log(exp, "exp")
     try {
       const data  = await userModel.findOneAndUpdate(
         {_id: userId, "habits._id": habitId},
@@ -66,7 +65,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
           {"habits.$.isDone": true,
           "habits.$.experience": exp}
         },
-        { returnOriginal: false })
+        { new: true })
 
       return data
     } catch (error) {

@@ -90,7 +90,8 @@ class ContainerMongoDB {
 
   async updateOne(username, obj) {
     try {
-      await this.model.findOneAndUpdate({ username: username }, obj);
+      const data = await this.model.findOneAndUpdate({ username: username }, obj,{ new: true });
+      return data
     } catch (error) {
       console.log("error al modificar");
       console.log(error);

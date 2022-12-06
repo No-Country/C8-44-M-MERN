@@ -3,8 +3,7 @@ const HabitsDaoMongoDB = require("../DAOs/habitsDaoMongoDb")
 const habitsApi = new HabitsDaoMongoDB();
 const usersApi = new UsersDaoMongoDB();
 
-
-const getAllHabits = async (req, res, next) => {
+const getAllHabits = async (req, res, next) => { //obtener todos los habitos
   try {
     const habits = await habitsApi.getAll();
     console.log(habits)
@@ -18,7 +17,7 @@ const getAllHabits = async (req, res, next) => {
   }
 };
 
-const getHabitById = async (req, res, next) => {
+const getHabitById = async (req, res, next) => { //obtener un habito
   try {
     const {id} = req.params;
     const habit = await habitsApi.findOneById(id)
@@ -32,7 +31,7 @@ const getHabitById = async (req, res, next) => {
   }
 };
 
-const createHabitAdmin = async (req, res, next) => {
+const createHabitAdmin = async (req, res, next) => { //crear un habito por defecto para todos los usuarios
   try {
     console.log("hi")
     const { 
@@ -60,9 +59,9 @@ const createHabitAdmin = async (req, res, next) => {
   }
 };
 
-const createCustomHabit = async (req, res, next) => {
+const createCustomHabit = async (req, res, next) => { //crear un habito custom para el usuario
   try {
-    let user = await usersApi.findOneById(req.user.id);       //este user soy YO
+    let user = await usersApi.findOneById(req.user.id);
     const { 
       name,
       description,
@@ -78,7 +77,7 @@ const createCustomHabit = async (req, res, next) => {
   };
     console.log(user)
     console.log(user.habits,"hello")
-    user.habits.push(newHabit);                            //pusheo al key followers
+    user.habits.push(newHabit);
     await usersApi.updateOne(user.username, user);
     res.json({ msg: "habito creado", data: newHabit });
   } catch (error) {
@@ -90,9 +89,9 @@ const createCustomHabit = async (req, res, next) => {
   }
 };
 
-const addHabit = async (req, res, next) => {
+const addHabit = async (req, res, next) => { //agregar un habito por defecto
   try {
-    let user = await usersApi.findOneById(req.user.id); //este user soy YO
+    let user = await usersApi.findOneById(req.user.id);
     const habitDB = await habitsApi.findOneById(req.body.id);
     const myHabit = await usersApi.getMyHabitById(req.user.id, req.body.id)
     if(!myHabit && habitDB){
@@ -111,7 +110,7 @@ const addHabit = async (req, res, next) => {
   }
 };
 
-const deActivateHabit = async (req, res, next) => {
+const deActivateHabit = async (req, res, next) => { //bajar un habito
   try {
     const {id} = req.params;
     habitsApi.deleteOne(id)
@@ -125,7 +124,7 @@ const deActivateHabit = async (req, res, next) => {
   }
 };
 
-const deleteHabit = async (req, res, next) => {
+const deleteHabit = async (req, res, next) => { //borrar un habito como admin
   try {
     const {id} = req.params
     await habitsApi.destroyOne(id)
@@ -139,8 +138,7 @@ const deleteHabit = async (req, res, next) => {
   }
 };
 
-// controladores para solo obtener habitos del usuario
-const getMyHabits = async (req, res, next) => {
+const getMyHabits = async (req, res, next) => { //obtener solo habitos del usuario
   try {
     const id = req.user.id
     const { habits } = await usersApi.findOneById(id)
@@ -154,17 +152,13 @@ const getMyHabits = async (req, res, next) => {
   }
 };
 
-// obtener mi habito por id
-const getMyHabitById = async(req, res, next) => {
+const getMyHabitById = async(req, res, next) => { // obtener mi habito por id
   try {
     const userId = req.user.id;
     const habitId = req.params.habitId;
-    // const myHabit = await usersApi.getMyHabitById(userId, habitId);
     const { habits } = await usersApi.findOneById(userId)
     const habit = habits.filter(habit => habit.id === habitId)
-    
     res.json(habit)
-
   } catch (error) {
     next({
       status: 400,
@@ -174,45 +168,26 @@ const getMyHabitById = async(req, res, next) => {
   }
 };
 
-// controlador para marcar una tarea como completa
-const updateIsDoneHabit = async (req, res, next) => {
+const updateIsDoneHabit = async (req, res, next) => { // controlador para marcar una tarea como completa
   try {
     const userId = req.user.id;
     const habitId = req.params.habitId;
-
     const { habits } = await usersApi.findOneById(userId);
     const habit = habits.filter(habit => habit.id === habitId);
-
     if(habit[0].isDone){
       res.json({message: 'Ya haz cumplido este habito por hoy'})
-
-      // if(habit[0].category=='Health'){
-      //   user.healthExperience+=10
-      //   console.log(user.habits[0].experience,"hellooo")
-      //   user.habits[0].experience+=10
-      // }
-      // if(habit[0].category=='Education'){
-      //   user.educationExperience+=10
-      // }
     }else{
-      // user.updateOne(user.username,user)
-      //console.log(user)
       const newExperience = habit[0].experience + 10;
       const updatedUser = await usersApi.updateIsDone(userId, habitId, newExperience);
-      
+
       const healthHabits = updatedUser.habits.filter( habit  => habit.category === 'Health');
       const educationHabits = updatedUser.habits.filter( habit  => habit.category === 'Education');
 
       updatedUser.healthExperience = healthHabits.reduce( (acum, habit) => acum + habit.experience, 0);
       updatedUser.educationExperience = educationHabits.reduce( (acum, habit) => acum + habit.experience, 0);
-      updatedUser.experience = updatedUser.healthExperience + updatedUser.educationExperience;
 
+      updatedUser.experience = updatedUser.healthExperience + updatedUser.educationExperience;
       const result = await usersApi.updateOne(updatedUser.username, updatedUser);
-      // const healthHabits = await habits.filter( habit  => habit.category === 'Health');
-      // const healthExperience =await healthHabits.reduce( (acum, habit) => acum + habit.experience, 0);
-      // const educationExperience =await educationHabits.reduce( (acum, habit) => acum + habit.experience, 0);
-      // console.log(educationExperience,"education")
-      // console.log(healthExperience, "health")
       res.json(result)
     }
   } catch (error) {

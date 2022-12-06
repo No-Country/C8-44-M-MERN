@@ -94,9 +94,9 @@ const getMyUser = async (req, res, next) => {
 
 const addFollower = async (req, res, next) => {
   try {
-    let user = await usersApi.findOneByIdFollowers(req.user.id); //este user soy YO
-    const follower = await usersApi.findOneById(req.body.id); //user que quiero agregar
-    user.followers.push(follower); //pusheo al key followers
+    let user = await usersApi.findOneByIdFollowers(req.user.id);
+    const follower = await usersApi.findOneById(req.body.id);
+    user.followers.push(follower);
     await usersApi.updateOne(user.username, user);
     res.json({ msg: "follower agregado", data: follower });
   } catch (error) {

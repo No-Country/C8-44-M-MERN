@@ -13,6 +13,6 @@ export const tempColorAssing = (level: number, type: TypeColor) => {
     case 5:
       return type == 'hex'? "#255DEB" : "blue"
     default:
-      return type == 'hex'? "#FFFFFF" : "white"
+      return type == 'hex'? "#00000" : "black"
   }
 }

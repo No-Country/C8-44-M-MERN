@@ -8,7 +8,6 @@ const { hashPassword } = require("../utils/crypt");
 const authenticated = async (email, password) => {
   try {
     const result = await usersApi.login(email, password);
-    console.log(result);
     if (result) {
       const token = jwt.sign(
         {
@@ -20,8 +19,7 @@ const authenticated = async (email, password) => {
       );
       return token;
     } else {
-      const error = "Credenciales incorrectas, verificar correo o contraseña";
-      return error;
+      return false;
     }
   } catch (error) {
     return error;
@@ -33,10 +31,9 @@ const login = async (req, res, next) => {
     const { email, password } = req.body;
     const auth = await authenticated(email, password);
     if(auth){
-      console.log(auth, "user authenticated");
       res.status(200).json({token: auth});
     } else {
-      res.status(400).json(auth);
+      res.status(400).json({message:"credenciales incorrectas"});
     }
   } catch (error) {
     next({
@@ -61,7 +58,6 @@ const register = async (req, res, next) => {
     if (!userSave) {
       let auth = await authenticated(email, password);
       if (auth) {
-        console.log(auth, "user authenticated and created");
         res.json({token: auth});
       } else {
         return auth;
@@ -96,9 +92,14 @@ const addFollower = async (req, res, next) => {
   try {
     let user = await usersApi.findOneByIdFollowers(req.user.id);
     const follower = await usersApi.findOneById(req.body.id);
-    user.followers.push(follower);
-    await usersApi.updateOne(user.username, user);
-    res.json({ msg: "follower agregado", data: follower });
+    const myfollower= await user.followers.filter(follower=>follower.id===req.body.id)
+    if(!myfollower.length && follower){
+      user.followers.push(follower);
+      await usersApi.updateOne(user.username, user);
+      res.status(200).json({ msg: "follower agregado", data: follower });
+    }else{
+      res.status(400).json({ msg: "El follower ya existe" });
+    }
   } catch (error) {
     next({
       status: 400,
@@ -108,10 +109,29 @@ const addFollower = async (req, res, next) => {
   }
 };
 
+// const addHabit = async (req, res, next) => { //agregar un habito por defecto
+//   try {
+
+//     const myHabit = await usersApi.getMyHabitById(req.user.id, req.body.id)
+//     const habitDB = await habitsApi.findOneById(req.body.id);
+//     if(!myHabit && habitDB){
+//       user.habits.push(habitDB);
+//       await usersApi.updateOne(user.username, user);
+//       res.status(200).json({ msg: "hábito agregado", data: habitDB });
+//     }else{
+//       res.status(400).json({ msg: "El habito ya existe" });
+//     }
+//   } catch (error) {
+//     next({
+//       status: 400,
+//       errorContent: error,
+//       message: "Faltan datos",
+//     });
+//   }
+// };
 const getAllUsers = async (req, res, next) => {
   try {
     const users = await usersApi.getAll();
-    console.log(users);
     res.json(users);
   } catch (error) {
     next({
@@ -196,7 +216,6 @@ const addHabit = async (req, res, next) => {
     let user = await usersApi.findOneById(req.params.id); //este user soy YO
     let habit = await habitsApi.findOneById(req.body.id);
     user.habits.push(habit);
-    console.log(user);
     await usersApi.updateOne(user.username, user);
     res.status(200).json({ msg: "hábito agregado", data: habit });
   } catch (error) {

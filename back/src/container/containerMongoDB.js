@@ -31,10 +31,8 @@ class ContainerMongoDB {
 
   async save(obj) {
     try {
-      let response = await this.model.create(obj);
-      console.log(`Documento insertado`, response);
+      await this.model.create(obj);
     } catch (error) {
-      console.log("error al guardar documento");
       throw error
     }
   }

@@ -2,18 +2,17 @@ const ContainerMongoDB = require("../container/containerMongoDB");
 const userModel = require("../models/users.model");
 const { comparePassword } = require("../utils/crypt");
 const schedule=require("node-schedule");
+const { Mongoose, } = require("mongoose");
+const ObjectId = require("mongoose").Types.ObjectId
 class UsersDaoMongoDB extends ContainerMongoDB {
   constructor() {
     super(userModel);
   }
-
   async findOneByEmail(email){
     try{
       const response = await userModel.findOne({email: email})
-      console.log("documentos encontrados", response);
       return response
     }catch(error){
-      console.log("error al buscar documento");
       throw error
     }
   }
@@ -21,10 +20,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
   async login(email, password){
     try{
       const user = await this.findOneByEmail(email)
-      console.log(user)
-      if(!user){
-        console.log("revisar credens")
-      }else{
+      if(user){
         const checkPassword = comparePassword(password, user.password)
         console.log(checkPassword)
         if(checkPassword){

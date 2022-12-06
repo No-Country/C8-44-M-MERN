@@ -6,7 +6,6 @@ const usersApi = new UsersDaoMongoDB();
 const getAllHabits = async (req, res, next) => { //obtener todos los habitos
   try {
     const habits = await habitsApi.getAll();
-    console.log(habits)
     res.json(habits)
   } catch (error) {
     next({
@@ -33,7 +32,6 @@ const getHabitById = async (req, res, next) => { //obtener un habito
 
 const createHabitAdmin = async (req, res, next) => { //crear un habito por defecto para todos los usuarios
   try {
-    console.log("hi")
     const { 
       name,
       description,
@@ -47,7 +45,6 @@ const createHabitAdmin = async (req, res, next) => { //crear un habito por defec
         frecuency:"each day",
         isDone:false
     };
-    console.log(newHabit);
     habitsApi.save(newHabit);
     res.status(201).json(newHabit)
   } catch (error) {
@@ -75,8 +72,7 @@ const createCustomHabit = async (req, res, next) => { //crear un habito custom p
       frecuency:"each day",
       isDone:false
   };
-    console.log(user)
-    console.log(user.habits,"hello")
+
     user.habits.push(newHabit);
     await usersApi.updateOne(user.username, user);
     res.json({ msg: "habito creado", data: newHabit });
@@ -94,6 +90,8 @@ const addHabit = async (req, res, next) => { //agregar un habito por defecto
     let user = await usersApi.findOneById(req.user.id);
     const habitDB = await habitsApi.findOneById(req.body.id);
     const myHabit = await usersApi.getMyHabitById(req.user.id, req.body.id)
+    console.log(myHabit,"my habit")
+    console.log(habitDB,"habit db")
     if(!myHabit && habitDB){
       user.habits.push(habitDB);
       await usersApi.updateOne(user.username, user);

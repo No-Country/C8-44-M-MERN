@@ -7,7 +7,6 @@ class UsersDaoMongoDB extends ContainerMongoDB {
     super(userModel);
   }
 
-  // Andres findOneByEmail para login
   async findOneByEmail(email){
     try{
       const response = await userModel.findOne({email: email})
@@ -15,7 +14,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
       return response
     }catch(error){
       console.log("error al buscar documento");
-      console.log(error);
+      throw error
     }
   }
 
@@ -43,7 +42,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
       return response;
     } catch (error) {
       console.log("error al buscar documento");
-      console.log(error);
+      throw error
     }
   }
 
@@ -53,7 +52,7 @@ class UsersDaoMongoDB extends ContainerMongoDB {
       return response;
     } catch (error) {
       console.log("error al buscar documentos");
-      console.log(error);
+      throw error
     }
   }
 
@@ -95,8 +94,8 @@ class UsersDaoMongoDB extends ContainerMongoDB {
 
   async UpdateIsDoneHabit() {
     try {
-      schedule.scheduleJob('0 0 * * *', async()=>{
-    
+      schedule.scheduleJob('18 13 * * *', async()=>{
+        console.log("resetie")
         let users = await userModel.find();
         users.map(user=>{
           user.habits.map(habit=>{

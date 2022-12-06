@@ -70,14 +70,6 @@ class ContainerMongoDB {
     }
   }
 
-  async deleteAll() {
-    try {
-    } catch (error) {
-      console.log("error al borrar todo");
-      console.log(error);
-    }
-  }
-
   async deleteOne(id) {
     try {
       const data = await this.model.updateOne({ _id: id }, { isActive: false });

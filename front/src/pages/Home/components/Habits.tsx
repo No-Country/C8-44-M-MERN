@@ -43,7 +43,7 @@ const Habits = ({ user }: any) => {
           )}
         </ul>
       </div>
-      <div className="flex gap-4">
+      <div className=" gap-4 hidden lg:flex">
         <Link to="/add-habits" className="w-full">
           <button className="btn btn-primary">Add habit</button>
         </Link>

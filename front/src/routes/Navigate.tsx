@@ -1,4 +1,5 @@
 import {
+  AddCustomHabit,
   AddFriends,
   AddHabit,
   FriendDetails,
@@ -91,6 +92,17 @@ const router = createBrowserRouter([
         <>
           <Navbar />
           <AddHabit />
+        </>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: 'add-custom-habit',
+    element: (
+      <ProtectedRoute>
+        <>
+          <Navbar />
+          <AddCustomHabit />
         </>
       </ProtectedRoute>
     ),

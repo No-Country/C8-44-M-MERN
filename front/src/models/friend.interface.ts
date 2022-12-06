@@ -1,7 +1,7 @@
 export interface Friend {
   id: string;
   email: string;
-  name: string;
+  username: string;
   avatar: string;
   showButton?: boolean;
 }

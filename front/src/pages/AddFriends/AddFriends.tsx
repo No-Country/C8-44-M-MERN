@@ -45,18 +45,20 @@ const AddFriends = () => {
           placeholder="Search friends"
           className="rounded-full border-secondary-light border-2 p-2 text-secondary-dark dark:bg-secondary-dark dark:border-none dark:text-secondary-light"
         />
+        <div className="mt-10 md:grid md:grid-cols-3 lg:grid-cols-4 md:justify-items-center md:gap-8 md:items-start">
         {allUser.map((friend) => {
           return (
             <Friend
               id={friend.email}
               key={friend.email}
-              name={friend.name}
+              name={friend.username}
               pictureUrl={friend.avatar}
               email={friend.email}
               showButton={true}
             />
           );
         })}
+         </div>
       </div>
       {/* <Navbar /> */}
     </>

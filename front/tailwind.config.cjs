@@ -8,6 +8,9 @@ module.exports = {
       fontFamily: {
         quicksand: ['Quicksand', 'sans-serif'],
       },
+      maxWidth: {
+        '127': '127px',
+      },
       colors: {
         'primary-dark': '#f85f6a',
         'primary-light': '#ff8787',

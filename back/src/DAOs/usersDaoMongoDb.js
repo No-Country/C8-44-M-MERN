@@ -82,19 +82,10 @@ class UsersDaoMongoDB extends ContainerMongoDB {
       throw error
     }
   }
-  //RESETEADOR DE HABITOS
-  // async UpdateIsDoneHabit(){
-  //   schedule.scheduleJob('*/2 * * * * *',()=>{ //cada dos segundos
-  //     console.log('I ran....')
-  //   })
-  // }
-
-  // cron expresions:
-  // https://crontab.cronhub.io/
 
   async UpdateIsDoneHabit() {
     try {
-      schedule.scheduleJob('24 13 * * *', async()=>{
+      schedule.scheduleJob('* * * * *', async()=>{
         console.log("resetie")
         let users = await userModel.find();
         users.map(user=>{

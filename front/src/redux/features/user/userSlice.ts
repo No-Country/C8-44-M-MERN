@@ -1,4 +1,9 @@
-import { getFollowers, getUser } from './thunks';
+import {
+  createCustomHabit,
+  createHabit,
+  getFollowers,
+  getUser,
+} from './thunks';
 
 import { User } from '../../../models';
 import { createSlice } from '@reduxjs/toolkit';
@@ -67,6 +72,19 @@ export const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(getFollowers.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
+      //habit
+      .addCase(createCustomHabit.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createCustomHabit.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user.habits.push(action.payload);
+      })
+      .addCase(createCustomHabit.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
       });

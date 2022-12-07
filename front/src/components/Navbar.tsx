@@ -40,6 +40,7 @@ const Navbar = () => {
         transition-all duration-500
         lg:flex-col lg:h-full ${open ? 'lg:w-56' : 'lg:w-20'}
         lg:bg-secondary-light/50 lg:border lg-border-solid
+        dark:lg:bg-gray-900 dark:lg:border-black
       `}
     >
       <Link to="/profile" className="hidden lg:block h-24">
@@ -59,6 +60,7 @@ const Navbar = () => {
           flex w-full justify-evenly
           lg:flex-col lg:w-auto
           dark:bg-gray-900
+          dark:lg:bg-transparent
         "
       >
         <div className="navbar-button">
@@ -68,7 +70,7 @@ const Navbar = () => {
               <>
                 <BsFillPersonFill
                   className={`w-7 h-7 transition-all duration-500 ${
-                    open ? 'translate-x-0' : 'translate-x-6'
+                    open ? 'lg:translate-x-0' : 'lg:translate-x-6'
                   }`}
                 />
                 <p
@@ -91,7 +93,7 @@ const Navbar = () => {
               <>
                 <AiFillHome
                   className={`w-7 h-7 transition-all duration-500 ${
-                    open ? 'translate-x-0' : 'translate-x-6'
+                    open ? 'lg:translate-x-0' : 'lg:translate-x-6'
                   }`}
                 />
                 <p
@@ -114,7 +116,7 @@ const Navbar = () => {
               <>
                 <TiThList
                   className={`w-7 h-7 transition-all duration-500 ${
-                    open ? 'translate-x-0' : 'translate-x-6'
+                    open ? 'lg:translate-x-0' : 'lg:translate-x-6'
                   }`}
                 />
                 <p

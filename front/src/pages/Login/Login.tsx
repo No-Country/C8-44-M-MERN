@@ -29,7 +29,7 @@ const Login = () => {
   return user.isLoading || jwt.isLoading ? (
     <Loader />
   ) : (
-    <div className="main-container flex flex-col items-center">
+    <div className="auth-main-container flex flex-col items-center">
       <div className="flex flex-col gap-9 w-80 sm:w-96 2xl:w-[500px] mx-auto mb-auto mt-0">
         <div>
           <h1 className="title">Sign In</h1>

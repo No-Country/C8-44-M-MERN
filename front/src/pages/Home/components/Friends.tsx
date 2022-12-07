@@ -4,7 +4,11 @@ import { HiPlus } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { User } from '../../../models';
 
-const Friends = ({ user }: any) => {
+interface Props {
+  user: User;
+}
+
+const Friends = ({ user }: Props) => {
   return (
     <div className="mb-10 lg:w-2/12">
       <div className="flex justify-between items-center">

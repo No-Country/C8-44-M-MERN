@@ -1,18 +1,14 @@
 import { AvatarEdit } from '../../../components';
+import { User } from '../../../models';
 import { useState } from 'react';
 
-const user = {
-  username: 'Consuelo',
-  email: 'consuelo@gmail.com',
-  fullname: 'Consuelo Martinez',
-  avatar:
-    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
-};
+interface Props {
+  user: User;
+}
 
-function EditProfile({ fn }: { fn: () => void }) {
-  const photoProfile = user.avatar;
+function EditProfile({ user }: Props) {
   const [data, setData] = useState({
-    avatar: photoProfile,
+    avatar: user.avatar,
     username: user.username,
     fullname: user.fullname,
   });
@@ -36,15 +32,15 @@ function EditProfile({ fn }: { fn: () => void }) {
   const cancel = () => {
     setData({
       ...user,
-      avatar: photoProfile,
+      avatar: user.avatar,
     });
-    fn();
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log(data);
   };
+
   return (
     <div className="flex flex-col items-center mt-4 w-full">
       <AvatarEdit fn={handleFile} image={data.avatar} />

@@ -12,13 +12,16 @@ function Avatar({ user }: Props) {
       <img
         src={user.avatar}
         alt="Profile picture"
-        className={`${
+        className={`border-2 ${
           !lg ? 'h-16 w-16' : 'h-28 w-28'
         }  object-cover rounded-full relative`}
       />
-      <div className="flex flex-col items-center lg:items-start mt-3">
-        <h1 className="dark:text-secondary-light  lg:text-lg lg:font-semibold">
-          {user.username}
+      <div className="flex flex-col items-center lg:items-start mt-3 lg:mt-0">
+        <h2 className="dark:text-secondary-light  lg:text-lg lg:font-semibold text-secondary-dark">
+          @{user.username}
+        </h2>
+        <h1 className="dark:text-secondary-light  lg:text-2xl lg:font-bold">
+          {user.fullname}
         </h1>
         <p className="text-secondary-regular break-words">{user.email}</p>
       </div>

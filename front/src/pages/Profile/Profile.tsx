@@ -47,7 +47,7 @@ const Profile = () => {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4 mb-7 dark:bg-gray-800 transition-colors duration-700">
+      <div className="main-container flex flex-col gap-4 mb-7 dark:bg-gray-800 transition-colors duration-700 lg:px-30 2xl:px-[550px]">
         <Header title="My Profile" fn={() => setIsActive(!isActive)} />
         <div>
           {!isActive ? (

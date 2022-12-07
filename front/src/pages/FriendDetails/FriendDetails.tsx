@@ -1,49 +1,68 @@
-import { Avatar, Header, Navbar } from '../../components';
+import { Avatar, Header, Loader } from '../../components';
 import { Experience, Habits } from './compontents';
+import { addFriend, getUser, getUsers } from '../../redux/features';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { AiOutlinePlus } from 'react-icons/ai';
-import { useParams } from 'react-router-dom';
-import { useState } from 'react';
-
-const friendsList = [
-  {
-    _id: '1',
-    username: 'César Herrera',
-    email: 'herrera.cesar.arg@gmail.com',
-    avatar: 'https://i.ibb.co/rmy0SYC/pexels-photo-220453.jpg',
-    password: '',
-  },
-  {
-    _id: '2',
-    username: 'José Carlos del Valle',
-    email: 'seck.dv15@gmail.com',
-    avatar: 'https://i.ibb.co/qW0ZcR3/pexels-photo-1040880.jpg',
-    password: '',
-  },
-  {
-    _id: '3',
-    username: 'Nathalia Riascos',
-    email: 'riascosnathalia6@gmail.com',
-    avatar: 'https://i.ibb.co/D8VnNZ2/pexels-photo-3763188.jpg',
-    password: '',
-  },
-];
+import { User } from '../../models';
+import { toast } from 'react-toastify';
 
 const FriendDetails = () => {
   const { id } = useParams();
-  const [isFollwing, setFollwing] = useState(false);
-  const data = friendsList.find((friend) => friend._id === id)!;
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    user.user.email === '' && dispatch(getUser());
+    dispatch(getUsers());
+  }, []);
+  const { isLoading, isSuccess, isError, users } = useAppSelector(
+    (state) => state.users
+  );
+  const user = useAppSelector((state) => state.user);
+  const friend: User = users.find((friend) => friend._id === id) || {
+    _id: '',
+    username: '',
+    fullname: '',
+    avatar: '',
+    rol: '',
+    email: '',
+    password: '',
+    habits: [],
+    followers: [],
+    healthExperience: 0,
+    educationExperience: 0,
+    experience: 0,
+  };
 
-  return (
+  const following =
+    user.user.followers.find((friend) => friend._id === id) || null;
+  console.log(following);
+
+  const handleFollow = async () => {
+    const response = await dispatch(addFriend(friend._id));
+    if (response.payload.message) {
+      toast.error(`An error occurred trying to follow the user`);
+    } else {
+      toast.success(`User followed successfully`);
+      navigate('/home');
+    }
+  };
+
+  return isLoading || user.isLoading ? (
+    <Loader />
+  ) : (
     <>
       <div className="main-container flex flex-col gap-5 dark:bg-gray-800">
         <Header title="Friend Details" editUrl="" />
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 justify-between">
           <div className="flex flex-col gap-8 lg:w-1/2 justify-center max-w-sm">
-            <Avatar user={data} />
+            <Avatar user={friend} />
             <button
-              onClick={() => setFollwing(true)}
-              className="
+              disabled={following ? true : false}
+              onClick={handleFollow}
+              className={`
                 rounded-xl
                 bg-primary-dark
                 text-white
@@ -57,19 +76,23 @@ const FriendDetails = () => {
                 gap-2
                 w-full
                 max-w-sm
-                justify-center"
+                justify-center
+                ${
+                  following &&
+                  'lg:bg-white lg:text-primary-dark lg:border-primary-dark cursor-default'
+                }
+                `}
             >
               <AiOutlinePlus />
-              {isFollwing ? 'Following' : 'Follow'}
+              {following ? 'Following' : 'Follow'}
             </button>
-            <Experience />
+            <Experience user={friend} />
           </div>
           <div className="lg:w-1/2 max-w-sm w-full">
-            <Habits />
+            <Habits user={friend} />
           </div>
         </div>
       </div>
-      {/* <Navbar /> */}
     </>
   );
 };

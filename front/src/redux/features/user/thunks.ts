@@ -30,6 +30,17 @@ export const addHabit = createAsyncThunk(
   }
 );
 
+export const addFriend = createAsyncThunk(
+  'friend/add',
+  async (friendId: string, thunkAPI) => {
+    try {
+      return await userService.addFriend(friendId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 export const checkHabit = createAsyncThunk(
   'habits/check',
   async (habitId: string, thunkAPI) => {

@@ -1,4 +1,10 @@
-import { addHabit, checkHabit, createCustomHabit, getUser } from './thunks';
+import {
+  addFriend,
+  addHabit,
+  checkHabit,
+  createCustomHabit,
+  getUser,
+} from './thunks';
 
 import { User } from '../../../models';
 import { createSlice } from '@reduxjs/toolkit';
@@ -120,6 +126,23 @@ export const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(checkHabit.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+      })
+      // ADD FRIEND
+      .addCase(addFriend.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+      })
+      .addCase(addFriend.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.user.followers = [...state.user.followers, action.payload];
+      })
+      .addCase(addFriend.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

@@ -1,120 +1,45 @@
-import { Habit, Loader, Navbar } from '../../components';
+import { Habit, Loader } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
 
+import { Habit as HabitType } from '../../models';
 import Header from '../../components/Header';
 import { HiPlus } from 'react-icons/hi';
-import { getUser } from '../../redux/features';
 import { Link } from 'react-router-dom';
+import { getUser } from '../../redux/features';
 import { useDimensions } from '../../hooks';
-
-
-// const habitsList = [
-// 	{
-// 		"_id": "638e3c16e90a453b8e44dfd1",
-// 		"name": "Learn a new lenguaje",
-// 		"description": "English? Spanish? Portuguese? choose one!",
-// 		"category": "Education",
-// 		"experience": 0,
-// 		"frecuency": "each day",
-// 		"isDone": false,
-// 		"__v": 0
-// 	},
-// 	{
-// 		"_id": "638e3c1d13401732b3b1653e",
-// 		"name": "Floss",
-// 		"description": "Floss my teeth every day",
-// 		"category": "Health",
-// 		"experience": 0,
-// 		"frecuency": "each day",
-// 		"isDone": false,
-// 		"__v": 0
-// 	},
-// 	{
-// 		"_id": "638e3c51e90a453b8e44dfd3",
-// 		"name": "Read a book",
-// 		"description": "try to read 20 pages of a book per day",
-// 		"category": "Education",
-// 		"experience": 0,
-// 		"frecuency": "each day",
-// 		"isDone": false,
-// 		"__v": 0
-// 	},
-// 	{
-// 		"_id": "638e3c5813401732b3b16540",
-// 		"name": "Walk 10 km",
-// 		"description": "Walk in the park until reaching 10 km",
-// 		"category": "Health",
-// 		"experience": 0,
-// 		"frecuency": "each day",
-// 		"isDone": false,
-// 		"__v": 0
-// 	},
-// 	{
-// 		"_id": "638e3cd013401732b3b16542",
-// 		"name": "Meditation",
-// 		"description": "Meditate for 5 minutes",
-// 		"category": "Health",
-// 		"experience": 0,
-// 		"frecuency": "each day",
-// 		"isDone": false,
-// 		"__v": 0
-// 	},
-// 	{
-// 		"_id": "638e3cd2e90a453b8e44dfd5",
-// 		"name": "listen to an hour of podcasts",
-// 		"description": "it's a good way to learn",
-// 		"category": "Education",
-// 		"experience": 0,
-// 		"frecuency": "each day",
-// 		"isDone": false,
-// 		"__v": 0
-// 	},
-// 	{
-// 		"_id": "638f7a47822e2f1b026f2938",
-// 		"name": "listen to an hour of podcasts2",
-// 		"description": "it's a good way to learn2",
-// 		"category": "Education",
-// 		"experience": 0,
-// 		"frecuency": "each day",
-// 		"isDone": false,
-// 		"__v": 0
-// 	}
-// ]
 
 const HabitsList = () => {
   const { isLoading, isSuccess, isError, user } = useAppSelector(
     (state) => state.user
   );
   const dispatch = useAppDispatch();
-  const [selectedOrder, setSelectedOrder] = useState('proximity');
+  const [selectedOrder, setSelectedOrder] = useState('name');
   const [searchResult, setSearchResult] = useState(user.habits);
-  const { lg } = useDimensions()
-  const sizeExperience = lg? 100: 35
+  const { lg } = useDimensions();
+  const sizeExperience = lg ? 100 : 35;
 
   useEffect(() => {
     user.email === '' && dispatch(getUser());
   }, []);
+
   useEffect(() => {
     setSearchResult(user.habits);
   }, [user]);
 
-  const OrderBy = (order: string, habits: any) => {
+  const OrderBy = (order: string, habits: HabitType[]) => {
     switch (order) {
-      case 'proximity':
-        return [...habits];
       case 'name':
         return [...habits].sort((a, b) => a.name.localeCompare(b.name));
-      case 'frequency':
-        return [...habits].sort((a, b) => a.frequency - b.frequency);
-      case 'category':
-        return [...habits].sort((a, b) => (a.category > b.category ? 1 : -1));
       case 'level':
         return [...habits].sort(
-          (a, b) => b.experience.level - a.experience.level
+          (a, b) =>
+            Math.ceil(b.experience / 100) - Math.ceil(a.experience / 100)
         );
-      case 'priority':
-        return [...habits].sort((a, b) => b.priority - a.priority);
+      case 'category':
+        return [...habits].sort((a, b) => (a.category > b.category ? 1 : -1));
+      case 'completed':
+        return [...habits].sort((a, b) => (a.isDone > b.isDone ? 1 : -1));
       default:
         return [...habits];
     }
@@ -136,25 +61,45 @@ const HabitsList = () => {
         <Header
           showBack={!lg}
           title="Habits List"
-          editUrl={`${!lg ?'/add-habits': ''}`}
+          editUrl={`${!lg ? '/add-habits' : ''}`}
           icon={<HiPlus className="text-primary-dark w-5 h-5" />}
         />
         <div>
           <input
             id="search"
             placeholder="Search habits"
-            className="w-full rounded-full border-secondary-light border-2 p-2 mt-6 text-secondary-dark dark:bg-secondary-dark dark:border-none"
+            className="w-full rounded-md border-secondary-light border-2 p-2 mt-6 text-secondary-dark dark:bg-secondary-dark dark:border-none"
             type="text"
             onKeyUp={(e) => {
               handleSearch(e, user.habits);
             }}
           />
         </div>
-        <Link to="/add-habits" className="hidden lg:block lg:w-44 lg:text-center lg:mt-6 lg:self-end">
-          <button className="btn btn-primary">Add habit</button>
-        </Link>
+        <div className="flex justify-between items-center lg:mt-6">
+          <div className="fixed bottom-24 z-10 lg:relative lg:bottom-0">
+            <label className="text-secondary-regular">Order by</label>
+            <select
+              value={selectedOrder}
+              name="order"
+              className="text-secondary-dark dark:bg-transparent dark:text-secondary-light"
+              onChange={(e) => setSelectedOrder(e.target.value)}
+            >
+              <option value="name">name</option>
+              <option value="level">level</option>
+              <option value="completed">completed</option>
+              <option value="category">category</option>
+            </select>
+          </div>
+          <Link
+            to="/add-habits"
+            className="hidden lg:block lg:w-44 lg:text-center lg:self-end"
+          >
+            <button className="btn btn-primary">Add habit</button>
+          </Link>
+        </div>
+
         <div className="lg:mt-6 lg:grid lg:grid-cols-4 lg:justify-items-center lg:gap-8 lg:items-start">
-          {OrderBy(selectedOrder, searchResult) .map((habit) => (
+          {OrderBy(selectedOrder, searchResult).map((habit) => (
             <Habit
               key={habit._id}
               _id={habit._id}
@@ -167,22 +112,6 @@ const HabitsList = () => {
               isDone={habit.isDone}
             />
           ))}
-        </div>
-        <div className="fixed bottom-24 lg:top-60 z-10">
-          <label className="text-secondary-regular">Order by</label>
-          <select
-            value={selectedOrder}
-            name="order"
-            className="text-secondary-dark dark:bg-transparent dark:text-secondary-light"
-            onChange={(e) => setSelectedOrder(e.target.value)}
-          >
-            <option value="proximity">proximity</option>
-            <option value="frequency">frequency</option>
-            <option value="category">category</option>
-            <option value="level">level</option>
-            <option value="priority">priority</option>
-            <option value="name">name</option>
-          </select>
         </div>
       </div>
     </>

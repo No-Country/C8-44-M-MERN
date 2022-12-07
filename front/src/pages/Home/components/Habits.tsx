@@ -23,11 +23,9 @@ const Habits = ({ user }: Props) => {
             <HiPlus className="text-primary-light text-lg" />
           </Link>
         </div>
-        <div className="relative h-1 w-full bg-secondary-light rounded-full dark:bg-secondary-regular">
-          <div className="absolute w-1/3 bg-primary-dark rounded-full"></div>
-        </div>
+        <div className="relative h-1 w-full bg-secondary-light rounded-full dark:bg-secondary-regular"></div>
         <ul>
-          {user.habits.length !== 0 ? (
+          {user.habits && user.habits.length > 0 ? (
             user.habits.map((habit: HabitType) => (
               <li key={habit._id} className="first-of-type:mt-5">
                 <Habit
@@ -44,7 +42,7 @@ const Habits = ({ user }: Props) => {
           ) : (
             <div className="items-center mt-5 justify-between text-sm  rounded-md bg-secondary-light/30 w-full py-4 px-6">
               <h3 className="text-secondary-dark text-center dark:text-secondary-light">
-                No Habits for today
+                No Habits
               </h3>
             </div>
           )}

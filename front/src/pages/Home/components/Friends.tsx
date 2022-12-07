@@ -4,17 +4,12 @@ import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { CiCirclePlus } from 'react-icons/ci';
 import { HiPlus } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import { User } from '../../../models';
 import { getUser } from '../../../redux/features';
 import { useEffect } from 'react';
 
 const Friends = ({ user }: any) => {
   const dispatch = useAppDispatch();
-  /* const { isLoading, isSuccess, isError, user } = useAppSelector(
-    (state) => state.user
-  ); */
-  /* useEffect(() => {
-    !user && dispatch(getFollowers());
-  }, []); */
   return (
     <div className="mb-10 lg:w-2/12">
       <div className="flex justify-between items-center">
@@ -23,19 +18,28 @@ const Friends = ({ user }: any) => {
           <HiPlus className="text-primary-light text-lg" />
         </Link>
       </div>
-      <div className="relative h-1 w-1/ bg-secondary-light rounded-full dark:bg-secondary-regular">
-        <div className="absolute w-1/3 bg-primary-dark rounded-full"></div>
-      </div>
-      {user?.followers?.length ? (
+      <div className="relative h-1 w-1/ bg-secondary-light rounded-full dark:bg-secondary-regular lg:mb-4"></div>
+      {user.followers.length !== 0 ? (
         <>
-          {user?.followers?.map((f: any) => (
+          {user.followers.map((friend: User) => (
             <Friend
-              key={f._id}
-              id={f._id}
-              name={f.username}
-              pictureUrl={f.avatar}
+              key={friend._id}
+              _id={friend._id}
+              username={friend.username}
+              avatar={friend.avatar}
+              fullname={friend.fullname}
+              rol={friend.rol}
+              followers={friend.followers}
+              habits={friend.habits}
+              email={friend.email}
+              healthExperience={friend.healthExperience}
+              educationExperience={friend.educationExperience}
+              experience={friend.experience}
             />
           ))}
+          <Link to="/friends" className="hidden lg:block">
+            <CiCirclePlus className="text-primary-light text-5xl w-full mt-4" />
+          </Link>
         </>
       ) : (
         <>

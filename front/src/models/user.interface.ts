@@ -1,4 +1,3 @@
-import { Friend } from './friend.interface';
 import { Habit } from './habit.interface';
 
 export interface BasicUser {
@@ -12,7 +11,7 @@ export interface User extends BasicUser {
   fullname: string;
   avatar: string;
   rol: string;
-  followers: Friend[];
+  followers: User[];
   habits: Habit[];
   healthExperience: number;
   educationExperience: number;

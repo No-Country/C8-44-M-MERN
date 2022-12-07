@@ -26,7 +26,6 @@ const AddHabit = () => {
 
   const addHabitHandler = async () => {
     const response = await dispatch(addHabit(selectedHabit));
-
     if (response.payload.message) {
       toast.error(`The habit was already added`);
     } else {

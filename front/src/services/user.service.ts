@@ -29,7 +29,7 @@ const createHabit = async (habit: any) => {
       },
     });
 
-    return response.data.data;
+    return response.data.data.newHabit;
   } catch (error) {
     console.log(error);
   }
@@ -42,6 +42,27 @@ const addHabit = async (habitId: string) => {
     const response = await axios.put(
       `${BASE_URL}/habits/add`,
       { id: habitId },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `JWT ${parsedJwt}`,
+        },
+      }
+    );
+
+    return response.data.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.msg);
+  }
+};
+
+const addFriend = async (friendId: string) => {
+  const jwt = localStorage.getItem('jwt');
+  const parsedJwt = jwt && JSON.parse(jwt);
+  try {
+    const response = await axios.put(
+      `${BASE_URL}/user/me`,
+      { id: friendId },
       {
         headers: {
           'Content-Type': 'application/json',
@@ -81,6 +102,7 @@ const userService = {
   createHabit,
   addHabit,
   checkHabit,
+  addFriend,
 };
 
 export default userService;

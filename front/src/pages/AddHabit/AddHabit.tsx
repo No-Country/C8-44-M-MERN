@@ -25,7 +25,6 @@ const AddHabit = () => {
     await dispatch(addHabit(selectedHabit));
     navigate("/home");
   }
-  console.log(selectedHabit);
 
   return (
     <>

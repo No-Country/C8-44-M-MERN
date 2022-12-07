@@ -3,56 +3,58 @@ import { getHabitById, getUser } from '../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { Details } from './components';
-import profilePicture from '../../assets/profile.jpg';
+import { Habit } from '../../models';
 import { tempColorAssing } from '../../utils/changeColor';
-import { useParams } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 function HabitDetail() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  useEffect(() => {
+  /* useEffect(() => {
     const habit = async () => {
       await dispatch(getHabitById(id!));
     };
     habit();
-  }, []);
-  const { isLoading, isSuccess, isError, habit } = useAppSelector(
-    (state) => state.habit
+  }, []); */
+  const { isLoading, isSuccess, isError, user } = useAppSelector(
+    (state) => state.user
   );
-  type Habit = {
-    name: string;
-    experience: number;
-    frecuency: string;
-    category: string;
-    description: string;
+
+  const habit: Habit = user.habits.find((habit) => habit._id === id) || {
+    name: '',
+    description: '',
+    category: '',
+    frequency: 'once a day',
+    _id: '',
+    isDone: false,
+    experience: 0,
   };
-  const { name, experience, frecuency, category, description } = habit as Habit;
   return isLoading ? (
     <Loader />
   ) : (
     <>
       <div className="main-container flex flex-col gap-9  dark:bg-gray-800">
-        <Header title="Habit Details" />
+        <Header title="Habit Details" editUrl="" />
         <div className="lg:mt-28 ">
           <p className="text-center font-bold text-3xl lg:text-left dark:text-white">
-            {name}
+            {habit.name}
           </p>
           <div className="lg:flex flex-row-reverse lg:items-center lg:mt-1 ">
             <div className="flex flex-col items-center lg:w-1/2">
               <ExperienceRing
-                textColor={`${tempColorAssing(experience, 'class')}`}
-                experience={experience}
-                color={tempColorAssing(experience, 'hex')}
+                textColor={`${tempColorAssing(1, 'class')}`}
+                experience={habit.experience}
+                color={tempColorAssing(1, 'hex')}
+                size={260}
               />
             </div>
             <Details
-              frecuency={frecuency}
-              category={category}
-              description={description}
+              frequency={
+                habit.frequency !== undefined ? habit.frequency : 'once a day'
+              }
+              category={habit.category}
+              description={habit.description}
             />
           </div>
         </div>

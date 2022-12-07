@@ -24,8 +24,8 @@ const Habit = (
   const [party, setParty] = useState(false);
   const dispatch = useAppDispatch();
   const handleCheck = async () => {
-    await dispatch(checkHabit(_id));
     setParty(true);
+    await dispatch(checkHabit(_id));
   };
   return (
     <div className="flex items-center justify-between rounded-md bg-secondary-light/30 w-full my-3">
@@ -37,11 +37,11 @@ const Habit = (
       <div className="pr-5 flex items-center gap-6">
         <span
           className={`flex text-xs font-bold ${tempColorAssing(
-            Math.round(experience / 100),
+            Math.ceil(experience / 100),
             'class'
           )} text-secondary-dark dark:text-secondary-light`}
         >
-          lvl {Math.round(experience / 100)}
+          lvl {Math.ceil(experience / 100)}
         </span>
         {isDone ? (
           <MdCheckCircle color={'#5ED55E'} size={'35px'} />

@@ -57,6 +57,7 @@ const HabitsList = () => {
         <Header
           title="Habits List"
           editUrl={'/add-habits'}
+          showButton={true}
           icon={<HiPlus className="text-primary-dark w-5 h-5" />}
         />
         <div>

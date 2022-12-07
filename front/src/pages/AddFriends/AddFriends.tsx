@@ -27,6 +27,7 @@ const AddFriends = () => {
           placeholder="Search friends"
           className="rounded-full border-secondary-light border-2 p-2 text-secondary-dark dark:bg-secondary-dark dark:border-none dark:text-secondary-light"
         />
+        <div className="mt-10 md:grid md:grid-cols-3 lg:grid-cols-4 md:justify-items-center md:gap-8 md:items-start mb-10">
         {users.map((user) => {
           return (
             <Friend
@@ -39,6 +40,7 @@ const AddFriends = () => {
             />
           );
         })}
+          </div>
       </div>
     </>
   );

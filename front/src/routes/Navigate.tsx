@@ -1,4 +1,5 @@
 import {
+  AddCustomHabit,
   AddFriends,
   AddHabit,
   FriendDetails,
@@ -13,7 +14,7 @@ import {
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
 import App from '../App';
-
+import { Navbar } from '../components';
 import { ProtectedRoute } from './ProtectedRoutes';
 
 const router = createBrowserRouter([
@@ -33,7 +34,10 @@ const router = createBrowserRouter([
     path: 'home',
     element: (
       <ProtectedRoute>
-        <Home />
+        <>
+          <Navbar />
+          <Home />
+        </>
       </ProtectedRoute>
     ),
   },
@@ -41,7 +45,10 @@ const router = createBrowserRouter([
     path: 'friends',
     element: (
       <ProtectedRoute>
-        <AddFriends />
+        <>
+          <Navbar />
+          <AddFriends />
+        </>
       </ProtectedRoute>
     ),
   },
@@ -49,7 +56,10 @@ const router = createBrowserRouter([
     path: 'friend/:id',
     element: (
       <ProtectedRoute>
-        <FriendDetails />
+        <>
+          <Navbar />
+          <FriendDetails />
+        </>
       </ProtectedRoute>
     ),
   },
@@ -57,7 +67,10 @@ const router = createBrowserRouter([
     path: 'profile',
     element: (
       <ProtectedRoute>
-        <Profile />
+        <>
+          <Navbar />
+          <Profile />
+        </>
       </ProtectedRoute>
     ),
   },
@@ -65,7 +78,10 @@ const router = createBrowserRouter([
     path: 'habits',
     element: (
       <ProtectedRoute>
-        <HabitsList />
+        <>
+          <Navbar />
+          <HabitsList />
+        </>
       </ProtectedRoute>
     ),
   },
@@ -73,7 +89,21 @@ const router = createBrowserRouter([
     path: 'add-habits',
     element: (
       <ProtectedRoute>
-        <AddHabit />
+        <>
+          <Navbar />
+          <AddHabit />
+        </>
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: 'add-custom-habit',
+    element: (
+      <ProtectedRoute>
+        <>
+          <Navbar />
+          <AddCustomHabit />
+        </>
       </ProtectedRoute>
     ),
   },
@@ -81,7 +111,10 @@ const router = createBrowserRouter([
     path: 'habit-detail/:id',
     element: (
       <ProtectedRoute>
-        <HabitDetail />
+        <>
+          <Navbar />
+          <HabitDetail />
+        </>
       </ProtectedRoute>
     ),
   },

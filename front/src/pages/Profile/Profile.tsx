@@ -1,14 +1,13 @@
+import { Avatar, Header, Loader, Navbar } from '../../components';
 import { GiToken, GiTrophyCup } from 'react-icons/gi';
-import { Header, Loader, Navbar, Avatar } from '../../components';
 import { RiToggleFill, RiToggleLine } from 'react-icons/ri';
 import { changeTheme, getUser, logout, resetUser } from '../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useEffect, useState } from 'react';
 
 import EditProfile from './components/EditProfile';
 import profilePicture from '../../assets/profile.jpg';
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 
 const imgDedault =
   'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
@@ -22,9 +21,9 @@ const user = {
 
 const Profile = () => {
   const navigate = useNavigate();
-  const [ isActive, setIsActive ] = useState(false)
+  const [isActive, setIsActive] = useState(false);
   const dispatch = useAppDispatch();
-  
+
   const { isLoading, isSuccess, isError, user } = useAppSelector(
     (state) => state.user
   );
@@ -49,9 +48,13 @@ const Profile = () => {
   ) : (
     <>
       <div className="main-container flex flex-col gap-4 mb-7 dark:bg-gray-800 transition-colors duration-700">
-        <Header title="My Profile" fn={() => setIsActive(!isActive)}/>
+        <Header title="My Profile" fn={() => setIsActive(!isActive)} />
         <div>
-          { !isActive? <Avatar user={user} /> : <EditProfile fn={() => setIsActive(!isActive)} /> }
+          {!isActive ? (
+            <Avatar user={user} />
+          ) : (
+            <EditProfile fn={() => setIsActive(!isActive)} />
+          )}
           <div className="mt-4">
             <h2 className="home-title">Progress</h2>
             <div className="relative h-1 w-full bg-secondary-light rounded-md dark:bg-secondary-regular">
@@ -122,7 +125,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <Navbar />
+      {/* <Navbar /> */}
     </>
   );
 };

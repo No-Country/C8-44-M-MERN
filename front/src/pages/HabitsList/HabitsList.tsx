@@ -100,7 +100,7 @@ const HabitsList = () => {
           </select>
         </div>
       </div>
-      <Navbar />
+      {/* <Navbar /> */}
     </>
   );
 };

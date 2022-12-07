@@ -16,24 +16,43 @@ const getData = async () => {
     console.log(error);
   }
 };
+
 const getFollowers = async () => {
-    const jwt = localStorage.getItem('jwt');
-    const parsedJwt = jwt && JSON.parse(jwt);
-    try {
-      const response = await axios.get(`${BASE_URL}/user/me`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `JWT ${parsedJwt}`,
-        },
-      });
-      console.log(response);
-      console.log(response.data.followers);
-    
-      return response.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const jwt = localStorage.getItem('jwt');
+  const parsedJwt = jwt && JSON.parse(jwt);
+  try {
+    const response = await axios.get(`${BASE_URL}/user/me`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${parsedJwt}`,
+      },
+    });
+    console.log(response);
+    console.log(response.data.followers);
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const createHabit = async (habit: any) => {
+  const jwt = localStorage.getItem('jwt');
+  const parsedJwt = jwt && JSON.parse(jwt);
+  try {
+    const response = await axios.put(`${BASE_URL}/habits/user`, habit, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${parsedJwt}`,
+      },
+    });
+
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // const deleteData = async (id: string) => {
 //    let jwt = JSON.parse(localStorage.getItem('jwt') || '{}');
 //    try {
@@ -46,7 +65,8 @@ const getFollowers = async () => {
 
 const userService = {
   getData,
-  getFollowers
+  getFollowers,
+  createHabit,
 };
 
 export default userService;

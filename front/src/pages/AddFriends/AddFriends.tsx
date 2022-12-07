@@ -55,12 +55,12 @@ const AddFriends = () => {
               email={friend.email}
               showButton={true}
             />
-               );
-            })}
-         </div>
-         <Navbar />
-      </>
-   );
+          );
+        })}
+      </div>
+      {/* <Navbar /> */}
+    </>
+  );
 };
 
 export default AddFriends;

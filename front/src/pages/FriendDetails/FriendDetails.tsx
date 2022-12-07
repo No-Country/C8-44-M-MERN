@@ -38,20 +38,38 @@ const FriendDetails = () => {
     <>
       <div className="main-container flex flex-col gap-5 dark:bg-gray-800">
         <Header title="Friend Details" />
-        <Avatar user={data} />
-        <button
-          onClick={() => setFollwing(true)}
-          className="rounded-xl bg-primary-dark text-white border-2 p-2 hover:border-primary-dark hover:bg-white hover:text-primary-dark transition-colors dark:border-none"
-        >
-          <div className="flex items-center gap-2 justify-center">
-            <AiOutlinePlus />
-            {isFollwing ? 'Following' : 'Follow'}
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 justify-between">
+          <div className="flex flex-col gap-8 lg:w-1/2 justify-center max-w-sm">
+            <Avatar user={data} />
+            <button
+              onClick={() => setFollwing(true)}
+              className="
+                rounded-xl
+                bg-primary-dark
+                text-white
+                border-2 p-2
+                hover:border-primary-dark
+                hover:bg-white
+                hover:text-primary-dark
+                transition-colors
+                dark:border-none
+                flex items-center
+                gap-2
+                w-full
+                max-w-sm
+                justify-center"
+            >
+                <AiOutlinePlus />
+                {isFollwing ? 'Following' : 'Follow'}
+            </button>
+            <Experience />
           </div>
-        </button>
-        <Experience />
-        <Habits/>
+          <div className="lg:w-1/2 max-w-sm w-full">
+            <Habits />
+          </div>
+        </div>
       </div>
-      <Navbar />
+      {/* <Navbar /> */}
     </>
   );
 };

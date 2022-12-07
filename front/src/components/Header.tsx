@@ -19,23 +19,25 @@ function Header({
 }: Header) {
   const navigate = useNavigate();
   return (
-    <header className="flex justify-between items-center">
+    <header className="flex justify-between items-center mb-4">
       {showBack && (
         <button onClick={() => navigate(-1)} className="z-10">
           <AiOutlineArrowLeft className="text-primary-dark w-5 h-5" />
         </button>
       )}
       <h1
-        className={`title w-full absolute text-center left-0 dark:text-white`}
+        className={`title w-full text-center lg:text-left left-0 dark:text-white`}
       >
         {title}
       </h1>
-      {editUrl || fn ?
-        <button onClick={() => fn? fn() : navigate(editUrl)} className="z-10">
+      {editUrl || fn ? (
+        <button
+          onClick={() => (fn ? fn() : navigate(editUrl))}
+          className="z-10"
+        >
           {icon}
         </button>
-        : null
-      }
+      ) : null}
     </header>
   );
 }

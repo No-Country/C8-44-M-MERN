@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Header, Loader, Navbar } from "../../components";
 import { addHabit, getHabits } from "../../redux/features";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 const AddHabit = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getHabits());
@@ -20,6 +21,10 @@ const AddHabit = () => {
     }
   };
 
+  const addHabitHandler = async () => {
+    await dispatch(addHabit(selectedHabit));
+    navigate("/home");
+  }
   console.log(selectedHabit);
 
   return (
@@ -46,7 +51,7 @@ const AddHabit = () => {
         <button
           className="border border-solid bg-primary-dark text-secondary-light font-bold h-10 rounded-xl"
           disabled={!selectedHabit}
-          onClick={() => dispatch(addHabit(selectedHabit))}
+          onClick={addHabitHandler}
         >
           Add Habit
         </button>

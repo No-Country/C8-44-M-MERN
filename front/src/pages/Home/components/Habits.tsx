@@ -1,4 +1,5 @@
 import { Habit } from '../../../components';
+import { Habit as HabitType } from '../../../models';
 import { HiPlus } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/hooks';
@@ -20,8 +21,8 @@ const Habits = ({ user }: any) => {
           <div className="absolute w-1/3 bg-primary-dark rounded-full"></div>
         </div>
         <ul>
-          {user?.habits.length !== 0 ? (
-            user?.habits.map((habit: any) => (
+          {user.habits.length !== 0 ? (
+            user.habits.map((habit: HabitType) => (
               <li key={habit._id} className="first-of-type:mt-5">
                 <Habit
                   _id={habit._id}
@@ -29,8 +30,8 @@ const Habits = ({ user }: any) => {
                   frequency={habit.frequency}
                   category={habit.category}
                   description={habit.description}
-                  showChecked={true}
                   experience={habit.experience}
+                  isDone={habit.isDone}
                 />
               </li>
             ))
@@ -43,7 +44,7 @@ const Habits = ({ user }: any) => {
           )}
         </ul>
       </div>
-      <div className="flex gap-4">
+      <div className=" gap-4 hidden lg:flex">
         <Link to="/add-habits" className="w-full">
           <button className="btn btn-primary">Add habit</button>
         </Link>

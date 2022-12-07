@@ -22,7 +22,6 @@ const Friend = ({
 }: Friend) => {
 
   let location = useLocation();
-  const lg = window.screen.width > window.screen.height;
 
   return (
     <div className={

@@ -1,8 +1,9 @@
 import { BASE_URL } from './config';
+import { BasicUser } from '../models/user.interface';
 import { User } from '../models';
 import axios from 'axios';
 
-const register = async (user: User): Promise<{ jwt: string | null }> => {
+const register = async (user: BasicUser): Promise<{ jwt: string | null }> => {
   try {
     const response = await axios.post(`${BASE_URL}/user/register`, user);
     if (response.data) {
@@ -15,7 +16,7 @@ const register = async (user: User): Promise<{ jwt: string | null }> => {
   }
 };
 
-const login = async (user: User): Promise<{ jwt: string | null }> => {
+const login = async (user: BasicUser): Promise<{ jwt: string | null }> => {
   try {
     const response = await axios.post(`${BASE_URL}/user/login`, user);
     if (response.data.token) {

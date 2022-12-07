@@ -1,10 +1,9 @@
 import {
-   addFriendSlice,
-   authSlice,
-   habitsSlice,
-   themeSlice,
-   userSlice,
-   createHabitSlice,
+  authSlice,
+  habitsSlice,
+  themeSlice,
+  userSlice,
+  usersSlice,
 } from './features';
 
 import { configureStore } from '@reduxjs/toolkit';
@@ -15,8 +14,7 @@ export const store = configureStore({
     user: userSlice.reducer,
     habits: habitsSlice.reducer,
     theme: themeSlice.reducer,
-    allUser: addFriendSlice.reducer,
-    createHabits: createHabitSlice.reducer,
+    users: usersSlice.reducer,
   },
 });
 

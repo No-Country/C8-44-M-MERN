@@ -1,4 +1,4 @@
-import { getFollowers, getUser } from './thunks';
+import { addHabit, checkHabit, createCustomHabit, getUser } from './thunks';
 
 import { User } from '../../../models';
 import { createSlice } from '@reduxjs/toolkit';
@@ -12,10 +12,18 @@ interface UserState {
 
 const initialState: UserState = {
   user: {
+    _id: '',
+    username: '',
+    fullname: '',
+    avatar: '',
+    rol: '',
     email: '',
     password: '',
     habits: [],
     followers: [],
+    healthExperience: 0,
+    educationExperience: 0,
+    experience: 0,
   },
   isLoading: false,
   isSuccess: false,
@@ -31,44 +39,90 @@ export const userSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.user = {
+        _id: '',
+        username: '',
+        fullname: '',
+        avatar: '',
+        rol: '',
         email: '',
         password: '',
         habits: [],
         followers: [],
+        healthExperience: 0,
+        educationExperience: 0,
+        experience: 0,
       };
     },
   },
   extraReducers: (builder) => {
     builder
+      // GET USER
       .addCase(getUser.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
       })
       .addCase(getUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.isError = false;
         state.user = action.payload;
-        state.user.followers.forEach(
-          (follower) =>
-            (follower.avatar =
-              'https://cdn-icons-png.flaticon.com/512/848/848006.png?w=740&t=st=1669989256~exp=1669989856~hmac=384ca5876286758f437c893b22dfe430475eccaf9250c6a32d9ea615f7ee1f9e')
-        );
       })
       .addCase(getUser.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
+        state.isSuccess = false;
       })
-      //followers
-      .addCase(getFollowers.pending, (state) => {
+      // CREATE CUSTOM HABIT
+      .addCase(createCustomHabit.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
       })
-      .addCase(getFollowers.fulfilled, (state, action) => {
+      .addCase(createCustomHabit.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = action.payload;
+        state.isError = false;
+        state.user.habits = [...state.user.habits, action.payload];
       })
-      .addCase(getFollowers.rejected, (state) => {
+      .addCase(createCustomHabit.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
+        state.isSuccess = false;
+      })
+      // ADD HABIT
+      .addCase(addHabit.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+      })
+      .addCase(addHabit.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.user.habits = [...state.user.habits, action.payload];
+      })
+      .addCase(addHabit.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+      })
+      // CHECK HABIT
+      .addCase(checkHabit.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+      })
+      .addCase(checkHabit.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.user = action.payload;
+      })
+      .addCase(checkHabit.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
       });
   },
 });

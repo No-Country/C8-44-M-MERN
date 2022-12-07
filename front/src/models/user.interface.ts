@@ -1,12 +1,20 @@
-export interface User {
-  _id?: string;
-  username?: string;
-  fullname?: string;
+import { Friend } from './friend.interface';
+import { Habit } from './habit.interface';
+
+export interface BasicUser {
   email: string;
   password?: string;
-  avatar?: string;
-  rol?: string;
-  birdthday?: string;
-  followers?: [];
-  habits?: [];
+}
+
+export interface User extends BasicUser {
+  _id: string;
+  username: string;
+  fullname: string;
+  avatar: string;
+  rol: string;
+  followers: Friend[];
+  habits: Habit[];
+  healthExperience: number;
+  educationExperience: number;
+  experience: number;
 }

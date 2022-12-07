@@ -1,36 +1,31 @@
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import Confetti from 'react-confetti';
+import { Habit as HabitType } from '../models';
 import { Link } from 'react-router-dom';
 import { MdCheckCircle } from 'react-icons/md';
+import { checkHabit } from '../redux/features';
 import { parseClassName } from 'react-toastify/dist/utils';
 import { tempColorAssing } from '../utils/changeColor';
+import { useAppDispatch } from '../redux/hooks';
 import { useState } from 'react';
 
-interface Habit {
-  _id: number;
-  name: string;
-  frequency?: string;
-  category?: string;
-  description?: string;
-  isComplete?: boolean;
-  showChecked?: boolean;
-  experience: any;
-}
-
-const Habit = ({
-  name,
-  frequency,
-  category,
-  description,
-  experience,
-  showChecked,
-  _id,
-}: Habit) => {
+const Habit = (
+  {
+    name,
+    frequency,
+    category,
+    description,
+    experience,
+    isDone,
+    _id,
+  }: HabitType,
+  showChecked: boolean
+) => {
   const [party, setParty] = useState(false);
-  const [isComplete, setIsComplete] = useState(false);
-  const handleCheck = () => {
+  const dispatch = useAppDispatch();
+  const handleCheck = async () => {
+    await dispatch(checkHabit(_id));
     setParty(true);
-    setIsComplete(true);
   };
   return (
     <div className="flex items-center justify-between rounded-md bg-secondary-light/30 w-full my-3">
@@ -42,28 +37,22 @@ const Habit = ({
       <div className="pr-5 flex items-center gap-6">
         <span
           className={`flex text-xs font-bold ${tempColorAssing(
-            experience.level,
+            Math.round(experience / 100),
             'class'
           )} text-secondary-dark dark:text-secondary-light`}
         >
-          lvl {experience.level}
+          lvl {Math.round(experience / 100)}
         </span>
-        {showChecked ? (
-          isComplete ? (
-            <MdCheckCircle
-              color={'#5ED55E'}
-              size={'35px'}
-              className="cursor-pointer"
-            />
-          ) : (
-            <AiOutlineCheckCircle
-              className="cursor-pointer"
-              color={'#8492a6'}
-              size={'35px'}
-              onClick={handleCheck}
-            />
-          )
-        ) : null}
+        {isDone ? (
+          <MdCheckCircle color={'#5ED55E'} size={'35px'} />
+        ) : (
+          <AiOutlineCheckCircle
+            className="cursor-pointer"
+            color={'#8492a6'}
+            size={'35px'}
+            onClick={handleCheck}
+          />
+        )}
       </div>
       <Confetti
         numberOfPieces={party ? 300 : 0}

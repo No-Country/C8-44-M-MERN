@@ -1,54 +1,66 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Header, Loader, Navbar } from "../../components";
-import { addHabit, getHabits } from "../../redux/features";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { Header, Loader, Navbar } from '../../components';
+import { Link, useNavigate } from 'react-router-dom';
+import { addHabit, getHabits } from '../../redux/features';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useEffect, useState } from 'react';
+
+import { toast } from 'react-toastify';
 
 const AddHabit = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { isLoading, isSuccess, isError, habits } = useAppSelector(
+    (state) => state.habits
+  );
+  const user = useAppSelector((state) => state.user);
+  const [selectedHabit, setSelectedHabit] = useState('');
 
   useEffect(() => {
     dispatch(getHabits());
   }, []);
 
-  const habitsList = useAppSelector((state) => state.habits);
-  const [selectedHabit, setSelectedHabit] = useState("");
-
-  const selectedHabitHandler = (habitId) => {
-    if (!selectedHabit.includes(habitId)) {
-      setSelectedHabit(habitId);
-    }
+  const selectedHabitHandler = (habitId: string) => {
+    setSelectedHabit(habitId);
   };
 
   const addHabitHandler = async () => {
     await dispatch(addHabit(selectedHabit));
-    navigate("/home");
+    if (user.isSuccess) {
+      toast.success(`Habit added successfully`);
+      navigate('/home');
+    } else if (user.isError) {
+      toast.error(`The habit was already added`);
+    }
   };
 
-  return (
+  return isLoading || user.isLoading ? (
+    <Loader />
+  ) : (
     <>
       <div className="main-container flex flex-col gap-8">
         <Header title="Add Habit" />
         <ul className="lg:grid lg:grid-cols-4 lg:gap-5 2xl:gap-0">
-          {habitsList.habits.map((habit) => (
-            <li key={habit?._id}>
+          {habits.map((habit) => (
+            <li key={habit._id}>
               <div
                 style={{
-                  border: habit?._id === selectedHabit ? "1px solid" : "",
+                  border:
+                    habit._id === selectedHabit
+                      ? '1px solid'
+                      : '1px solid transparent',
                 }}
-                onClick={() => selectedHabitHandler(habit?._id)}
+
+                onClick={() => selectedHabitHandler(habit._id)}
                 className="flex flex-col items-center justify-center rounded-md bg-secondary-light/30 w-full my-3 
                 lg:hover:bg-secondary-light lg:h-36 lg:w-36 xl:h-52 xl:w-52 2xl:h-72 2xl:w-72"
               >
-                <h3
-                  className="text-sm text-center pl-5 p-3 text-secondary-dark dark:text-secondary-light 
+                <h3 className="text-sm text-center pl-5 p-3 text-secondary-dark dark:text-secondary-light 
                   lg:px-0 xl:px-5 lg:text-base xl:text-xl lg:text-primary-dark lg:font-normal 2xl:text-2xl"
-                >
-                  {habit?.name}
+                  {habit.name}
+
                 </h3>
                 <h4 className="hidden lg:block lg:text-sm h-24 text-center text-secondary-regular lg:mx-2 2xl:text-xl 2xl:mx-5">
-                  {habit?.description}
+                  {habit.description}
                 </h4>
               </div>
             </li>

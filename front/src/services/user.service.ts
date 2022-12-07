@@ -1,5 +1,6 @@
 import { BASE_URL } from './config';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const getData = async () => {
   const jwt = localStorage.getItem('jwt');
@@ -11,25 +12,6 @@ const getData = async () => {
         Authorization: `JWT ${parsedJwt}`,
       },
     });
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const getFollowers = async () => {
-  const jwt = localStorage.getItem('jwt');
-  const parsedJwt = jwt && JSON.parse(jwt);
-  try {
-    const response = await axios.get(`${BASE_URL}/user/me`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `JWT ${parsedJwt}`,
-      },
-    });
-    console.log(response);
-    console.log(response.data.followers);
-
     return response.data;
   } catch (error) {
     console.log(error);
@@ -53,20 +35,52 @@ const createHabit = async (habit: any) => {
   }
 };
 
-// const deleteData = async (id: string) => {
-//    let jwt = JSON.parse(localStorage.getItem('jwt') || '{}');
-//    try {
-//       const response = await axios.delete(
-//          `https://c8-44-m-mern-production-4f57.up.railway.app/api/user/${id}`,
-//          {
-//             headers: {
-//                'Content-Type': 'application/json',
-// }
+const addHabit = async (habitId: string) => {
+  const jwt = localStorage.getItem('jwt');
+  const parsedJwt = jwt && JSON.parse(jwt);
+  try {
+    const response = await axios.put(
+      `${BASE_URL}/habits/add`,
+      { id: habitId },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `JWT ${parsedJwt}`,
+        },
+      }
+    );
+
+    return response.data.data;
+  } catch (error: any) {
+    throw new Error(error.response.data.msg);
+  }
+};
+
+const checkHabit = async (habitId: string) => {
+  const jwt = localStorage.getItem('jwt');
+  const parsedJwt = jwt && JSON.parse(jwt);
+  try {
+    const response = await axios.put(
+      `${BASE_URL}/habits/user/${habitId}`,
+      {},
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `JWT ${parsedJwt}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const userService = {
   getData,
-  getFollowers,
   createHabit,
+  addHabit,
+  checkHabit,
 };
 
 export default userService;

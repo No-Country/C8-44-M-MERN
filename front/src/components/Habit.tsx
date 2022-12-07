@@ -26,8 +26,8 @@ const Habit = (
   const [party, setParty] = useState(false);
   const dispatch = useAppDispatch();
   const handleCheck = async () => {
-    await dispatch(checkHabit(_id));
     setParty(true);
+    await dispatch(checkHabit(_id));
   };
 
   return (
@@ -48,7 +48,7 @@ const Habit = (
       <div className="pr-5 flex items-center gap-6">
         <span
           className={`flex text-xs font-bold ${tempColorAssing(
-            Math.round(experience / 100),
+            Math.ceil(experience / 100),
             'class'
           )} text-secondary-dark dark:text-secondary-light`}
         >

@@ -1,10 +1,16 @@
+import { Habit as HabitType, User } from '../../../models';
+import { useEffect, useState } from 'react';
+
 import { Habit } from '../../../components';
-import { Habit as HabitType } from '../../../models';
 import { HiPlus } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/hooks';
 
-const Habits = ({ user }: any) => {
+interface Props {
+  user: User;
+}
+
+const Habits = ({ user }: Props) => {
   /* const { isLoading, isSuccess, isError, user } = useAppSelector(
     (state) => state.user
   ); */
@@ -38,7 +44,7 @@ const Habits = ({ user }: any) => {
           ) : (
             <div className="items-center mt-5 justify-between text-sm  rounded-md bg-secondary-light/30 w-full py-4 px-6">
               <h3 className="text-secondary-dark text-center dark:text-secondary-light">
-                No Habits
+                No Habits for today
               </h3>
             </div>
           )}

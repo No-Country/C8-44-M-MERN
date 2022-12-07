@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 interface Header {
   title: string;
-  editUrl?: string;
+  editUrl: string;
   fn?: () => void;
+  showButton?: boolean;
   showBack?: boolean;
   icon?: any;
 }
@@ -15,6 +16,7 @@ function Header({
   editUrl,
   fn,
   showBack = true,
+  showButton = false,
   icon = <AiOutlineEdit className="text-primary-dark w-5 h-5" />,
 }: Header) {
   const navigate = useNavigate();
@@ -30,14 +32,12 @@ function Header({
       >
         {title}
       </h1>
-      {editUrl || fn ? (
-        <button
-          onClick={() => (fn ? fn() : navigate(editUrl))}
-          className="z-10"
-        >
-          {icon}
-        </button>
-      ) : null}
+      <button
+        onClick={() => (fn ? fn() : navigate(editUrl))}
+        className={`z-10 ${!showButton && 'opacity-0 cursor-not-allowed'}`}
+      >
+        {icon}
+      </button>
     </header>
   );
 }

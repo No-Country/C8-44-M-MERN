@@ -32,7 +32,7 @@ const AddFriends = () => {
             <Friend
               id={user.email}
               key={user.email}
-              name={user.name}
+              name={user.username}
               pictureUrl={user.avatar}
               email={user.email}
               showButton={true}

@@ -8,21 +8,21 @@ import { useState } from 'react';
 const friendsList = [
   {
     _id: '1',
-    name: 'César Herrera',
+    username: 'César Herrera',
     email: 'herrera.cesar.arg@gmail.com',
     avatar: 'https://i.ibb.co/rmy0SYC/pexels-photo-220453.jpg',
     password: '',
   },
   {
     _id: '2',
-    name: 'José Carlos del Valle',
+    username: 'José Carlos del Valle',
     email: 'seck.dv15@gmail.com',
     avatar: 'https://i.ibb.co/qW0ZcR3/pexels-photo-1040880.jpg',
     password: '',
   },
   {
     _id: '3',
-    name: 'Nathalia Riascos',
+    username: 'Nathalia Riascos',
     email: 'riascosnathalia6@gmail.com',
     avatar: 'https://i.ibb.co/D8VnNZ2/pexels-photo-3763188.jpg',
     password: '',

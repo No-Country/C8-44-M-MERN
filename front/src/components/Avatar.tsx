@@ -25,7 +25,7 @@ function Avatar({ user }: Props) {
       />
       <div className="flex flex-col items-center lg:items-start mt-3">
         <h1 className="dark:text-secondary-light  lg:text-lg lg:font-semibold">
-          {user?.name}
+          {user?.username}
         </h1>
         <p className="text-secondary-regular break-words">{user?.email}</p>
       </div>

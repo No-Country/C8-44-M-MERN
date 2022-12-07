@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion';
+
+import { useEffect } from 'react';
+
 import { tempColorAssing } from '../utils/changeColor';
 
 interface Ring {
-  size: number;
-  experience: number;
-  level?: number;
-  color?: string;
-  textColor?: string;
-  fontSize?: string;
+   experience: number;
+   level?: number;
+   color?: string;
+   textColor?: string;
+   fontSize?: string;
 }
 
 const ExperienceRing = ({
+
   size,
   experience,
   level,

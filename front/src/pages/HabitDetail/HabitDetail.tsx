@@ -1,114 +1,65 @@
-import { ExperienceRing, Header } from '../../components';
-
+import { ExperienceRing, Header, Loader, Navbar } from '../../components';
+import profilePicture from '../../assets/profile.jpg';
 import { Details } from './components';
 import { tempColorAssing } from '../../utils/changeColor';
 import { useAppSelector } from '../../redux/hooks';
 import { useParams } from 'react-router-dom';
 
-type Habit = {
-  id: number;
-  habitName: string;
-  frequency: string;
-  category: string;
-  description: string;
-  priority: number;
-  experience: {
-    progress: number;
-    level: number;
-  };
-};
-/* const habitsList: Habit[] = [
-  {
-    id: 1,
-    habitName: 'Brush your teeth',
-    frequency: 'once a day',
-    category: 'Health',
-    description: 'Brush your teeth daily',
-    priority: 3,
-    experience: {
-      progress: 50,
-      level: 1,
-    },
-  },
-  {
-    id: 2,
-    habitName: 'cycle for 1h',
-    frequency: 'once a day',
-    category: 'Health',
-    description: 'cycle for 1h',
-    priority: 5,
-    experience: {
-      progress: 30,
-      level: 2,
-    },
-  },
-  {
-    id: 3,
-    habitName: 'Medical check',
-    frequency: 'once a month',
-    category: 'Health',
-    description: 'Medical check',
-    priority: 3,
-    experience: {
-      progress: 40,
-      level: 3,
-    },
-  },
-  {
-    id: 4,
-    habitName: 'Read a book',
-    frequency: 'once a day',
-    category: 'Education',
-    description: 'Read a book',
-    priority: 3,
-    experience: {
-      progress: 60,
-      level: 2,
-    },
-  },
-  {
-    id: 5,
-    habitName: 'Go to the bed early',
-    frequency: 'once a day',
-    category: 'Health',
-    description: 'Go to the bed early',
-    priority: 3,
-    experience: {
-      progress: 90,
-      level: 5,
-    },
-  },
-]; */
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { useEffect } from 'react';
+import { getHabitById, getUser } from '../../redux/features';
 
 function HabitDetail() {
-  const { id } = useParams();
-  const { isLoading, isSuccess, isError, user } = useAppSelector(
-    (state) => state.user
-  );
-  const data = user.habits.find((habit) => String(habit._id) === id);
-  return (
-    <div className="main-container flex flex-col gap-9">
-      <Header title="Habit Details" />
-      <p className="text-center font-bold text-3xl">{data.name}</p>
-      <div className="flex flex-col items-center">
-        <h3
-          className={`text-2xl font-bold text-${tempColorAssing(
-            data.experience / 10,
-            'class'
-          )}`}
-        >
-          Lvl {data.experience / 10}
-        </h3>
-        <ExperienceRing
-          size={170}
-          textColor={`${tempColorAssing(data.experience / 10, 'class')}`}
-          experience={data.experience}
-          color={tempColorAssing(data.experience / 10, 'hex')}
-        />
-      </div>
-      <Details data={data} />
-    </div>
-  );
+   const { id } = useParams();
+   const dispatch = useAppDispatch();
+   useEffect(() => {
+      const habit = async () => {
+         await dispatch(getHabitById(id!));
+      };
+      habit();
+   }, []);
+   const { isLoading, isSuccess, isError, habit } = useAppSelector(
+      (state) => state.habit
+   );
+   type Habit = {
+      name: string;
+      experience: number;
+      frecuency: string;
+      category: string;
+      description: string;
+   };
+   const { name, experience, frecuency, category, description } =
+      habit as Habit;
+   return isLoading ? (
+      <Loader />
+   ) : (
+      <>
+         <div className='main-container flex flex-col gap-9  dark:bg-gray-800'>
+            <Header title='Habit Details' />
+            <div className='lg:mt-28 '>
+               <p className='text-center font-bold text-3xl lg:text-left dark:text-white'>
+                  {name}
+               </p>
+               <div className='lg:flex flex-row-reverse lg:items-center lg:mt-1 '>
+                  <div className='flex flex-col items-center lg:w-1/2'>
+                     <ExperienceRing
+                        textColor={`${tempColorAssing(experience, 'class')}`}
+                        experience={experience}
+                        color={tempColorAssing(experience, 'hex')}
+                     />
+                  </div>
+                  <Details
+                     frecuency={frecuency}
+                     category={category}
+                     description={description}
+                  />
+               </div>
+            </div>
+         </div>
+         <Navbar />
+      </>
+   );
+
 }
 
 export default HabitDetail;

@@ -14,6 +14,7 @@ export const store = configureStore({
     auth: authSlice.reducer,
     user: userSlice.reducer,
     habits: habitsSlice.reducer,
+    habit: habitsSlice.reducer,
     theme: themeSlice.reducer,
     allUser: addFriendSlice.reducer,
     createHabits: createHabitSlice.reducer,

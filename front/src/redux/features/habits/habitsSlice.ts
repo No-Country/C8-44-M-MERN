@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getHabits } from './thunks';
+import { getHabitById, getHabits } from './thunks';
 
 interface HabitsState {
   habits: [];
+  habit: {};
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;
@@ -10,6 +11,7 @@ interface HabitsState {
 
 const initialState: HabitsState = {
   habits: [],
+  habit: {},
   isLoading: false,
   isSuccess: false,
   isError: false,
@@ -24,6 +26,7 @@ export const habitsSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.habits = [];
+      state.habit = {};
     },
   },
   extraReducers: (builder) => {
@@ -39,6 +42,19 @@ export const habitsSlice = createSlice({
       state.isLoading = false;
       state.isError = true;
     });
+    builder.addCase(getHabitById.pending, (state) => {
+      state.isLoading = true;
+    })
+    builder.addCase(getHabitById.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.habit = action.payload;
+    })
+    builder.addCase(getHabitById.rejected, (state) => {
+      state.isLoading = false;
+      state.isError = true;
+    })
+
   },
 });
 export const { resetHabits } = habitsSlice.actions;

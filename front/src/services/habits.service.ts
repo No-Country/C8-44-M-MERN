@@ -13,6 +13,24 @@ const getHabits = async () => {
     console.log(error);
   }
 };
+const getHabitById = async (id: string) => {
+  const jwt = localStorage.getItem('jwt');
+  const parsedJwt = jwt && JSON.parse(jwt);
+  try{
+    const response = await axios.get(`${BASE_URL}/habits/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${parsedJwt}`,
+      },
+    });
+    
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  
+  }
+
+}
 
 const addHabit = async (habitId: any) => {
   const jwt = localStorage.getItem('jwt');
@@ -31,7 +49,9 @@ const addHabit = async (habitId: any) => {
 }
 
 const habitsService = {
-  getHabits,
+
+   getHabits,
+   getHabitById,
   addHabit
 };
 export default habitsService;

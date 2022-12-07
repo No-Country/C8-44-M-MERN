@@ -1,11 +1,11 @@
-import { HomeExperience, HomeFriends, HomeHabits } from './components';
-import { Loader, Navbar } from '../../components';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { HomeExperience, HomeFriends, HomeHabits } from "./components";
+import { Loader, Navbar } from "../../components";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
-import { Link } from 'react-router-dom';
-import { getUser } from '../../redux/features';
-import profilePicture from '../../assets/profile.jpg';
-import { useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { getUser } from "../../redux/features";
+import profilePicture from "../../assets/profile.jpg";
+import { useEffect } from "react";
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -13,12 +13,11 @@ const Home = () => {
     (state) => state.user
   );
   useEffect(() => {
-    user.email === '' && dispatch(getUser());
+    user.email === "" && dispatch(getUser());
   }, []);
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <>
+      <Loader isLoading={isLoading} />
       <div className="main-container flex flex-col gap-4 lg:gap-8 dark:bg-gray-800">
         <div className="flex justify-between">
           <h1 className="title text-secondary-dark dark:text-white">Home</h1>
@@ -26,7 +25,7 @@ const Home = () => {
             <div className="h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden">
               <img
                 src={
-                  user?.avatar == 'http://image.com'
+                  user?.avatar == "http://image.com"
                     ? profilePicture
                     : user?.avatar
                 }
@@ -42,7 +41,6 @@ const Home = () => {
           <HomeFriends user={user} />
         </div>
       </div>
-      {/* <Navbar /> */}
     </>
   );
 };

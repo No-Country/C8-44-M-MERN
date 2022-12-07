@@ -9,78 +9,78 @@ import { Link } from 'react-router-dom';
 import { useDimensions } from '../../hooks';
 
 
-const habitsList = [
-	{
-		"_id": "638e3c16e90a453b8e44dfd1",
-		"name": "Learn a new lenguaje",
-		"description": "English? Spanish? Portuguese? choose one!",
-		"category": "Education",
-		"experience": 0,
-		"frecuency": "each day",
-		"isDone": false,
-		"__v": 0
-	},
-	{
-		"_id": "638e3c1d13401732b3b1653e",
-		"name": "Floss",
-		"description": "Floss my teeth every day",
-		"category": "Health",
-		"experience": 0,
-		"frecuency": "each day",
-		"isDone": false,
-		"__v": 0
-	},
-	{
-		"_id": "638e3c51e90a453b8e44dfd3",
-		"name": "Read a book",
-		"description": "try to read 20 pages of a book per day",
-		"category": "Education",
-		"experience": 0,
-		"frecuency": "each day",
-		"isDone": false,
-		"__v": 0
-	},
-	{
-		"_id": "638e3c5813401732b3b16540",
-		"name": "Walk 10 km",
-		"description": "Walk in the park until reaching 10 km",
-		"category": "Health",
-		"experience": 0,
-		"frecuency": "each day",
-		"isDone": false,
-		"__v": 0
-	},
-	{
-		"_id": "638e3cd013401732b3b16542",
-		"name": "Meditation",
-		"description": "Meditate for 5 minutes",
-		"category": "Health",
-		"experience": 0,
-		"frecuency": "each day",
-		"isDone": false,
-		"__v": 0
-	},
-	{
-		"_id": "638e3cd2e90a453b8e44dfd5",
-		"name": "listen to an hour of podcasts",
-		"description": "it's a good way to learn",
-		"category": "Education",
-		"experience": 0,
-		"frecuency": "each day",
-		"isDone": false,
-		"__v": 0
-	},
-	{
-		"_id": "638f7a47822e2f1b026f2938",
-		"name": "listen to an hour of podcasts2",
-		"description": "it's a good way to learn2",
-		"category": "Education",
-		"experience": 0,
-		"frecuency": "each day",
-		"isDone": false,
-		"__v": 0
-	}
-]
+// const habitsList = [
+// 	{
+// 		"_id": "638e3c16e90a453b8e44dfd1",
+// 		"name": "Learn a new lenguaje",
+// 		"description": "English? Spanish? Portuguese? choose one!",
+// 		"category": "Education",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3c1d13401732b3b1653e",
+// 		"name": "Floss",
+// 		"description": "Floss my teeth every day",
+// 		"category": "Health",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3c51e90a453b8e44dfd3",
+// 		"name": "Read a book",
+// 		"description": "try to read 20 pages of a book per day",
+// 		"category": "Education",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3c5813401732b3b16540",
+// 		"name": "Walk 10 km",
+// 		"description": "Walk in the park until reaching 10 km",
+// 		"category": "Health",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3cd013401732b3b16542",
+// 		"name": "Meditation",
+// 		"description": "Meditate for 5 minutes",
+// 		"category": "Health",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3cd2e90a453b8e44dfd5",
+// 		"name": "listen to an hour of podcasts",
+// 		"description": "it's a good way to learn",
+// 		"category": "Education",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638f7a47822e2f1b026f2938",
+// 		"name": "listen to an hour of podcasts2",
+// 		"description": "it's a good way to learn2",
+// 		"category": "Education",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	}
+// ]
 
 const HabitsList = () => {
   const { isLoading, isSuccess, isError, user } = useAppSelector(
@@ -154,7 +154,7 @@ const HabitsList = () => {
           <button className="btn btn-primary">Add habit</button>
         </Link>
         <div className="lg:mt-6 lg:grid lg:grid-cols-4 lg:justify-items-center lg:gap-8 lg:items-start">
-          {OrderBy(selectedOrder, searchResult).map((habit) => (
+          {OrderBy(selectedOrder, searchResult) .map((habit) => (
             <Habit
               key={habit._id}
               _id={habit._id}
@@ -185,7 +185,6 @@ const HabitsList = () => {
           </select>
         </div>
       </div>
-      {/* <Navbar /> */}
     </>
   );
 };

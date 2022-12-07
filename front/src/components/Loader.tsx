@@ -1,6 +1,10 @@
-const Loader = () => {
+const Loader = ({ isLoading }: any) => {
   return (
-    <div className="w-full h-screen flex items-center justify-center dark:bg-gray-900">
+    <div
+      className={`w-full h-screen flex items-center justify-center fixed bg-white dark:bg-gray-900 z-50 ${
+        !isLoading && 'hidden'
+      }`}
+    >
       <div className="spinner ">
         <svg viewBox="25 25 50 50" className="circular">
           <circle

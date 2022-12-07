@@ -21,7 +21,7 @@ function Header({
   return (
     <header className="flex justify-between items-center mb-4">
       {showBack && (
-        <button onClick={() => navigate(-1)} className="z-10">
+        <button onClick={() => navigate(-1)} className="z-10 lg:hidden">
           <AiOutlineArrowLeft className="text-primary-dark w-5 h-5" />
         </button>
       )}

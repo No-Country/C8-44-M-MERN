@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-const dimensions = window.screen.width >= 1024
-
 const useDimensions = () => {
-    const [lg, setDimensions] = useState(dimensions)
+    const [lg, setDimensions] = useState(window.innerWidth >= 1024)
     useEffect(() => {
 
         const handleDimensions = () => {

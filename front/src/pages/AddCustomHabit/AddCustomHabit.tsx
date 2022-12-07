@@ -10,9 +10,9 @@ const AddCustomHabit = () => {
   const { isLoading, isSuccess, isError, user } = useAppSelector(
     (state) => state.user
   );
-  useEffect(() => {
+  /* useEffect(() => {
     user.email === '' && dispatch(getUser());
-  }, []);
+  }, []); */
   return isLoading ? (
     <Loader />
   ) : (

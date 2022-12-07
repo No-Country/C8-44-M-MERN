@@ -1,40 +1,33 @@
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import Confetti from 'react-confetti';
+import { Habit as HabitType } from '../models';
 import { Link } from 'react-router-dom';
 import { MdCheckCircle } from 'react-icons/md';
+import { checkHabit } from '../redux/features';
 import { parseClassName } from 'react-toastify/dist/utils';
 import { tempColorAssing } from '../utils/changeColor';
+import { useAppDispatch } from '../redux/hooks';
 import { useState } from 'react';
 import ExperienceRing from './ExperienceRing';
 
-interface Habit {
-  _id: number;
-  name: string;
-  frequency?: string;
-  category?: string;
-  description?: string;
-  isComplete?: boolean;
-  showChecked?: boolean;
-  experience: any;
-  sizeExperience?: number
-}
-
-const Habit = ({
-  name,
-  frequency,
-  category,
-  description,
-  experience,
-  isComplete,
-  showChecked,
-  sizeExperience = 100,
-  _id,
-}: Habit) => {
+const Habit = (
+  {
+    name,
+    frequency,
+    category,
+    description,
+    experience,
+    isDone,
+    sizeExperience = 100,
+    _id,
+  }: HabitType,
+  showChecked: boolean
+) => {
   const [party, setParty] = useState(false);
-  const [isCompleteState, setIsComplete] = useState(isComplete);
-  const handleCheck = () => {
+  const dispatch = useAppDispatch();
+  const handleCheck = async () => {
+    await dispatch(checkHabit(_id));
     setParty(true);
-    setIsComplete(true);
   };
 
   return (
@@ -55,11 +48,13 @@ const Habit = ({
       <div className="pr-5 flex items-center gap-6">
         <span
           className={`flex text-xs font-bold ${tempColorAssing(
-            experience.level,
+            Math.round(experience / 100),
             'class'
           )} text-secondary-dark dark:text-secondary-light`}
         >
-          <ExperienceRing
+          {!sizeExperience? 
+            'lvl ${Math.round(experience / 100)}'
+          : <ExperienceRing
             size={sizeExperience}
             experience={40}
             level={2}
@@ -67,26 +62,20 @@ const Habit = ({
             textColor={"primary-dark"}
             fontSize={"text-10 lg:text-sm"}
           />
+        }
         </span>
         <div className={`location.pathname === '/habits') && lg:hidden`}>
-          {showChecked ? (
-            isCompleteState ? (
-              <MdCheckCircle
-                color={'#5ED55E'}
-                size={'35px'}
-                className="cursor-pointer"
-              />
-            ) : (
-              <AiOutlineCheckCircle
-                className="cursor-pointer"
-                color={'#8492a6'}
-                size={'35px'}
-                onClick={handleCheck}
-              />
-            )
-          ) : null}
-        </div>
-        
+          {isDone ? (
+            <MdCheckCircle color={'#5ED55E'} size={'35px'} />
+          ) : (
+            <AiOutlineCheckCircle
+              className="cursor-pointer"
+              color={'#8492a6'}
+              size={'35px'}
+              onClick={handleCheck}
+            />        
+        )}
+      </div>
       </div>
       <Confetti
         numberOfPieces={party ? 300 : 0}

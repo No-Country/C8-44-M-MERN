@@ -5,6 +5,9 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { Details } from './components';
 import profilePicture from '../../assets/profile.jpg';
 import { tempColorAssing } from '../../utils/changeColor';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 

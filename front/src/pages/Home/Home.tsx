@@ -1,11 +1,11 @@
-import { HomeExperience, HomeFriends, HomeHabits } from './components';
-import { Loader, Navbar } from '../../components';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { HomeExperience, HomeFriends, HomeHabits } from "./components";
+import { Loader, Navbar } from "../../components";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
-import { Link } from 'react-router-dom';
-import { getUser } from '../../redux/features';
-import profilePicture from '../../assets/profile.jpg';
-import { useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { getUser } from "../../redux/features";
+import profilePicture from "../../assets/profile.jpg";
+import { useEffect } from "react";
 
 const Home = () => {
   const dispatch = useAppDispatch();
@@ -13,7 +13,7 @@ const Home = () => {
     (state) => state.user
   );
   useEffect(() => {
-    user.email === '' && dispatch(getUser());
+    user.email === "" && dispatch(getUser());
   }, []);
   return (
     <>
@@ -25,7 +25,7 @@ const Home = () => {
             <div className="h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden">
               <img
                 src={
-                  user?.avatar == 'http://image.com'
+                  user?.avatar == "http://image.com"
                     ? profilePicture
                     : user?.avatar
                 }

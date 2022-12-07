@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from 'react';
-
 import { AvatarEdit } from '../../../components';
-import { User } from '../../../models';
-
-const imgDedault =
-  'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+import { useState } from 'react';
 
 const user = {
   username: 'Consuelo',
   email: 'consuelo@gmail.com',
   fullname: 'Consuelo Martinez',
-  avatar: '',
+  avatar:
+    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
 };
 
 function EditProfile({ fn }: { fn: () => void }) {
-  const photoProfile = user?.avatar ? user.avatar : imgDedault;
+  const photoProfile = user.avatar;
   const [data, setData] = useState({
     avatar: photoProfile,
     username: user.username,

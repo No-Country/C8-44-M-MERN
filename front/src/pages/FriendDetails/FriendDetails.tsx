@@ -2,12 +2,12 @@ import { Avatar, Header, Loader } from '../../components';
 import { Experience, Habits } from './compontents';
 import { addFriend, getUser, getUsers } from '../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { AiOutlinePlus } from 'react-icons/ai';
 import { User } from '../../models';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 const FriendDetails = () => {
   const { id } = useParams();

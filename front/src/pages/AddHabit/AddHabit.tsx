@@ -1,4 +1,4 @@
-import { Header, Loader, Navbar } from '../../components';
+import { Header, Loader } from '../../components';
 import { Link, useNavigate } from 'react-router-dom';
 import { addHabit, getHabits, getUser } from '../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';

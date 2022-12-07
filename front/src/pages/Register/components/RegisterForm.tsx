@@ -3,10 +3,8 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { CiWarning } from 'react-icons/ci';
-import { FaGoogle } from 'react-icons/fa';
 import { register as signup } from '../../../redux/features';
 import { useAppDispatch } from '../../../redux/hooks';
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 interface FormValues {
@@ -53,7 +51,6 @@ const Message = ({ errors, property, type, text }: MessageForm) => {
 };
 
 const Form = () => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const {

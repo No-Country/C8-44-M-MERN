@@ -1,9 +1,9 @@
-import { Friend } from '../../../models';
+import { User } from '../../../models';
 import { createSlice } from '@reduxjs/toolkit';
 import { getUsers } from './thunks';
 
 interface UsersState {
-  users: Friend[];
+  users: User[];
   isLoading: boolean;
   isSuccess: boolean;
   isError: boolean;

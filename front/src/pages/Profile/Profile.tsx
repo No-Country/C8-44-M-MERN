@@ -1,23 +1,12 @@
-import { Avatar, Header, Loader, Navbar } from '../../components';
-import { GiToken, GiTrophyCup } from 'react-icons/gi';
+import { Avatar, Header, Loader } from '../../components';
 import { RiToggleFill, RiToggleLine } from 'react-icons/ri';
 import { changeTheme, getUser, logout, resetUser } from '../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
 
 import EditProfile from './components/EditProfile';
-import profilePicture from '../../assets/profile.jpg';
+import { GiTrophyCup } from 'react-icons/gi';
 import { useNavigate } from 'react-router-dom';
-
-const imgDedault =
-  'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
-
-const user = {
-  username: 'Consuelo',
-  email: 'consuelo@gmail.com',
-  avatar: '',
-  password: '',
-};
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -126,11 +115,9 @@ const Profile = () => {
             >
               log out
             </button>
-            {/* <button className="p-1">delete account</button> */}
           </div>
         </div>
       </div>
-      {/* <Navbar /> */}
     </>
   );
 };

@@ -1,9 +1,9 @@
-import { ExperienceRing, Header, Loader, Navbar } from '../../components';
-import { getHabitById, getUser } from '../../redux/features';
+import { ExperienceRing, Header, Loader } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { Details } from './components';
 import { Habit } from '../../models';
+import { getUser } from '../../redux/features';
 import { tempColorAssing } from '../../utils/changeColor';
 import { useDimensions } from '../../hooks';
 import { useEffect } from 'react';
@@ -74,7 +74,6 @@ function HabitDetail() {
           </div>
         </div>
       </div>
-      <Navbar />
     </>
   );
 }

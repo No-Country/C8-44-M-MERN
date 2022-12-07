@@ -1,9 +1,6 @@
 import { Habit as HabitType, User } from '../../../models';
 
 import { Habit } from '../../../components';
-import { HiPlus } from 'react-icons/hi';
-import { Link } from 'react-router-dom';
-import React from 'react';
 
 interface Props {
   user: User;

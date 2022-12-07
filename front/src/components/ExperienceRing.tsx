@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import { tempColorAssing } from '../utils/changeColor';
-import { useEffect } from 'react';
 
 interface Ring {
   experience: number;

@@ -1,8 +1,8 @@
-import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 import { Link, useLocation } from 'react-router-dom';
 
 import { AiFillHome } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
+import { IoChevronBack } from 'react-icons/io5';
 import { TiThList } from 'react-icons/ti';
 import profilePicture from '../assets/profile.jpg';
 import { useState } from 'react';

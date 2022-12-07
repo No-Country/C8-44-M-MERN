@@ -1,15 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { getUser, login } from '../../../redux/features';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { useEffect, useState } from 'react';
 
 import { BasicUser } from '../../../models/user.interface';
 import { CiWarning } from 'react-icons/ci';
-import { FaGoogle } from 'react-icons/fa';
-import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { login } from '../../../redux/features';
+import { useAppDispatch } from '../../../redux/hooks';
+import { useState } from 'react';
 
 type Error = {
   [key: string]: any;
@@ -49,6 +46,7 @@ const Message = ({ errors, property, type, text }: MessageForm) => {
 
 const Form = () => {
   const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,

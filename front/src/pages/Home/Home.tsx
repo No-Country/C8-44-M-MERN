@@ -1,10 +1,8 @@
 import { HomeExperience, HomeFriends, HomeHabits } from './components';
-import { Loader, Navbar } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { Link } from 'react-router-dom';
 import { getUser } from '../../redux/features';
-import profilePicture from '../../assets/profile.jpg';
 import { useEffect } from 'react';
 
 const Home = () => {
@@ -12,9 +10,11 @@ const Home = () => {
   const { isLoading, isSuccess, isError, user } = useAppSelector(
     (state) => state.user
   );
+
   useEffect(() => {
     user.email === '' && dispatch(getUser());
   }, []);
+
   return (
     <>
       <div className="main-container flex flex-col gap-4 lg:gap-8 dark:bg-gray-800">
@@ -23,11 +23,7 @@ const Home = () => {
           <Link to="/profile">
             <div className="h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden">
               <img
-                src={
-                  user?.avatar == 'http://image.com'
-                    ? profilePicture
-                    : user?.avatar
-                }
+                src={user.avatar}
                 alt="Profile picture"
                 className="object-cover h-full "
               />

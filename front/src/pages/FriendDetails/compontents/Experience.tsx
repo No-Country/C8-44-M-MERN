@@ -2,9 +2,11 @@ import { ExperienceRing } from '../../../components';
 import { User } from '../../../models';
 
 const lg = window.screen.width > window.screen.height;
+
 interface Props {
   user: User;
 }
+
 const Experience = ({ user }: Props) => {
   return (
     <>

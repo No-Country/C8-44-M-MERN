@@ -13,7 +13,6 @@ import {
 } from '../pages';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
 
-import App from '../App';
 import { Navbar } from '../components';
 import { ProtectedRoute } from './ProtectedRoutes';
 

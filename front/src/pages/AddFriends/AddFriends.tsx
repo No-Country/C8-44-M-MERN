@@ -1,4 +1,4 @@
-import { Friend, Header, Loader, Navbar } from '../../components';
+import { Friend, Header, Loader } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
 

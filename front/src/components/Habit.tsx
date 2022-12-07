@@ -5,7 +5,6 @@ import { Habit as HabitType } from '../models';
 import { Link } from 'react-router-dom';
 import { MdCheckCircle } from 'react-icons/md';
 import { checkHabit } from '../redux/features';
-import { parseClassName } from 'react-toastify/dist/utils';
 import { tempColorAssing } from '../utils/changeColor';
 import { useAppDispatch } from '../redux/hooks';
 import { useState } from 'react';

@@ -1,16 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import { FcReadingEbook, FcSportsMode } from 'react-icons/fc';
 import { GiHealthNormal, GiOpenBook } from 'react-icons/gi';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { useEffect, useState } from 'react';
 
 import { BasicHabit } from '../../../models/habit.interface';
 import { CiWarning } from 'react-icons/ci';
-import { Habit } from '../../../models';
 import { createCustomHabit } from '../../../redux/features';
 import { toast } from 'react-toastify';
+import { useAppDispatch } from '../../../redux/hooks';
 import { useNavigate } from 'react-router-dom';
 
 type Error = {
@@ -63,8 +59,6 @@ const Form = () => {
     toast.success('Successfully created habit');
     navigate('/home');
   };
-
-  /* const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false); */
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-form">

@@ -1,15 +1,10 @@
-import { Friend, Loader } from '../../../components';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-
 import { CiCirclePlus } from 'react-icons/ci';
+import { Friend } from '../../../components';
 import { HiPlus } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { User } from '../../../models';
-import { getUser } from '../../../redux/features';
-import { useEffect } from 'react';
 
 const Friends = ({ user }: any) => {
-  const dispatch = useAppDispatch();
   return (
     <div className="mb-10 lg:w-2/12">
       <div className="flex justify-between items-center">

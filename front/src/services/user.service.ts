@@ -1,6 +1,5 @@
 import { BASE_URL } from './config';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 const getData = async () => {
   const jwt = localStorage.getItem('jwt');

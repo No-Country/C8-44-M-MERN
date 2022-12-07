@@ -1,7 +1,5 @@
 import { BasicHabit } from './../../../models/habit.interface';
-import { Habit } from '../../../models';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import { userService } from '../../../services';
 
 export const getUser = createAsyncThunk('user/me', async () => {

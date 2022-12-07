@@ -1,5 +1,4 @@
 import { BasicUser } from '../../../models/user.interface';
-import { User } from '../../../models';
 import { authService } from '../../../services';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 

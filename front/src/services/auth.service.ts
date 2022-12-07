@@ -1,6 +1,5 @@
 import { BASE_URL } from './config';
 import { BasicUser } from '../models/user.interface';
-import { User } from '../models';
 import axios from 'axios';
 
 const register = async (user: BasicUser): Promise<{ jwt: string | null }> => {

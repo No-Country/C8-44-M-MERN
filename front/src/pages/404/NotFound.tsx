@@ -1,6 +1,5 @@
 import Image from './404.png';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../redux/hooks';
 
 const NotFound = () => {
   return (

@@ -1,19 +1,14 @@
 import { Habit as HabitType, User } from '../../../models';
-import { useEffect, useState } from 'react';
 
 import { Habit } from '../../../components';
 import { HiPlus } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../../redux/hooks';
 
 interface Props {
   user: User;
 }
 
 const Habits = ({ user }: Props) => {
-  /* const { isLoading, isSuccess, isError, user } = useAppSelector(
-    (state) => state.user
-  ); */
   return (
     <div className="lg:w-7/12 lg:flex lg:flex-col lg:justify-between">
       <div>

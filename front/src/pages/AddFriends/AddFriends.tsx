@@ -6,19 +6,19 @@ import { getAllUsers } from '../../redux/features';
 
 // const friendsList = [
 //   {
-//     name: 'César Herrera',
+//     username: 'César Herrera',
 //     email: 'herrera.cesar.arg@gmail.com',
-//     photo: 'https://i.ibb.co/rmy0SYC/pexels-photo-220453.jpg',
+//     avatar: 'https://i.ibb.co/rmy0SYC/pexels-photo-220453.jpg',
 //   },
 //   {
-//     name: 'José Carlos del Valle',
+//     username: 'José Carlos del Valle',
 //     email: 'seck.dv15@gmail.com',
-//     photo: 'https://i.ibb.co/qW0ZcR3/pexels-photo-1040880.jpg',
+//     avatar: 'https://i.ibb.co/qW0ZcR3/pexels-photo-1040880.jpg',
 //   },
 //   {
-//     name: 'Nathalia Riascos',
+//     username: 'Nathalia Riascos',
 //     email: 'riascosnathalia6@gmail.com',
-//     photo: 'https://i.ibb.co/D8VnNZ2/pexels-photo-3763188.jpg',
+//     avatar: 'https://i.ibb.co/D8VnNZ2/pexels-photo-3763188.jpg',
 //   },
 // ];
 

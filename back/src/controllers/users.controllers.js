@@ -172,22 +172,12 @@ const getUserByName = async (req, res, next) => {
 
 const editUser = async (req, res, next) => {
   try {
-    let username = req.body.username;
-    let modifiedUser = {
-      _id: req.body._id,
-      username: req.body.username,
-      fullname: req.body.fullname,
-      email: req.body.email,
-      password: req.body.password,
-      birthday: req.body.birthday,
-      avatar: req.body.avatar,
-      rol: req.body.rol,
-      isActive: req.body.isActive,
-      isPublic: req.body.isPublic,
-      habits: [],
-    };
-    usersApi.updateOne(username, modifiedUser);
-    res.json({ msg: "User modificado!", data: modifiedUser });
+    const newData = req.body;
+    console.log(newData);
+    let user = await usersApi.findOneById(req.user.id);
+    let newUser ={...user._doc,...newData}
+    usersApi.updateOne(user.username, newUser);
+    res.json({ msg: "User modificado!", data: newUser });
   } catch (error) {
     next({
       status: 400,
@@ -213,7 +203,7 @@ const deleteUser = async (req, res, next) => {
 
 const addHabit = async (req, res, next) => {
   try {
-    let user = await usersApi.findOneById(req.params.id); //este user soy YO
+    let user = await usersApi.findOneById(req.params.id);
     let habit = await habitsApi.findOneById(req.body.id);
     user.habits.push(habit);
     await usersApi.updateOne(user.username, user);

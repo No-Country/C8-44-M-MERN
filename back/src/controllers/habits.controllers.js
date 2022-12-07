@@ -71,7 +71,7 @@ const createCustomHabit = async (req, res, next) => {
 
     user.habits.push(newHabit);
     await usersApi.updateOne(user.username, user);
-    newHabit.id = user.habits[user.habits.length - 1]._id;
+    newHabit._id = user.habits[user.habits.length - 1]._id;
     res.json({
       msg: "habito creado",
       data: {

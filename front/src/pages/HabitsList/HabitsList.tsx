@@ -5,6 +5,82 @@ import { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import { HiPlus } from 'react-icons/hi';
 import { getUser } from '../../redux/features';
+import { Link } from 'react-router-dom';
+import { useDimensions } from '../../hooks';
+
+
+// const habitsList = [
+// 	{
+// 		"_id": "638e3c16e90a453b8e44dfd1",
+// 		"name": "Learn a new lenguaje",
+// 		"description": "English? Spanish? Portuguese? choose one!",
+// 		"category": "Education",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3c1d13401732b3b1653e",
+// 		"name": "Floss",
+// 		"description": "Floss my teeth every day",
+// 		"category": "Health",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3c51e90a453b8e44dfd3",
+// 		"name": "Read a book",
+// 		"description": "try to read 20 pages of a book per day",
+// 		"category": "Education",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3c5813401732b3b16540",
+// 		"name": "Walk 10 km",
+// 		"description": "Walk in the park until reaching 10 km",
+// 		"category": "Health",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3cd013401732b3b16542",
+// 		"name": "Meditation",
+// 		"description": "Meditate for 5 minutes",
+// 		"category": "Health",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638e3cd2e90a453b8e44dfd5",
+// 		"name": "listen to an hour of podcasts",
+// 		"description": "it's a good way to learn",
+// 		"category": "Education",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	},
+// 	{
+// 		"_id": "638f7a47822e2f1b026f2938",
+// 		"name": "listen to an hour of podcasts2",
+// 		"description": "it's a good way to learn2",
+// 		"category": "Education",
+// 		"experience": 0,
+// 		"frecuency": "each day",
+// 		"isDone": false,
+// 		"__v": 0
+// 	}
+// ]
 
 const HabitsList = () => {
   const { isLoading, isSuccess, isError, user } = useAppSelector(
@@ -13,6 +89,9 @@ const HabitsList = () => {
   const dispatch = useAppDispatch();
   const [selectedOrder, setSelectedOrder] = useState('proximity');
   const [searchResult, setSearchResult] = useState(user.habits);
+  const { lg } = useDimensions()
+  const sizeExperience = lg? 100: 35
+
   useEffect(() => {
     user.email === '' && dispatch(getUser());
   }, []);
@@ -55,9 +134,9 @@ const HabitsList = () => {
     <>
       <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
         <Header
+          showBack={!lg}
           title="Habits List"
-          editUrl={'/add-habits'}
-          showButton={true}
+          editUrl={`${!lg ?'/add-habits': ''}`}
           icon={<HiPlus className="text-primary-dark w-5 h-5" />}
         />
         <div>
@@ -71,8 +150,11 @@ const HabitsList = () => {
             }}
           />
         </div>
-        <div>
-          {OrderBy(selectedOrder, searchResult).map((habit) => (
+        <Link to="/add-habits" className="hidden lg:block lg:w-44 lg:text-center lg:mt-6 lg:self-end">
+          <button className="btn btn-primary">Add habit</button>
+        </Link>
+        <div className="lg:mt-6 lg:grid lg:grid-cols-4 lg:justify-items-center lg:gap-8 lg:items-start">
+          {OrderBy(selectedOrder, searchResult) .map((habit) => (
             <Habit
               key={habit._id}
               _id={habit._id}
@@ -81,11 +163,12 @@ const HabitsList = () => {
               category={habit.category}
               description={habit.description}
               experience={habit.experience}
+              sizeExperience={sizeExperience}
               isDone={habit.isDone}
             />
           ))}
         </div>
-        <div className="fixed bottom-24 z-10">
+        <div className="fixed bottom-24 lg:top-60 z-10">
           <label className="text-secondary-regular">Order by</label>
           <select
             value={selectedOrder}

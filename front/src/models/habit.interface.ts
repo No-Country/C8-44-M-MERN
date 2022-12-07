@@ -8,5 +8,6 @@ export interface BasicHabit {
 export interface Habit extends BasicHabit {
   _id: string;
   experience: number;
+  sizeExperience?: number
   isDone: boolean;
 }

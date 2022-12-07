@@ -80,6 +80,7 @@ const HabitsList = () => {
               category={habit.category}
               description={habit.description}
               experience={habit.experience}
+              isDone={habit.isDone}
             />
           ))}
         </div>
@@ -100,7 +101,6 @@ const HabitsList = () => {
           </select>
         </div>
       </div>
-      {/* <Navbar /> */}
     </>
   );
 };

@@ -15,10 +15,9 @@ const Home = () => {
   useEffect(() => {
     user.email === '' && dispatch(getUser());
   }, []);
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <>
+      <Loader isLoading={isLoading} />
       <div className="main-container flex flex-col gap-4 lg:gap-8 dark:bg-gray-800">
         <div className="flex justify-between">
           <h1 className="title text-secondary-dark dark:text-white">Home</h1>
@@ -42,7 +41,6 @@ const Home = () => {
           <HomeFriends user={user} />
         </div>
       </div>
-      {/* <Navbar /> */}
     </>
   );
 };

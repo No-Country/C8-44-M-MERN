@@ -3,20 +3,15 @@ import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { FcReadingEbook, FcSportsMode } from 'react-icons/fc';
 import { GiHealthNormal, GiOpenBook } from 'react-icons/gi';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { createCustomHabit, createHabit } from '../../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { useEffect, useState } from 'react';
 
+import { BasicHabit } from '../../../models/habit.interface';
 import { CiWarning } from 'react-icons/ci';
+import { Habit } from '../../../models';
+import { createCustomHabit } from '../../../redux/features';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
-type FormValues = {
-  name: string;
-  description: string;
-  category: string;
-  frecuency: number;
-};
 
 type Error = {
   [key: string]: any;
@@ -61,12 +56,12 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<BasicHabit>();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<BasicHabit> = async (data) => {
     await dispatch(createCustomHabit(data));
     toast.success('Successfully created habit');
-    navigate('/habits');
+    navigate('/home');
   };
 
   /* const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false); */
@@ -154,7 +149,7 @@ const Form = () => {
               <input
                 type={'radio'}
                 id="health-input"
-                value={'health'}
+                value={'Health'}
                 {...register('category', {
                   required: true,
                 })}
@@ -167,7 +162,7 @@ const Form = () => {
             <div className="flex gap-2 items-center">
               <span className="text-secondary-regular text-sm">Education</span>
               <input
-                value={'education'}
+                value={'Education'}
                 type={'radio'}
                 id="education-input"
                 {...register('category', {
@@ -190,7 +185,7 @@ const Form = () => {
             disabled
             value={1}
             id="frecuency-input"
-            {...register('frecuency', {
+            {...register('frequency', {
               /* required: true, */
               pattern: /^(?:[1-9]\d?|[12]\d{2}|3[0-5]\d|36[0-5])$/,
             })}
@@ -205,9 +200,9 @@ const Form = () => {
         <Message
           errors={errors}
           property="frecuency"
-          type={errors?.frecuency?.type == 'required' ? 'required' : 'pattern'}
+          type={errors?.frequency?.type == 'required' ? 'required' : 'pattern'}
           text={
-            errors?.frecuency?.type == 'required'
+            errors?.frequency?.type == 'required'
               ? 'This field is required'
               : 'Frequency must be a number between 1 and 365'
           }

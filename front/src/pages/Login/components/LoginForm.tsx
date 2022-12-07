@@ -5,15 +5,11 @@ import { getUser, login } from '../../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { useEffect, useState } from 'react';
 
+import { BasicUser } from '../../../models/user.interface';
 import { CiWarning } from 'react-icons/ci';
 import { FaGoogle } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
-type FormValues = {
-  email: string;
-  password: string;
-};
 
 type Error = {
   [key: string]: any;
@@ -57,9 +53,9 @@ const Form = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<BasicUser>();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<BasicUser> = async (data) => {
     await dispatch(login(data));
   };
 

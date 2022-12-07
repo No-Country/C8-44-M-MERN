@@ -16,7 +16,7 @@ const Experience = ({ user }: any) => {
           </h3>
           <ExperienceRing
             size={lg ? window.screen.width / 8 : 140}
-            experience={40}
+            experience={user.educationExperience}
             color={'#f85f6a'}
             textColor={'primary-dark'}
             fontSize={'text-sm'}
@@ -28,7 +28,7 @@ const Experience = ({ user }: any) => {
           </h3>
           <ExperienceRing
             size={lg ? window.screen.width / 8 : 140}
-            experience={90}
+            experience={user.healthExperience}
             color={'#5f83f8'}
             textColor={'blue'}
             fontSize={'text-sm'}

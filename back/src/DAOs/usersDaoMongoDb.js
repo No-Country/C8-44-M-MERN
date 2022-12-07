@@ -98,7 +98,6 @@ class UsersDaoMongoDB extends ContainerMongoDB {
       console.log(error);
     }
   }
-
 }
 
 module.exports = UsersDaoMongoDB;

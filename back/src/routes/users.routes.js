@@ -19,7 +19,7 @@ router.route(`${path}`)
 
 router.get(`${path}/one`, userControllers.getUserByName);
 
-router.put(`${path}/update`, userControllers.editUser);
+router.put(`${path}/update`, passport.authenticate('jwt', {session: false}), userControllers.editUser);
 
 router.route(`${path}/:id`)
   .get(userControllers.getUserById)

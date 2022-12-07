@@ -1,7 +1,4 @@
 const { model, Schema } = require("mongoose");
-
-// agregar hábitos
-
 const userSchema = new Schema({
   username: {
     type: String,
@@ -24,7 +21,7 @@ const userSchema = new Schema({
   },
   avatar: {
     type: String,
-    default: "https://i.imgur.com/WxNkK7J.png",
+    default: "https://i.imgur.com/QrdRA4F.png",
   },
   rol: {
     type: String,

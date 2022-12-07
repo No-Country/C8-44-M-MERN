@@ -10,14 +10,14 @@ const AddCustomHabit = () => {
   const { isLoading, isSuccess, isError, user } = useAppSelector(
     (state) => state.user
   );
-  /* useEffect(() => {
+  useEffect(() => {
     user.email === '' && dispatch(getUser());
-  }, []); */
+  }, []);
   return isLoading ? (
     <Loader />
   ) : (
     <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
-      <Header title="Add Custom Habit" />
+      <Header title="Add Custom Habit" editUrl="" />
       <HabitForm />
     </div>
   );

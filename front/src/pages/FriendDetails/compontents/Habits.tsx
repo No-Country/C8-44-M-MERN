@@ -5,64 +5,54 @@ import React from 'react';
 
 const habitsList = [
   {
-    id: 1,
+    id: '1',
     habitName: 'Brush your teeth',
     frequency: 'once a day',
     category: 'Health',
     description: 'Brush your teeth daily',
     priority: 3,
-    experience: {
-      progress: 50,
-      level: 1,
-    },
+    experience: 50,
+    isDone: true,
   },
   {
-    id: 2,
+    id: '2',
     habitName: 'cycle for 1h',
     frequency: 'once a day',
     category: 'Health',
     description: 'cycle for 1h',
     priority: 5,
-    experience: {
-      progress: 30,
-      level: 2,
-    },
+    experience: 20,
+    isDone: true,
   },
   {
-    id: 3,
+    id: '3',
     habitName: 'Medical check',
     frequency: 'once a month',
     category: 'Health',
     description: 'Medical check',
     priority: 3,
-    experience: {
-      progress: 40,
-      level: 3,
-    },
+    experience: 0,
+    isDone: false,
   },
   {
-    id: 5,
+    id: '5',
     habitName: 'Go to the bed early',
     frequency: 'once a day',
     category: 'Health',
     description: 'Go to the bed early',
     priority: 3,
-    experience: {
-      progress: 90,
-      level: 5,
-    },
+    experience: 10,
+    isDone: false,
   },
   {
-    id: 4,
+    id: '4',
     habitName: 'Read a book',
     frequency: 'once a day',
     category: 'Education',
     description: 'Read a book',
     priority: 3,
-    experience: {
-      progress: 60,
-      level: 2,
-    },
+    experience: 20,
+    isDone: false,
   },
 ];
 
@@ -82,6 +72,10 @@ const Habits = () => {
               _id={habit.id}
               name={habit.habitName}
               experience={habit.experience}
+              isDone={habit.isDone}
+              description={habit.description}
+              category={habit.category}
+              frequency={habit.frequency}
             />
           </li>
         ))}

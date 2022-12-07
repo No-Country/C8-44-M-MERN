@@ -1,19 +1,17 @@
 import { motion } from 'framer-motion';
-
+import { tempColorAssing } from '../utils/changeColor';
 import { useEffect } from 'react';
 
-import { tempColorAssing } from '../utils/changeColor';
-
 interface Ring {
-   experience: number;
-   level?: number;
-   color?: string;
-   textColor?: string;
-   fontSize?: string;
+  experience: number;
+  level?: number;
+  color?: string;
+  textColor?: string;
+  fontSize?: string;
+  size?: number;
 }
 
 const ExperienceRing = ({
-
   size,
   experience,
   level,
@@ -29,7 +27,7 @@ const ExperienceRing = ({
         </p>
       ) : (
         <p className={`absolute ${fontSize} text-${textColor}`}>
-          {'Lvl ' + level}
+          {'Lvl ' + Math.ceil(experience / 100)}
         </p>
       )}
       <svg id="progress" width={size} height={size} viewBox="0 0 100 100">

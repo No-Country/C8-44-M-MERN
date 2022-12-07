@@ -47,8 +47,13 @@ const Profile = () => {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4 mb-7 dark:bg-gray-800 transition-colors duration-700 lg:px-30 2xl:px-[550px]">
-        <Header title="My Profile" fn={() => setIsActive(!isActive)} />
+      <div className="main-container flex flex-col gap-4 mb-10 dark:bg-gray-800 transition-colors duration-700 lg:px-30 2xl:px-[550px]">
+        <Header
+          title="My Profile"
+          editUrl=""
+          showButton={true}
+          fn={() => setIsActive(!isActive)}
+        />
         <div>
           {!isActive ? (
             <Avatar user={user} />
@@ -121,7 +126,7 @@ const Profile = () => {
             >
               log out
             </button>
-            <button className="p-1">delete account</button>
+            {/* <button className="p-1">delete account</button> */}
           </div>
         </div>
       </div>

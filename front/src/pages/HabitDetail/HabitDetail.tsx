@@ -2,7 +2,6 @@ import { ExperienceRing, Header, Loader, Navbar } from '../../components';
 import profilePicture from '../../assets/profile.jpg';
 import { Details } from './components';
 import { tempColorAssing } from '../../utils/changeColor';
-import { useAppSelector } from '../../redux/hooks';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';

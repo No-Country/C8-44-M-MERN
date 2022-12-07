@@ -1,6 +1,5 @@
 import { ExperienceRing, Header, Loader, Navbar } from '../../components';
 import { getHabitById, getUser } from '../../redux/features';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { Details } from './components';
 import profilePicture from '../../assets/profile.jpg';
@@ -9,7 +8,6 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 
 function HabitDetail() {
   const { id } = useParams();

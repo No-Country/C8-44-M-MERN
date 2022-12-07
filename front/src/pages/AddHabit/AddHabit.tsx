@@ -55,7 +55,7 @@ const AddHabit = () => {
                 lg:hover:bg-secondary-light lg:h-36 lg:w-36 xl:h-52 xl:w-52 2xl:h-72 2xl:w-72"
               >
                 <h3 className="text-sm text-center pl-5 p-3 text-secondary-dark dark:text-secondary-light 
-                  lg:px-0 xl:px-5 lg:text-base xl:text-xl lg:text-primary-dark lg:font-normal 2xl:text-2xl"
+                  lg:px-0 xl:px-5 lg:text-base xl:text-xl lg:text-primary-dark lg:font-normal 2xl:text-2xl">
                   {habit.name}
 
                 </h3>

@@ -21,7 +21,7 @@ const AddFriends = () => {
   ) : (
     <>
       <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
-        <Header title="Add Friend" />
+        <Header title="Add Friend" editUrl="" />
         <input
           id="search"
           placeholder="Search friends"

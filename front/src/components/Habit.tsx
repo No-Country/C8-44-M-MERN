@@ -69,7 +69,7 @@ const Habit = ({
           )}
         </span>
         <div
-          className={`hidden ${location.pathname === '/home' && 'lg:block'} `}
+          className={`${location.pathname === '/home' && 'lg:block'} `}
         >
           {isDone ? (
             <MdCheckCircle color={'#5ED55E'} size={'35px'} />

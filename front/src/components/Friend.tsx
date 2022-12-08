@@ -10,20 +10,17 @@ import { toast } from 'react-toastify';
 import { useAppDispatch } from '../redux/hooks';
 import { useLocation } from 'react-router-dom';
 
-const Friend = (
-  {
-    email,
-    username,
-    fullname,
-    followers,
-    habits,
-    avatar,
-    _id,
-    rol,
-    experience,
-  }: User,
-  showButton = false
-) => {
+const Friend = ({
+  email,
+  username,
+  fullname,
+  followers,
+  habits,
+  avatar,
+  _id,
+  rol,
+  experience,
+}: User) => {
   let location = useLocation();
   const lg = window.screen.width > window.screen.height;
   const dispatch = useAppDispatch();
@@ -46,6 +43,7 @@ const Friend = (
       lg:w-full
       lg:h-44
       lg:border-2
+      mt-4
        rounded-md
        lg:bg-secondary-light/30
        dark:border-none
@@ -65,37 +63,37 @@ const Friend = (
         `}
       >
         <Link to={`/friend/${_id}`}>
-          <LazyLoadImage
-            src={avatar}
-            alt="Friend picture"
-            className="rounded-full h-10 w-10 object-cover cursor-pointer lg:w-14 lg:h-14 border-2"
-            effect="blur"
-          />
+          <div className="h-12 w-12 lg:w-14 lg:h-14">
+            <LazyLoadImage
+              src={avatar}
+              alt="Friend picture"
+              className="rounded-full h-12 w-12 object-cover cursor-pointer lg:w-14 lg:h-14 border-2"
+              effect="blur"
+            />
+          </div>
         </Link>
         <Link
           to={`/friend/${_id}`}
-          className={`${location.pathname == '/home' && 'lg:hidden'} `}
+          className={` w-full ${location.pathname == '/home' && 'lg:hidden'} `}
         >
-          <div className="md:flex md:flex-col md:justify-center max-w-127 md:max-w-full md:w-44 md:text-center">
-            <p className="text-secondary-dark dark:text-secondary-light break-words">
+          <div className="md:flex md:flex-col md:justify-center max-w-127 md:max-w-full md:w-44 md:text-center w-full">
+            <p className="text-secondary-dark dark:text-secondary-light ">
               {username}
             </p>
             {email && (
-              <p className="text-secondary-regular text-sm dark:text-secondary-light break-words">
+              <p className="text-secondary-regular text-sm dark:text-secondary-light  w-full">
                 {email}
               </p>
             )}
           </div>
         </Link>
       </div>
-      {showButton && (
-        <CiCirclePlus
-          onClick={handleFollow}
-          className={`text-3xl text-primary-dark md:self-end cursor-pointer lg:pr-6 lg:w-auto  lg:h-auto ${
-            location.pathname == '/home' && 'lg:hidden'
-          }`}
-        />
-      )}
+      <CiCirclePlus
+        onClick={handleFollow}
+        className={`text-3xl text-primary-dark md:self-end cursor-pointer lg:pr-6 lg:w-auto  lg:h-auto ${
+          location.pathname == '/home' && 'hidden'
+        }`}
+      />
     </div>
   );
 };

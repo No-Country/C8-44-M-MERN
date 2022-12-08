@@ -19,6 +19,7 @@ MongoDB - React - Node.js
 - Giuliano Gropponi --> Full-Stack
 - Andres Felipe Padilla Mantilla --> Back-End
 - Alfredo Profumieri --> Back-End
+- Luis Navarro --> Front-End
 
 ## Deploy Backend
 

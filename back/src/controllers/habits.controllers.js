@@ -178,7 +178,7 @@ const updateIsDoneHabit = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const habitId = req.params.habitId;
-    const { habits } = await usersApi.findOneById(userId);
+    const { habits } = await usersApi.findOneByIdFollowers(userId);
     const habit = habits.filter((habit) => habit.id === habitId);
     if (habit[0].isDone) {
       res.json({ message: "Ya haz cumplido este habito por hoy" });

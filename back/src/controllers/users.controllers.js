@@ -174,7 +174,7 @@ const editUser = async (req, res, next) => {
   try {
     const newData = req.body;
     console.log(newData);
-    let user = await usersApi.findOneById(req.user.id);
+    let user = await usersApi.findOneByIdFollowers(req.user.id);
     let newUser ={...user._doc,...newData}
     usersApi.updateOne(user.username, newUser);
     res.json({ msg: "User modificado!", data: newUser });

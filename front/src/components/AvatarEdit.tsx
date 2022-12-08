@@ -17,15 +17,15 @@ function AvatarCard({ image, fn }: Props) {
   };
 
   return (
-    <div className="mb-3 relative">
+    <div className="mb-3 relative ">
       <img
         src={image}
         alt="Profile picture"
-        className="h-16 w-16 object-cover rounded-full relative"
+        className="h-16 w-16 object-cover rounded-full relative lg:w-48 lg:h-40 "
       />
-      <label htmlFor="file-input" className="custom-file-input">
+      {/* <label htmlFor="file-input" className="custom-file-input">
         <AiFillCamera />
-      </label>
+      </label> */}
       <input
         type="file"
         id="file-input"

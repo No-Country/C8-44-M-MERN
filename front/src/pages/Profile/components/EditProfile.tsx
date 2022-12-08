@@ -52,37 +52,40 @@ function EditProfile({ user, changeActive }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-center mt-4 w-full">
+    <div className="flex flex-col items-center mt-4 w-full lg:flex-row lg:gap-8 lg:justify-between">
       <AvatarEdit fn={handleFile} image={data.avatar} />
       <form
-        className="flex flex-col flex-wrap gap-5 my-5 justify-center"
+        className="flex flex-col flex-wrap gap-5 my-5 justify-center lg:gap-8 lg:flex-row lg:w-full lg:justify-start"
         onSubmit={handleSubmit}
       >
-        <input
-          placeholder="Username"
-          type="text"
-          className="text-center form-input"
-          name="username"
-          value={username}
-          onChange={handleChange}
-        />
-        <input
-          placeholder="Fullname"
-          type="text"
-          className="text-center form-input "
-          name="fullname"
-          value={fullname}
-          onChange={handleChange}
-        />
-        <input
-          placeholder="Photo URL"
-          type="text"
-          className="text-center form-input "
-          name="avatar"
-          value={avatar}
-          onChange={handleChange}
-        />
-        <div className="flex flex-wrap mt-4 gap-4 w-full">
+        <div className="flex flex-col lg:gap-3 lg:w-3/4">
+          <input
+            placeholder="Username"
+            type="text"
+            className="text-center form-input lg:dark:bg-secondary-dark lg:dark:text-white lg:text-start lg:pl-2"
+            name="username"
+            value={username}
+            onChange={handleChange}
+          />
+          <input
+            placeholder="Fullname"
+            type="text"
+            className="text-center form-input lg:dark:bg-secondary-dark lg:dark:text-white lg:text-start lg:pl-2"
+            name="fullname"
+            value={fullname}
+            onChange={handleChange}
+          />
+          <input
+            placeholder="Photo URL"
+            type="text"
+            className="text-center form-input  lg:dark:bg-secondary-dark lg:dark:text-white lg:text-start lg:pl-2"
+            name="avatar"
+            value={avatar}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="flex flex-wrap mt-4 gap-4 w-full lg:w-48 lg:items-center lg:justify-center lg:mt-0">
           <button
             onClick={cancel}
             className="rounded-xl w-full xs:w-44 border-primary-light text-primary-dark border-2 p-2 hover:border-white hover:bg-primary-light hover:text-white transition-colors"

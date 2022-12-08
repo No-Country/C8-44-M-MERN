@@ -1,9 +1,11 @@
 import { AiFillCamera } from 'react-icons/ai';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface Props {
   image: string;
   fn: (ele: any) => void;
 }
+const lg = window.screen.width > window.screen.height;
 
 function AvatarCard({ image, fn }: Props) {
   const handleFile = ({ target }: any) => {
@@ -18,11 +20,14 @@ function AvatarCard({ image, fn }: Props) {
 
   return (
     <div className="mb-3 relative ">
-      <img
-        src={image}
-        alt="Profile picture"
-        className="h-16 w-16 object-cover rounded-full relative lg:w-48 lg:h-40 "
-      />
+      <div className={`${!lg ? 'h-16 w-16' : 'h-28 w-28'}`}>
+        <LazyLoadImage
+          src={image}
+          alt="Profile picture"
+          className={`border-2 object-cover rounded-full relative`}
+          effect="blur"
+        />
+      </div>
       {/* <label htmlFor="file-input" className="custom-file-input">
         <AiFillCamera />
       </label> */}

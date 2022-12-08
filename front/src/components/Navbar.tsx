@@ -3,8 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { AiFillHome } from 'react-icons/ai';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { IoChevronBack } from 'react-icons/io5';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { TiThList } from 'react-icons/ti';
-import profilePicture from '../assets/profile.jpg';
+import { useAppSelector } from '../redux/hooks';
 import { useState } from 'react';
 
 interface Icon {
@@ -30,6 +31,10 @@ const Icon = ({ icon, url, color = 'secondary-regular' }: Icon) => {
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { isLoading, isSuccess, isError, user } = useAppSelector(
+    (state) => state.user
+  );
+
   return (
     <div
       className={`
@@ -43,15 +48,19 @@ const Navbar = () => {
         dark:lg:bg-gray-900 dark:lg:border-black
       `}
     >
-      <Link to="/profile" className="hidden lg:block h-24">
+      <Link to="/profile" className="hidden lg:block">
         <div
-          style={{ width: open ? '6rem' : '3rem' }}
+          style={{
+            width: open ? '6rem' : '3rem',
+            height: open ? '6rem' : '3rem',
+          }}
           className={` rounded-full overflow-hidden transition-all duration-700 `}
         >
-          <img
-            src={profilePicture}
+          <LazyLoadImage
+            src={user.avatar}
             alt="Profile picture"
-            className="object-cover w-full"
+            className=" object-cover w-full"
+            effect="blur"
           />
         </div>
       </Link>

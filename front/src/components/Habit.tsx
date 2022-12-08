@@ -60,8 +60,8 @@ const Habit = ({
           ) : (
             <ExperienceRing
               size={sizeExperience}
-              experience={40}
-              level={2}
+              experience={experience}
+              level={Math.ceil(experience / 100)}
               color={'#f85f6a'}
               textColor={'scale1'}
               fontSize={'text-10 lg:text-sm'}

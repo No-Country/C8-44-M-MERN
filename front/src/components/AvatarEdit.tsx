@@ -20,11 +20,15 @@ function AvatarCard({ image, fn }: Props) {
 
   return (
     <div className="mb-3 relative ">
-      <div className={`${!lg ? 'h-16 w-16' : 'h-28 w-28'}`}>
+      <div
+        className={` rounded-full border-2 overflow-hidden ${
+          !lg ? 'h-16 w-16' : 'h-28 w-28'
+        }`}
+      >
         <LazyLoadImage
           src={image}
           alt="Profile picture"
-          className={`border-2 object-cover rounded-full relative`}
+          className={`object-cover  relative h-28 w-28`}
           effect="blur"
         />
       </div>

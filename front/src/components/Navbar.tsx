@@ -54,12 +54,16 @@ const Navbar = () => {
             width: open ? '6rem' : '3rem',
             height: open ? '6rem' : '3rem',
           }}
-          className={` rounded-full overflow-hidden transition-all duration-700 `}
+          className={` rounded-full overflow-hidden transition-all duration-500 `}
         >
           <LazyLoadImage
             src={user.avatar}
+            style={{
+              height: open ? '6rem' : '3rem',
+              width: open ? '6rem' : '3rem',
+            }}
             alt="Profile picture"
-            className=" object-cover w-full"
+            className=" object-cover"
             effect="blur"
           />
         </div>

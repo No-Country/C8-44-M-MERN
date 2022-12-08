@@ -10,11 +10,15 @@ const lg = window.screen.width > window.screen.height;
 function Avatar({ user }: Props) {
   return (
     <div className="flex flex-col lg:flex-row items-center lg:gap-5 mt-4 w-full">
-      <div className={`${!lg ? 'h-16 w-16' : 'h-28 w-28'}`}>
+      <div
+        className={`rounded-full border-2 overflow-hidden ${
+          !lg ? 'h-16 w-16' : 'h-28 w-28'
+        }`}
+      >
         <LazyLoadImage
           src={user.avatar}
           alt="Profile picture"
-          className={`border-2 object-cover rounded-full relative`}
+          className={` object-cover  relative  h-28 w-28`}
           effect="blur"
         />
       </div>

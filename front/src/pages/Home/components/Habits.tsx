@@ -24,13 +24,9 @@ const Habits = ({ user }: Props) => {
             user.habits.map((habit: HabitType) => (
               <li key={habit._id} className="first-of-type:mt-5">
                 <Habit
-                  _id={habit._id}
-                  name={habit.name}
-                  frequency={habit.frequency}
-                  category={habit.category}
-                  description={habit.description}
-                  experience={habit.experience}
-                  isDone={habit.isDone}
+                  habit={habit}
+                  showCheck={true}
+                  sizeExperience={undefined}
                 />
               </li>
             ))

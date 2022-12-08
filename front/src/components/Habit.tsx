@@ -9,21 +9,18 @@ import { tempColorAssing } from '../utils/changeColor';
 import { useAppDispatch } from '../redux/hooks';
 import { useState } from 'react';
 
-const Habit = ({
-  name,
-  frequency,
-  category,
-  description,
-  experience,
-  isDone,
-  sizeExperience,
-  _id,
-}: HabitType) => {
+interface Props {
+  habit: HabitType;
+  showCheck: boolean;
+  sizeExperience: number | undefined;
+}
+
+const Habit = ({ habit, showCheck, sizeExperience }: Props) => {
   const [party, setParty] = useState(false);
   const dispatch = useAppDispatch();
   const handleCheck = async () => {
     setParty(true);
-    await dispatch(checkHabit(_id));
+    await dispatch(checkHabit(habit._id));
   };
 
   return (
@@ -35,13 +32,13 @@ const Habit = ({
       ${location.pathname == '/habits' && 'lg:flex-col'}
       `}
     >
-      <Link to={`/habit-detail/${_id}`}>
+      <Link to={`/habit-detail/${habit._id}`}>
         <h3
           className={`text-sm pl-5 p-3 text-secondary-dark dark:text-secondary-light lg:pt-4 lg:pb-2 lg:px-0 ${
             location.pathname == '/home' && 'lg:pt-4 lg:pb-4'
-          }`}
+          } `}
         >
-          {name}
+          {habit.name}
         </h3>
       </Link>
       <div
@@ -51,36 +48,36 @@ const Habit = ({
       >
         <span
           className={`flex text-xs font-bold text-${tempColorAssing(
-            Math.ceil(experience / 100),
+            Math.ceil(habit.experience / 100),
             'class'
           )} `}
         >
           {!sizeExperience ? (
-            `lvl ${Math.ceil(experience / 100)}`
+            `lvl ${Math.ceil(habit.experience / 100)}`
           ) : (
             <ExperienceRing
               size={sizeExperience}
-              experience={experience}
-              level={Math.ceil(experience / 100)}
+              experience={habit.experience}
+              level={Math.ceil(habit.experience / 100)}
               color={'#f85f6a'}
               textColor={'scale1'}
               fontSize={'text-10 lg:text-sm'}
             />
           )}
         </span>
-        <div
-          className={`${location.pathname === '/home' && 'lg:block'} `}
-        >
-          {isDone ? (
-            <MdCheckCircle color={'#5ED55E'} size={'35px'} />
-          ) : (
-            <AiOutlineCheckCircle
-              className="cursor-pointer"
-              color={'#8492a6'}
-              size={'35px'}
-              onClick={handleCheck}
-            />
-          )}
+
+        <div>
+          {showCheck &&
+            (habit.isDone ? (
+              <MdCheckCircle color={'#5ED55E'} size={'35px'} />
+            ) : (
+              <AiOutlineCheckCircle
+                className="cursor-pointer"
+                color={'#8492a6'}
+                size={'35px'}
+                onClick={handleCheck}
+              />
+            ))}
         </div>
       </div>
       <Confetti

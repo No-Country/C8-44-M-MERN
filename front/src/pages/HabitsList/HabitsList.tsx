@@ -103,14 +103,9 @@ const HabitsList = () => {
           {OrderBy(selectedOrder, searchResult).map((habit) => (
             <Habit
               key={habit._id}
-              _id={habit._id}
-              name={habit.name}
-              frequency={habit.frequency}
-              category={habit.category}
-              description={habit.description}
-              experience={habit.experience}
               sizeExperience={lg ? sizeExperience : undefined}
-              isDone={habit.isDone}
+              habit={habit}
+              showCheck={true}
             />
           ))}
         </div>

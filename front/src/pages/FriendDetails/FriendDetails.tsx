@@ -38,8 +38,6 @@ const FriendDetails = () => {
 
   const following =
     user.user.followers.find((friend) => friend._id === id) || null;
-  console.log(following);
-
   const handleFollow = async () => {
     const response = await dispatch(addFriend(friend._id));
     if (response.payload.message) {
@@ -57,7 +55,7 @@ const FriendDetails = () => {
       <div className="main-container flex flex-col gap-5 dark:bg-gray-800">
         <Header title="Friend Details" editUrl="" />
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 justify-between">
-          <div className="flex flex-col gap-8 lg:w-1/2 justify-center max-w-sm">
+          <div className="flex flex-col gap-8 lg:w-1/2 justify-center max-w-sm ">
             <Avatar user={friend} />
             <button
               disabled={following ? true : false}

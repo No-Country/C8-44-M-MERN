@@ -8,8 +8,8 @@ interface Props {
 
 const Habits = ({ user }: Props) => {
   return (
-    <div>
-      <div className="flex justify-between items-center">
+    <div className="mb-12">
+      <div className="flex justify-between items-center ">
         <h2 className="home-title">Habits</h2>
       </div>
       <div className="relative h-1 w-full bg-secondary-light rounded-full dark:bg-secondary-regular"></div>
@@ -18,13 +18,9 @@ const Habits = ({ user }: Props) => {
           user.habits.map((habit: HabitType) => (
             <li key={habit._id}>
               <Habit
-                _id={habit._id}
-                name={habit.name}
-                experience={habit.experience}
-                isDone={habit.isDone}
-                description={habit.description}
-                category={habit.category}
-                frequency={habit.frequency}
+                habit={habit}
+                showCheck={false}
+                sizeExperience={undefined}
               />
             </li>
           ))

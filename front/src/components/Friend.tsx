@@ -1,9 +1,13 @@
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
+import { Link, useNavigate } from 'react-router-dom';
+
 import { CiCirclePlus } from 'react-icons/ci';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Link } from 'react-router-dom';
 import { User } from '../models';
+import { addFriend } from '../redux/features';
+import { toast } from 'react-toastify';
+import { useAppDispatch } from '../redux/hooks';
 import { useLocation } from 'react-router-dom';
 
 const Friend = (
@@ -22,6 +26,17 @@ const Friend = (
 ) => {
   let location = useLocation();
   const lg = window.screen.width > window.screen.height;
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleFollow = async () => {
+    const response = await dispatch(addFriend(_id));
+    if (response.payload.message) {
+      toast.error(`The user was already added to friends`);
+    } else {
+      toast.success(`User followed successfully`);
+      navigate('/home');
+    }
+  };
 
   return (
     <div
@@ -33,6 +48,7 @@ const Friend = (
       lg:border-2
        rounded-md
        lg:bg-secondary-light/30
+       dark:border-none
       ${location.pathname !== '/home' && 'md:flex-col-reverse md:w-44 '}
       ${
         location.pathname == '/home' &&
@@ -74,7 +90,7 @@ const Friend = (
       </div>
       {showButton && (
         <CiCirclePlus
-          onClick={() => console.log('Solicitud enviada')}
+          onClick={handleFollow}
           className={`text-3xl text-primary-dark md:self-end cursor-pointer lg:pr-6 lg:w-auto  lg:h-auto ${
             location.pathname == '/home' && 'lg:hidden'
           }`}

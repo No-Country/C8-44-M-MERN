@@ -1,8 +1,7 @@
 import { Friend, Header, Loader } from '../../components';
+import { getUser, getUsers } from '../../redux/features';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { useEffect, useState } from 'react';
-
-import { getUsers } from '../../redux/features';
 
 const AddFriends = () => {
   const dispatch = useAppDispatch();
@@ -10,10 +9,15 @@ const AddFriends = () => {
   const { isLoading, isSuccess, users } = useAppSelector(
     (state) => state.users
   );
+  const user = useAppSelector((state) => state.user);
   const [searchResult, setSearchResult] = useState(users);
 
   useEffect(() => {
     users.length === 0 && dispatch(getUsers());
+  }, []);
+
+  useEffect(() => {
+    user.user.email === '' && dispatch(getUser());
   }, []);
 
   useEffect(() => {
@@ -30,7 +34,7 @@ const AddFriends = () => {
     );
   };
 
-  return isLoading ? (
+  return isLoading || user.isLoading ? (
     <Loader />
   ) : (
     <>

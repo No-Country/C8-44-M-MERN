@@ -22,9 +22,9 @@ const login = async (user: BasicUser): Promise<{ jwt: string | null }> => {
       localStorage.setItem('jwt', JSON.stringify(response.data.token));
     }
     return { jwt: response.data.token };
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
-    return { jwt: null };
+    throw new Error(error.response.data.message);
   }
 };
 

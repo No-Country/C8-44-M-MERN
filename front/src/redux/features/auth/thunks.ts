@@ -19,7 +19,7 @@ export const login = createAsyncThunk(
     try {
       return await authService.login(user);
     } catch (error) {
-      return thunkAPI.rejectWithValue('Unable to login');
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

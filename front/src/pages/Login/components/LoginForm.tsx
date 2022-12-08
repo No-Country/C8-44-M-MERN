@@ -5,6 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { BasicUser } from '../../../models/user.interface';
 import { CiWarning } from 'react-icons/ci';
 import { login } from '../../../redux/features';
+import { toast } from 'react-toastify';
 import { useAppDispatch } from '../../../redux/hooks';
 import { useState } from 'react';
 
@@ -54,7 +55,10 @@ const Form = () => {
   } = useForm<BasicUser>();
 
   const onSubmit: SubmitHandler<BasicUser> = async (data) => {
-    await dispatch(login(data));
+    const response: any = await dispatch(login(data));
+    if (response.payload.message) {
+      toast.error(`Credentials are incorrect. Try again`);
+    }
   };
 
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);

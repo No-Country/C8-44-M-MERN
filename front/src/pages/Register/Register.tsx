@@ -17,8 +17,6 @@ const Register = () => {
     jwt.jwt && dispatch(getUser());
     if (jwt.isSuccess) {
       toast.success(`User successfully registered`);
-    } else if (jwt.isError) {
-      toast.error(`There was a problem registering the user`);
     }
   }, [jwt]);
 

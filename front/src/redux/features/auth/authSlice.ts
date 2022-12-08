@@ -33,28 +33,36 @@ export const authSlice = createSlice({
       //LOGIN
       .addCase(login.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.isError = false;
         state.jwt = action.payload.jwt;
       })
       .addCase(login.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
+        state.isSuccess = false;
       })
       //REGISTER
       .addCase(register.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.isError = true;
         state.jwt = action.payload.jwt;
       })
       .addCase(register.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
+        state.isSuccess = true;
       });
   },
 });

@@ -19,7 +19,13 @@ const Home = () => {
     <>
       <div className="main-container flex flex-col gap-4 lg:gap-8 dark:bg-gray-800">
         <div className="flex justify-between">
-          <h1 className="title text-secondary-dark dark:text-white">Home</h1>
+          <div className="flex items-center w-full gap-4 justify-start ">
+            <img src="./icon.png" alt="" className="w-10" />
+            <h1 className="font-bold text-3xl text-secondary-dark dark:text-secondary-light">
+              Healthy Life
+            </h1>
+          </div>
+          {/* <h1 className="title text-secondary-dark dark:text-white">Home</h1> */}
           <Link to="/profile">
             <div className="h-16 w-16 lg:w-0 lg:h-0 rounded-full overflow-hidden">
               <img

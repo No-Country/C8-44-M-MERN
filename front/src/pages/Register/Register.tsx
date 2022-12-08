@@ -34,7 +34,13 @@ const Register = () => {
   ) : (
     <>
       <div className="auth-main-container flex flex-col items-center">
-        <div className="flex flex-col gap-9 2xl:w-[500px] sm:w-96 mx-auto mb-auto mt-0">
+        <div className="flex flex-col gap-9 2xl:w-[500px]  mx-auto mb-auto mt-0 ">
+          <div className="flex items-center w-full gap-4 justify-center">
+            <img src="./icon.png" alt="" className="w-10" />
+            <h1 className="font-bold text-3xl text-secondary-dark">
+              Healthy Life
+            </h1>
+          </div>
           <h1 className="title">Sign Up</h1>
           <RegisterForm />
           <p className="flex gap-2 text-secondary-regular justify-center items-center">

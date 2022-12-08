@@ -28,7 +28,7 @@ function AvatarCard({ image, fn }: Props) {
         <LazyLoadImage
           src={image}
           alt="Profile picture"
-          className={`object-cover  relative h-28 w-28`}
+          className={`object-cover  relative`}
           effect="blur"
         />
       </div>

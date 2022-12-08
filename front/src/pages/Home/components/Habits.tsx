@@ -10,7 +10,7 @@ interface Props {
 
 const Habits = ({ user }: Props) => {
   return (
-    <div className="lg:w-7/12 lg:flex lg:flex-col lg:justify-between">
+    <div className="lg:w-7/12 lg:flex lg:flex-col lg:justify-between mt-6 lg:mt-0">
       <div>
         <div className="flex justify-between items-center">
           <h2 className="home-title">Habits</h2>

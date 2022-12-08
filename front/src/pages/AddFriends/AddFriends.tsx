@@ -49,7 +49,7 @@ const AddFriends = () => {
             handleSearch(e, users);
           }}
         />
-        <div className="mt-10 md:grid md:grid-cols-3 lg:grid-cols-4 md:justify-items-center md:gap-8 md:items-start mb-10">
+        <div className=" md:grid md:grid-cols-3 lg:grid-cols-4 md:justify-items-center md:gap-8 md:items-start mb-10">
           {searchResult.map((user) => {
             return (
               <Friend

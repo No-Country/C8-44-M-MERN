@@ -10,7 +10,7 @@ interface Props {
 
 const Friends = ({ user }: Props) => {
   return (
-    <div className="mb-10 lg:w-2/12">
+    <div className="mb-10 lg:w-2/12 mt-10 lg:mt-0">
       <div className="flex justify-between items-center">
         <h2 className="home-title">Friends</h2>
         <Link to="/friends" className="lg:hidden">

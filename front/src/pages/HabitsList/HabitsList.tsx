@@ -57,12 +57,13 @@ const HabitsList = () => {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4 dark:bg-gray-800">
+      <div className="main-container flex flex-col gap-2 dark:bg-gray-800">
         <Header
           showBack={!lg}
           title="Habits List"
           editUrl={`${!lg ? '/add-habits' : ''}`}
           icon={<HiPlus className="text-primary-dark w-5 h-5" />}
+          showButton={lg ? false : true}
         />
         <div>
           <input
@@ -108,7 +109,7 @@ const HabitsList = () => {
               category={habit.category}
               description={habit.description}
               experience={habit.experience}
-              sizeExperience={sizeExperience}
+              sizeExperience={lg ? sizeExperience : undefined}
               isDone={habit.isDone}
             />
           ))}

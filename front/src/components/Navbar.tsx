@@ -28,6 +28,7 @@ const Icon = ({ icon, url, color = 'secondary-regular' }: Icon) => {
     </Link>
   );
 };
+const lg = window.screen.width > window.screen.height;
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -54,14 +55,12 @@ const Navbar = () => {
             width: open ? '6rem' : '3rem',
             height: open ? '6rem' : '3rem',
           }}
-          className={` rounded-full overflow-hidden transition-all duration-500 `}
+          className={` rounded-full overflow-hidden transition-all duration-500 ${
+            !lg ? 'h-16 w-16' : 'h-28 w-28'
+          }`}
         >
           <LazyLoadImage
             src={user.avatar}
-            style={{
-              height: open ? '6rem' : '3rem',
-              width: open ? '6rem' : '3rem',
-            }}
             alt="Profile picture"
             className=" object-cover"
             effect="blur"

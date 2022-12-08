@@ -34,7 +34,7 @@ function HabitDetail() {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-9  dark:bg-gray-800">
+      <div className="main-container flex flex-col gap-6  dark:bg-gray-800">
         <Header title="Habit Details" editUrl="" />
         <div className="">
           <div className="lg:flex lg:items-center lg:gap-8 lg:w-1/2 lg:justify-between">
@@ -49,7 +49,7 @@ function HabitDetail() {
           <div className="lg:flex flex-row-reverse lg:items-center ">
             <div className="flex flex-col items-center lg:w-1/2">
               <p
-                className={`hidden lg:-translate-y-8 lg:text-3xl lg:block lg:font-bold text-${tempColorAssing(
+                className={`mt-6 text-2xl lg:-translate-y-8 lg:text-3xl lg:block lg:font-bold text-${tempColorAssing(
                   1,
                   'class'
                 )}`}

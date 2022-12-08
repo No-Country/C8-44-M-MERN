@@ -18,7 +18,7 @@ function Avatar({ user }: Props) {
         <LazyLoadImage
           src={user.avatar}
           alt="Profile picture"
-          className={` object-cover  relative  h-28 w-28`}
+          className={` object-cover  relative`}
           effect="blur"
         />
       </div>

@@ -38,7 +38,7 @@ const Profile = () => {
     <Loader />
   ) : (
     <>
-      <div className="main-container flex flex-col gap-4 mb-10 dark:bg-gray-800 transition-colors duration-700 lg:px-30 ">
+      <div className="main-container flex flex-col gap-4 mb-10 dark:bg-gray-800 transition-colors duration-700 lg:px-30 lg:mb-0">
         <Header
           title="My Profile"
           editUrl=""
@@ -46,7 +46,11 @@ const Profile = () => {
           fn={() => setIsActive(!isActive)}
         />
         <div>
-          {!isActive ? <Avatar user={user} /> : <EditProfile user={user} />}
+          {!isActive ? (
+            <Avatar user={user} />
+          ) : (
+            <EditProfile user={user} changeActive={setIsActive} />
+          )}
           <div className="lg:flex lg:gap-24 lg:mt-12">
             <div className="mt-4 lg:w-2/3 lg:mt-0">
               <h2 className="home-title lg:mb-4">Progress</h2>

@@ -4,6 +4,7 @@ import {
   checkHabit,
   createCustomHabit,
   getUser,
+  updateUser,
 } from './thunks';
 
 import { User } from '../../../models';
@@ -143,6 +144,23 @@ export const userSlice = createSlice({
         state.user.followers = [...state.user.followers, action.payload];
       })
       .addCase(addFriend.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
+      })
+      // UPDATE USER
+      .addCase(updateUser.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+        state.isSuccess = false;
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isError = false;
+        state.user = action.payload;
+      })
+      .addCase(updateUser.rejected, (state) => {
         state.isLoading = false;
         state.isError = true;
         state.isSuccess = false;

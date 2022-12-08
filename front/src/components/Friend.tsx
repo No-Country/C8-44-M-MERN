@@ -68,7 +68,7 @@ const Friend = (
           <LazyLoadImage
             src={avatar}
             alt="Friend picture"
-            className="rounded-full h-10 w-10 object-cover cursor-pointer lg:w-14 lg:h-auto border-2"
+            className="rounded-full h-10 w-10 object-cover cursor-pointer lg:w-14 lg:h-14 border-2"
             effect="blur"
           />
         </Link>

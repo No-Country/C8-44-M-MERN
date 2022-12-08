@@ -1,12 +1,17 @@
 import { AvatarEdit } from '../../../components';
 import { User } from '../../../models';
+import { updateUser } from '../../../redux/features';
+import { useAppDispatch } from '../../../redux/hooks';
 import { useState } from 'react';
 
 interface Props {
   user: User;
+  changeActive: Function;
 }
 
-function EditProfile({ user }: Props) {
+function EditProfile({ user, changeActive }: Props) {
+  const dispatch = useAppDispatch();
+
   const [data, setData] = useState({
     avatar: user.avatar,
     username: user.username,
@@ -31,14 +36,19 @@ function EditProfile({ user }: Props) {
 
   const cancel = () => {
     setData({
-      ...user,
       avatar: user.avatar,
+      username: user.username,
+      fullname: user.fullname,
     });
+    changeActive(false);
   };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async (e: any) => {
     console.log(data);
+
+    e.preventDefault();
+    dispatch(updateUser(data));
+    changeActive(false);
   };
 
   return (
@@ -49,6 +59,7 @@ function EditProfile({ user }: Props) {
         onSubmit={handleSubmit}
       >
         <input
+          placeholder="Username"
           type="text"
           className="text-center form-input"
           name="username"
@@ -56,10 +67,19 @@ function EditProfile({ user }: Props) {
           onChange={handleChange}
         />
         <input
+          placeholder="Fullname"
           type="text"
           className="text-center form-input "
           name="fullname"
           value={fullname}
+          onChange={handleChange}
+        />
+        <input
+          placeholder="Photo URL"
+          type="text"
+          className="text-center form-input "
+          name="avatar"
+          value={avatar}
           onChange={handleChange}
         />
         <div className="flex flex-wrap mt-4 gap-4 w-full">

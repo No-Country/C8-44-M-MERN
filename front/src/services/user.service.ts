@@ -96,12 +96,30 @@ const checkHabit = async (habitId: string) => {
   }
 };
 
+const updateUser = async (data: object) => {
+  const jwt = localStorage.getItem('jwt');
+  const parsedJwt = jwt && JSON.parse(jwt);
+  try {
+    const response = await axios.put(`${BASE_URL}/user/update`, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `JWT ${parsedJwt}`,
+      },
+    });
+
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const userService = {
   getData,
   createHabit,
   addHabit,
   checkHabit,
   addFriend,
+  updateUser,
 };
 
 export default userService;

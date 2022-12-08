@@ -49,3 +49,14 @@ export const checkHabit = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  'user/update',
+  async (data: object, thunkAPI) => {
+    try {
+      return await userService.updateUser(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Unable to login');
+    }
+  }
+);
